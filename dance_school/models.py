@@ -1,3 +1,44 @@
 from django.db import models
 
+class Teacher(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    birth_date = models.DateField(null=True, blank=True)
+    biography = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+class DanceStyle(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+class DanceClass(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
+    teacher = models.ForeignKey(
+        Teacher,
+        on_delete=models.PROTECT,
+        related_name="dance_classes"
+    )
+    dance_styles = models.ManyToManyField(
+        DanceStyle,
+        blank=True,
+        related_name="dance_classes"
+    )
+    duration_minutes = models.PositiveIntegerField()
+    capacity = models.PositiveIntegerField()
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    is_available = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
 # Create your models here.
