@@ -7,6 +7,11 @@ class Teacher(models.Model):
     biography = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "хореограф"
+        verbose_name_plural = "Хореографы"
+        ordering = ("last_name",)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -14,6 +19,10 @@ class DanceStyle(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = "танцевальный стиль"
+        verbose_name_plural = "Танцевальные стили"
 
     def __str__(self):
         return self.name
@@ -24,7 +33,8 @@ class DanceClass(models.Model):
     teacher = models.ForeignKey(
         Teacher,
         on_delete=models.PROTECT,
-        related_name="dance_classes"
+        related_name="dance_classes",
+        verbose_name="Хореограф"
     )
     dance_styles = models.ManyToManyField(
         DanceStyle,
@@ -38,6 +48,10 @@ class DanceClass(models.Model):
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "танцевальное занятие"
+        verbose_name_plural = "Танцевальные занятия"
 
     def __str__(self):
         return self.title
