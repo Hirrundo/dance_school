@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models import Count
+
 from .models import Teacher, DanceStyle, DanceClass
 
 @admin.register(Teacher)
@@ -10,9 +12,19 @@ class TeacherAdmin(admin.ModelAdmin):
 
 @admin.register(DanceStyle)
 class DanceStyleAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug")
+    list_display = ("name", "slug", "classes_count")
     search_fields = ("name",)
     prepopulated_fields = {"slug": ("name",)}
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.annotate(
+            dance_class_count=Count("dance_classes")
+        )
+
+    @admin.display(description="Количество занятий", ordering="dance_class_count")
+    def classes_count(self, obj):
+        return obj.dance_class_count
 
 @admin.register(DanceClass)
 class DanceClassAdmin(admin.ModelAdmin):
@@ -31,11 +43,17 @@ class DanceClassAdmin(admin.ModelAdmin):
     list_select_related = ("teacher",)
     date_hierarchy = "created_at"
 
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related("teacher").prefetch_related(
+            "dance_styles"
+        )
+
     fieldsets = (
         ("Основное", {
             "fields": ("title", "slug", "description"),
         }),
-        ("Преподаватель и стили", {
+        ("Хореограф и стили", {
             "fields": ("teacher", "dance_styles"),
         }),
         ("Параметры занятия", {
@@ -49,4 +67,3 @@ class DanceClassAdmin(admin.ModelAdmin):
             "classes": ("collapse",),
         }),
     )
-# Register your models here.
