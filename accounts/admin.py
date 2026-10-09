@@ -8,9 +8,14 @@ class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
     extra = 0
+    max_num=1
 
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
+    def get_inlines(self, request, obj=None):
+        if obj is None:
+            return ()
+        return super().get_inlines(request, obj)
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
