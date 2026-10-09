@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+# Virtual environment
+.venv/
+venv/
+Шаг 9. Создайте .gitignore
+env/
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+# Environment variables
+.env
+.env.*
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
