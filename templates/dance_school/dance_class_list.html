@@ -3,21 +3,50 @@
 {% block title %}Танцевальные занятия{% endblock %}
 
 {% block content %}
-    <h1>Танцевальные занятия</h1>
+    <h1 class="mb-4">Танцевальные занятия</h1>
 
-    <ul>
+    <div class="row">
         {% for dance_class in dance_classes %}
-            <li>
-                <a href="{% url 'dance_school:class_detail' dance_class.slug %}">
-                    {{ dance_class.title }}
-                </a>
-                — Хореограф: {{ dance_class.teacher.first_name }}
-                {{ dance_class.teacher.last_name }}
-                — Продолжительность: {{ dance_class.duration_minutes }} мин.
-                — Цена: {{ dance_class.price }}
-            </li>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ dance_class.title }}
+                        </h5>
+
+                        <p class="card-text">
+                            Хореограф:
+                            {{ dance_class.teacher.first_name }}
+                            {{ dance_class.teacher.last_name }}
+                        </p>
+
+                        <p class="card-text">
+                            Продолжительность: {{ dance_class.duration_minutes }} мин.
+                        </p>
+
+                        <p class="card-text">
+                            Цена: {{ dance_class.price }}
+                        </p>
+
+                        {% if dance_class.description %}
+                            <p class="card-text">
+                                {{ dance_class.description|truncatewords:20 }}
+                            </p>
+                        {% endif %}
+
+                        <a
+                            href="{% url 'dance_school:class_detail' dance_class.slug %}"
+                            class="btn btn-primary"
+                        >
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <li>Пока занятий нет.</li>
+            <div class="col-12">
+                <p class="alert alert-info">Пока занятий нет.</p>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

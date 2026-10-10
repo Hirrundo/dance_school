@@ -3,23 +3,47 @@
 {% block title %}Наши хореографы{% endblock %}
 
 {% block content %}
-    <h1>Наши хореографы</h1>
+    <h1 class="mb-4">Наши хореографы</h1>
 
-    <ul>
+    <div class="row">
         {% for teacher in teachers %}
-            <li>
-                <a href="{% url 'dance_school:teacher_detail' teacher.pk %}">
-                    {{ teacher.first_name }} {{ teacher.last_name }}
-                </a>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a
+                                href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+                                class="text-decoration-none"
+                            >
+                                {{ teacher.first_name }} {{ teacher.last_name }}
+                            </a>
+                        </h5>
 
-                {% if teacher.birth_date %}
-                    — Дата рождения: {{ teacher.birth_date|date:"d.m.Y" }}
-                {% endif %}
+                        {% if teacher.birth_date %}
+                            <p class="card-text">
+                                Дата рождения:
+                                {{ teacher.birth_date|date:"d.m.Y" }}
+                            </p>
+                        {% endif %}
 
-                — Количество занятий: {{ teacher.dance_classes.all|length }}
-            </li>
+                        <p class="card-text">
+                            Количество занятий:
+                            {{ teacher.dance_classes.all|length }}
+                        </p>
+
+                        <a
+                            href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+                            class="btn btn-primary"
+                        >
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <li>Пока хореографов нет.</li>
+            <div class="col-12">
+                <p class="alert alert-info">Пока хореографов нет.</p>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
