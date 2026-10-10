@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
-from .models import DanceClass, DanceStyle, Teacher
+from .models import DanceClass, DanceStyle, Teacher,Student
 
 
 def dance_class_list(request):
@@ -36,16 +36,24 @@ def dance_class_detail(request, slug):
     )
 
 def teacher_list(request):
-    teachers = Teacher.objects.all().prefetch_related("dance_classes")
+    teachers = Teacher.objects.prefetch_related(
+        Prefetch(
+            "dance_classes",
+            queryset=DanceClass.objects.filter(is_available=True),
+        )
+    )
+
     context = {
         "teachers": teachers,
         "title": "Наши хореографы",
         "total_count": teachers.count(),
         "has_teachers": teachers.exists(),
     }
+
     return render(
         request,
-        "dance_school/teacher_list.html",context
+        "dance_school/teacher_list.html",
+        context,
     )
 
 def teacher_detail(request, pk):
@@ -80,5 +88,33 @@ def dance_style_list(request):
         request,
         "dance_school/dance_style_list.html",
         {"dance_styles": dance_styles},
+    )
+
+def student_list(request):
+    students = Student.objects.order_by("last_name", "first_name")
+
+    context = {
+        "students": students,
+        "title": "Наши ученики",
+        "total_count": students.count(),
+        "has_students": students.exists(),
+    }
+
+    return render(
+        request,
+        "dance_school/student_list.html",
+        context,
+    )
+
+def student_detail(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+
+    return render(
+        request,
+        "dance_school/student_detail.html",
+        {
+            "student": student,
+            "title": f"{student.first_name} {student.last_name}",
+        },
     )
 # Create your views here.

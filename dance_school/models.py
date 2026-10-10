@@ -55,4 +55,40 @@ class DanceClass(models.Model):
 
     def __str__(self):
         return self.title
+
+class Student(models.Model):
+    first_name = models.CharField(
+        max_length=100,
+        verbose_name="Имя",
+    )
+    last_name = models.CharField(
+        max_length=100,
+        verbose_name="Фамилия",
+    )
+    email = models.EmailField(
+        unique=True,
+        verbose_name="Электронная почта",
+    )
+    phone = models.CharField(
+        max_length=20,
+        blank=True,
+        verbose_name="Телефон",
+    )
+    address = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Адрес",
+    )
+    registered_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата регистрации",
+    )
+
+    class Meta:
+        verbose_name = "ученик"
+        verbose_name_plural = "Ученики"
+        ordering = ("last_name", "first_name")
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 # Create your models here.

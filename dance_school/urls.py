@@ -11,4 +11,6 @@ urlpatterns = [
     path("teachers/<int:pk>/", views.teacher_detail, name="teacher_detail"),
     path("styles/", views.dance_style_list, name="style_list"),
     path("about/", views.about, name="about"),
+    path("students/", views.student_list, name="student_list"),
+    path("students/<int:pk>/", views.student_detail, name="student_detail"),
 ]

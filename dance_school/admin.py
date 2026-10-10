@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import Teacher, DanceStyle, DanceClass
+from .models import Teacher, DanceStyle, DanceClass,Student
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
@@ -67,3 +67,21 @@ class DanceClassAdmin(admin.ModelAdmin):
             "classes": ("collapse",),
         }),
     )
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = (
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "registered_at",
+    )
+    search_fields = (
+        "first_name",
+        "last_name",
+        "email",
+    )
+    ordering = ("last_name", "first_name")
+    readonly_fields = ("registered_at",)
+    date_hierarchy = "registered_at"
