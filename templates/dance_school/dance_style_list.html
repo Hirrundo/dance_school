@@ -3,21 +3,34 @@
 {% block title %}Танцевальные стили{% endblock %}
 
 {% block content %}
-    <h1>Танцевальные стили</h1>
+    <h1 class="mb-4">Танцевальные стили</h1>
 
-    <ul>
+    <div class="row">
         {% for style in dance_styles %}
-            <li>
-                <h2>{{ style.name }}</h2>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ style.name }}</h5>
 
-                {% if style.description %}
-                    <p>{{ style.description }}</p>
-                {% endif %}
+                        {% if style.description %}
+                            <p class="card-text">
+                                {{ style.description }}
+                            </p>
+                        {% endif %}
 
-                <p>Количество занятий: {{ style.dance_classes.all|length }}</p>
-            </li>
+                        <p class="card-text">
+                            Количество занятий:
+                            {{ style.dance_classes.all|length }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         {% empty %}
-            <li>Пока танцевальных стилей нет.</li>
+            <div class="col-12">
+                <p class="alert alert-info">
+                    Пока танцевальных стилей нет.
+                </p>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

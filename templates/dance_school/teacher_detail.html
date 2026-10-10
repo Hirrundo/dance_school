@@ -3,32 +3,54 @@
 {% block title %}{{ teacher.first_name }} {{ teacher.last_name }}{% endblock %}
 
 {% block content %}
-    <h1>{{ teacher.first_name }} {{ teacher.last_name }}</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h1 class="card-title">
+                {{ teacher.first_name }} {{ teacher.last_name }}
+            </h1>
 
-    {% if teacher.birth_date %}
-        <p>Дата рождения: {{ teacher.birth_date|date:"d.m.Y" }}</p>
-    {% endif %}
-
-    {% if teacher.biography %}
-        <p>Биография: {{ teacher.biography }}</p>
-    {% endif %}
-
-    <h2>Занятия хореографа</h2>
-
-    <ul>
-        {% for dance_class in teacher.dance_classes.all %}
-            {% if dance_class.is_available %}
-                <li>
-                    <a href="{% url 'dance_school:class_detail' dance_class.slug %}">
-                        {{ dance_class.title }}
-                    </a>
-                    — {{ dance_class.price }}
-                </li>
+            {% if teacher.birth_date %}
+                <p>
+                    <strong>Дата рождения:</strong>
+                    {{ teacher.birth_date|date:"d.m.Y" }}
+                </p>
             {% endif %}
-        {% empty %}
-            <li>У этого хореографа пока нет занятий.</li>
-        {% endfor %}
-    </ul>
 
-    <a href="{% url 'dance_school:teacher_list' %}">← Назад к хореографам</a>
+            {% if teacher.biography %}
+                <p><strong>Биография:</strong> {{ teacher.biography }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2 class="mb-3">Занятия хореографа</h2>
+
+    <div class="row">
+        {% for dance_class in teacher.dance_classes.all %}
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dance_class.title }}</h5>
+                        <p class="card-text">Цена: {{ dance_class.price }}</p>
+
+                        <a
+                            href="{% url 'dance_school:class_detail' dance_class.slug %}"
+                            class="btn btn-primary"
+                        >
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p class="alert alert-info">
+                    У этого хореографа пока нет доступных занятий.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'dance_school:teacher_list' %}" class="btn btn-secondary mt-3">
+        ← Назад к хореографам
+    </a>
 {% endblock %}
