@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Танцевальные занятия{% endblock %}
+
+{% block content %}
+    <h1>Танцевальные занятия</h1>
+
+    <ul>
+        {% for dance_class in dance_classes %}
+            <li>
+                <a href="{% url 'dance_school:class_detail' dance_class.slug %}">
+                    {{ dance_class.title }}
+                </a>
+                — Хореограф: {{ dance_class.teacher.first_name }}
+                {{ dance_class.teacher.last_name }}
+                — Продолжительность: {{ dance_class.duration_minutes }} мин.
+                — Цена: {{ dance_class.price }}
+            </li>
+        {% empty %}
+            <li>Пока занятий нет.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

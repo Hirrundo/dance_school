@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ teacher.first_name }} {{ teacher.last_name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ teacher.first_name }} {{ teacher.last_name }}</h1>
+
+    {% if teacher.birth_date %}
+        <p>Дата рождения: {{ teacher.birth_date|date:"d.m.Y" }}</p>
+    {% endif %}
+
+    {% if teacher.biography %}
+        <p>Биография: {{ teacher.biography }}</p>
+    {% endif %}
+
+    <h2>Занятия хореографа</h2>
+
+    <ul>
+        {% for dance_class in teacher.dance_classes.all %}
+            {% if dance_class.is_available %}
+                <li>
+                    <a href="{% url 'dance_school:class_detail' dance_class.slug %}">
+                        {{ dance_class.title }}
+                    </a>
+                    — {{ dance_class.price }}
+                </li>
+            {% endif %}
+        {% empty %}
+            <li>У этого хореографа пока нет занятий.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'dance_school:teacher_list' %}">← Назад к хореографам</a>
+{% endblock %}
