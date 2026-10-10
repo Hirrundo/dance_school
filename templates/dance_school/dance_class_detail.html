@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ dance_class.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ dance_class.title }}</h1>
+
+    <p>
+        Хореограф:
+        <a href="{% url 'dance_school:teacher_detail' dance_class.teacher.pk %}">
+            {{ dance_class.teacher.first_name }} {{ dance_class.teacher.last_name }}
+        </a>
+    </p>
+
+    <p>
+        Танцевальные стили:
+        {% for style in dance_class.dance_styles.all %}
+            {{ style.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            Не указаны
+        {% endfor %}
+    </p>
+
+    <p>Продолжительность: {{ dance_class.duration_minutes }} минут</p>
+    <p>Вместимость: {{ dance_class.capacity }} человек</p>
+    <p>Цена: {{ dance_class.price }}</p>
+
+    {% if dance_class.description %}
+        <p>Описание: {{ dance_class.description }}</p>
+    {% endif %}
+
+    <a href="{% url 'dance_school:class_list' %}">← Назад к занятиям</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Танцевальные стили{% endblock %}
+
+{% block content %}
+    <h1>Танцевальные стили</h1>
+
+    <ul>
+        {% for style in dance_styles %}
+            <li>
+                <h2>{{ style.name }}</h2>
+
+                {% if style.description %}
+                    <p>{{ style.description }}</p>
+                {% endif %}
+
+                <p>Количество занятий: {{ style.dance_classes.count }}</p>
+            </li>
+        {% empty %}
+            <li>Пока танцевальных стилей нет.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

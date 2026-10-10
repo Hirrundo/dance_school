@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Наши хореографы{% endblock %}
+
+{% block content %}
+    <h1>Наши хореографы</h1>
+
+    <ul>
+        {% for teacher in teachers %}
+            <li>
+                <a href="{% url 'dance_school:teacher_detail' teacher.pk %}">
+                    {{ teacher.first_name }} {{ teacher.last_name }}
+                </a>
+
+                {% if teacher.birth_date %}
+                    — Дата рождения: {{ teacher.birth_date|date:"d.m.Y" }}
+                {% endif %}
+
+                — Количество занятий: {{ teacher.dance_classes.all|length }}
+            </li>
+        {% empty %}
+            <li>Пока хореографов нет.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
