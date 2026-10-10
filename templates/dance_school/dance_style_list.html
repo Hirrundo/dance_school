@@ -14,7 +14,7 @@
                     <p>{{ style.description }}</p>
                 {% endif %}
 
-                <p>Количество занятий: {{ style.dance_classes.count }}</p>
+                <p>Количество занятий: {{ style.dance_classes.all|length }}</p>
             </li>
         {% empty %}
             <li>Пока танцевальных стилей нет.</li>

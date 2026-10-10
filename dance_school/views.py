@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.db.models import Prefetch
 from .models import DanceClass, DanceStyle, Teacher
+
 
 def dance_class_list(request):
     dance_classes = DanceClass.objects.filter(
@@ -39,8 +40,12 @@ def teacher_list(request):
 def teacher_detail(request, pk):
     teacher = get_object_or_404(
         Teacher.objects.prefetch_related(
-            "dance_classes",
-            "dance_classes__dance_styles",
+            Prefetch(
+                "dance_classes",
+                queryset=DanceClass.objects.filter(
+                    is_available=True
+                ).prefetch_related("dance_styles"),
+            )
         ),
         pk=pk,
     )
@@ -59,7 +64,7 @@ def about(request):
     )
 
 def dance_style_list(request):
-    dance_styles = DanceStyle.objects.all()
+    dance_styles = DanceStyle.objects.prefetch_related("dance_classes")
 
     return render(
         request,
