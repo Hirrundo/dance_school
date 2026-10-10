@@ -1,49 +1,53 @@
 {% extends "base.html" %}
 
-{% block title %}Наши хореографы{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1 class="mb-4">Наши хореографы</h1>
+    <h1 class="mb-4">{{ title }}</h1>
 
-    <div class="row">
-        {% for teacher in teachers %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">
+    <p class="text-muted">Всего хореографов: {{ total_count }}</p>
+
+    {% if has_teachers %}
+        <div class="row">
+            {% for teacher in teachers %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a
+                                    href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+                                    class="text-decoration-none"
+                                >
+                                    {{ teacher.first_name }} {{ teacher.last_name }}
+                                </a>
+                            </h5>
+
+                            {% if teacher.birth_date %}
+                                <p class="card-text">
+                                    Дата рождения:
+                                    {{ teacher.birth_date|date:"d.m.Y" }}
+                                </p>
+                            {% endif %}
+
+                            <p class="card-text">
+                                Количество занятий:
+                                {{ teacher.dance_classes.all|length }}
+                            </p>
+
                             <a
                                 href="{% url 'dance_school:teacher_detail' teacher.pk %}"
-                                class="text-decoration-none"
+                                class="btn btn-primary"
                             >
-                                {{ teacher.first_name }} {{ teacher.last_name }}
+                                Подробнее
                             </a>
-                        </h5>
-
-                        {% if teacher.birth_date %}
-                            <p class="card-text">
-                                Дата рождения:
-                                {{ teacher.birth_date|date:"d.m.Y" }}
-                            </p>
-                        {% endif %}
-
-                        <p class="card-text">
-                            Количество занятий:
-                            {{ teacher.dance_classes.all|length }}
-                        </p>
-
-                        <a
-                            href="{% url 'dance_school:teacher_detail' teacher.pk %}"
-                            class="btn btn-primary"
-                        >
-                            Подробнее
-                        </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% empty %}
-            <div class="col-12">
-                <p class="alert alert-info">Пока хореографов нет.</p>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="col-12">
+            <p class="alert alert-info">Пока хореографов нет.</p>
+        </div>
+    {% endif %}
 {% endblock %}
