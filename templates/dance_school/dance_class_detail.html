@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ dance_class.title }}{% endblock %}
+{% block title %}{{ dance_class.title }} — TEMPO{% endblock %}
 
 {% block content %}
     <div class="card">
@@ -34,14 +34,25 @@
                 {{ dance_class.capacity }} человек
             </p>
 
-            <p><strong>Цена:</strong> {{ dance_class.price }}</p>
+            <p>
+                <strong>Цена:</strong>
+                {{ dance_class.price }} ₽
+            </p>
 
-            {% if dance_class.description %}
-                <p>
-                    <strong>Описание:</strong>
-                    {{ dance_class.description }}
-                </p>
-            {% endif %}
+            <p>
+                <strong>Описание:</strong>
+                {{ dance_class.description|default:"Описание пока не добавлено." }}
+            </p>
+
+            <p>
+                <strong>Дата создания:</strong>
+                {{ dance_class.created_at|date:"d.m.Y H:i" }}
+            </p>
+
+            <p>
+                <strong>Последнее обновление:</strong>
+                {{ dance_class.updated_at|date:"d.m.Y H:i" }}
+            </p>
 
             <a href="{% url 'dance_school:class_list' %}" class="btn btn-secondary mt-3">
                 ← Назад к занятиям

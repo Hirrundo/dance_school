@@ -6,12 +6,19 @@ from .models import DanceClass, DanceStyle, Teacher
 def dance_class_list(request):
     dance_classes = DanceClass.objects.filter(
         is_available=True
-    ).select_related("teacher")
+    ).select_related("teacher").prefetch_related("dance_styles")
+
+    context = {
+        "dance_classes": dance_classes,
+        "title": "Расписание занятий",
+        "total_count": dance_classes.count(),
+        "has_classes": dance_classes.exists(),
+    }
 
     return render(
         request,
         "dance_school/dance_class_list.html",
-        {"dance_classes": dance_classes},
+        context,
     )
 
 def dance_class_detail(request, slug):
@@ -30,11 +37,15 @@ def dance_class_detail(request, slug):
 
 def teacher_list(request):
     teachers = Teacher.objects.all().prefetch_related("dance_classes")
-
+    context = {
+        "teachers": teachers,
+        "title": "Наши хореографы",
+        "total_count": teachers.count(),
+        "has_teachers": teachers.exists(),
+    }
     return render(
         request,
-        "dance_school/teacher_list.html",
-        {"teachers": teachers},
+        "dance_school/teacher_list.html",context
     )
 
 def teacher_detail(request, pk):
@@ -55,7 +66,6 @@ def teacher_detail(request, pk):
         "dance_school/teacher_detail.html",
         {"teacher": teacher},
     )
-
 def about(request):
     return render(
         request,
