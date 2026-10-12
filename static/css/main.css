@@ -1,31 +1,32 @@
-/* ===== TEMPO — K-pop dance studio ===== */
+/* ===== TEMPO — K-POP DANCE STUDIO ===== */
 
 :root {
     --tempo-red: #e6293f;
     --tempo-red-dark: #c91f34;
     --tempo-black: #191919;
     --tempo-gray: #737373;
-    --tempo-bg: #f8f8f6;
     --tempo-white: #ffffff;
-    --tempo-border: #e7e7e4;
+    --tempo-bg: #e3e5e8;
+    --tempo-border: #c9cbd0;
 }
 
 /* Основная страница */
+
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: "Arial", sans-serif;
-    background-color: #f1f2f4;
-    background-image: 
-        linear-gradient(rgba(25,25,25,0.025) 1px, transparent 1px),
-        linear-gradient(90deg,(rgba(25,25,25,0.025) 1px,transparent 1px ));
-    background-size: 32px 32px;
+    font-family: Arial, sans-serif;
+    background: #e3e5e8;
     color: var(--tempo-black);
     line-height: 1.6;
 }
 
-/* Ссылки */
+main.container {
+    flex: 1 0 auto;
+    background: transparent;
+}
+
 a {
     color: var(--tempo-red);
     text-decoration: none;
@@ -36,15 +37,32 @@ a:hover {
     color: var(--tempo-red-dark);
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--tempo-black);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.text-danger {
+    color: var(--tempo-red) !important;
+}
+
 /* Шапка */
+
 .navbar {
-    background-color: var(--tempo-black) !important;
+    background: var(--tempo-black) !important;
     padding: 16px 0;
     border-bottom: 3px solid var(--tempo-red);
 }
 
 .navbar-brand {
-    color: var(--tempo-white) !important;
+    color: #fff !important;
     font-size: 1.65rem;
     font-weight: 900;
     letter-spacing: 3px;
@@ -68,36 +86,19 @@ a:hover {
     color: var(--tempo-red) !important;
 }
 
-/* Заголовки */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--tempo-black);
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-}
-
-/* Красные акценты */
-.text-danger {
-    color: var(--tempo-red) !important;
-}
-
 /* Кнопки */
+
 .btn-danger {
-    background-color: var(--tempo-red);
+    background: var(--tempo-red);
     border-color: var(--tempo-red);
     font-weight: 700;
-    transition: background-color 0.2s ease,
+    transition: background 0.2s ease,
                 border-color 0.2s ease,
                 transform 0.2s ease;
 }
 
 .btn-danger:hover {
-    background-color: var(--tempo-red-dark);
+    background: var(--tempo-red-dark);
     border-color: var(--tempo-red-dark);
     transform: translateY(-2px);
 }
@@ -106,9 +107,10 @@ h1 {
     font-weight: 700;
 }
 
-/* Карточки */
+/* Карточки и формы */
+
 .card {
-    background-color: var(--tempo-white);
+    background: #f1f2f4;
     border: 1px solid var(--tempo-border);
     border-radius: 12px;
     overflow: hidden;
@@ -131,7 +133,6 @@ h1 {
     padding: 1.4rem;
 }
 
-/* Формы */
 .form-control,
 .form-select {
     border-color: var(--tempo-border);
@@ -144,13 +145,11 @@ h1 {
     box-shadow: 0 0 0 0.2rem rgba(230, 41, 63, 0.12);
 }
 
-/* Изображения */
 .img-fluid {
     max-width: 100%;
     height: auto;
 }
 
-/* Таблицы */
 .table {
     --bs-table-bg: transparent;
 }
@@ -163,25 +162,503 @@ h1 {
 }
 
 /* Подвал */
+
 footer {
     margin-top: auto;
     padding: 28px 0;
-    background-color: var(--tempo-black);
+    background: var(--tempo-black);
     color: #d6d6d6;
     border-top: 3px solid var(--tempo-red);
     flex-shrink: 0;
 }
 
 footer a {
-    color: var(--tempo-white);
+    color: #fff;
 }
 
 footer a:hover {
     color: var(--tempo-red);
 }
 
-/* Мобильная версия */
-@media( max-width: 768px) {
+/* ===== ПЕРВЫЙ ЭКРАН ===== */
+
+.tempo-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 0 0 24px;
+    padding: clamp(22px, 4vw, 48px);
+    background: #242424;
+    color: #fff;
+    border: 0;
+}
+
+/* Без полосатого фона */
+
+.tempo-hero::before {
+    content: none;
+}
+
+.tempo-hero::after {
+    content: "PLAY IT LOUD";
+    position: absolute;
+    z-index: -1;
+    right: -15px;
+    bottom: 65px;
+    color: rgba(255, 255, 255, 0.035);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+    white-space: nowrap;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: right bottom;
+    pointer-events: none;
+}
+
+.tempo-hero-top,
+.tempo-hero-bottom {
+    display: flex;
+    justify-content: space-be
+
+
+tween;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.tempo-hero-top {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #444;
+    color: #c5c5c5;
+}
+
+.tempo-hero-top span:first-child::before {
+    content: "●";
+    margin-right: 9px;
+    color: var(--tempo-red);
+}
+
+.tempo-hero-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+    align-items: center;
+    gap: clamp(20px, 4vw, 32px);
+    min-height: 0;
+    padding: 28px 0;
+}
+
+.tempo-hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.tempo-hero-copy .tempo-eyebrow {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 7px 10px;
+    background: var(--tempo-red);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    transform: skew(-7deg);
+}
+
+.tempo-hero-copy h1 {
+    margin: 0 0 26px;
+    color: #fff;
+    font-size: clamp(3.4rem, 6.5vw, 6rem);
+    font-weight: 1000;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+.tempo-hero-copy h1 > span {
+    display: inline-block;
+    color: var(--tempo-red);
+    text-shadow: none;
+}
+
+.tempo-hero-copy .tempo-dot {
+    color: #fff;
+    text-shadow: none;
+}
+
+.tempo-hero-description {
+    max-width: 350px;
+    margin: 0 0 28px;
+    color: #d1d1d1;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.tempo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 15px 18px;
+    background: var(--tempo-red);
+    border: 2px solid var(--tempo-red);
+    color: #fff;
+    font-size: 0.73rem;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    transition: background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.tempo-button:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--tempo-black);
+    transform: translateY(-3px);
+}
+
+.tempo-button span {
+    font-size: 1.2rem;
+}
+
+/* Заглушка под фотографию команды */
+
+.tempo-hero-graphic.tempo-photo-placeholder {
+    position: relative;
+    display: flex;
+    min-height: 350px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #353535;
+    border: 1px solid #505050;
+}
+
+.tempo-hero-graphic.tempo-photo-placeholder::before,
+.tempo-hero-graphic.tempo-photo-placeholder::after {
+    content: none;
+    display: none;
+}
+
+.tempo-photo-label,
+.tempo-photo-caption {
+    position: absolute;
+    z-index: 1;
+    color: #c8c8c8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.tempo-photo-label {
+    top: 16px;
+    left: 18px;
+}
+
+.tempo-photo-caption {
+    right: 18px;
+    bottom: 16px;
+}
+
+.tempo-photo-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f4f4f4;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.tempo-photo-message span:last-child {
+    color: var(--tempo-red);
+}
+
+.tempo-hero-bottom {
+    padding-top: 16px;
+    border-top: 1px solid #444;
+    color: #eee;
+}
+
+/* ===== ЛЕНТА ===== */
+
+.tempo-marquee {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin-bottom: 55px;
+    padding: 18px 12px;
+    background: var(--tempo-red);
+    color: #fff;
+    font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+    font-weight: 1000;
+    letter-spacing: 2px;
+}
+
+.tempo-marquee span:nth-child(even) {
+    color: var(--tempo-black);
+}
+
+/* ===== СЕКЦИИ ===== */
+
+.tempo-section {
+    margin-bottom: 55px;
+    color: var(--tempo-black);
+}
+
+.tempo-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--tempo-black);
+}
+
+.tempo-section-heading .tempo-eyebrow {
+    margin-bottom: 10px;
+    color: var(--tempo-red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-section-heading h2,
+.tempo-studio h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.tempo-section-heading h2 {
+    color: var(--tempo-black);
+}
+
+.tempo-section-heading h2 span {
+    color: var(--tempo-red);
+}
+
+.tempo-text-link {
+    flex-shrink: 0;
+    padding-bottom: 5px;
+    color: var(--tempo-black);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.tempo-text-link:hover {
+    color: var(--tempo-red);
+}
+
+/* ===== КАРТОЧКИ КОМАНДЫ ===== */
+
+.tempo-info-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    overflow: hidden;
+    background: #191919;
+    border: 0;
+    border-bottom: 4px solid var(--tempo-red);
+    color: #fff;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.tempo-info-card::after {
+    content: "CREW";
+    position: absolute;
+    right: -5px;
+    bottom: -28px;
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 5rem;
+    font-weight: 1000;
+    letter-spacing: -5px;
+    pointer-events: none;
+}
+
+.tempo-info-card:hover {
+    background: #303030;
+    transform: translateY(-5px);
+}
+
+.tempo-card-number {
+    color: var(--tempo-red);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-info-card h3 {
+    position: relative;
+    z-index: 1;
+    margin: 32px 0 8px;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.tempo-info-card p {
+    margin: 0;
+    color: #bcbcbc;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.tempo-card-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 18px;
+    right: 20px;
+    color: var(--tempo-red);
+    font-size: 1.3rem;
+}
+
+/* ===== НАЙДИ СВОЁ ДВИЖЕНИЕ ===== */
+
+.tempo-styles-section {
+    padding: 30px;
+    background: #d5d8dd;
+    border-left: 5px solid var(--tempo-red);
+}
+
+.tempo-styles-section .tempo-section-heading {
+    border-bottom-color: #aeb2b9;
+}
+
+.tempo-style-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 30px;
+    border-top: 1px solid #aeb2b9;
+}
+
+.tempo-style-item {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 22px;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 22px 4px;
+    border-bottom: 1px solid #aeb2b9;
+    color: var(--tempo-black);
+    transition: color 0.2s ease;
+}
+
+.tempo-style-item:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: var(--tempo-red);
+    background: transparent;
+}
+
+.tempo-style-number {
+    color: var(--tempo-red);
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.tempo-style-name {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.tempo-style-arrow {
+    justify-self: end;
+    color: var(--tempo-red);
+    font-size: 1.4rem;
+}
+
+/* ===== ФИНАЛЬНЫЙ БЛОК ===== */
+
+.tempo-studio {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    padding: clamp(28px, 5vw, 60px);
+    background: #303030;
+    color: #f5f5f5;
+    border-top: 3px solid var(--tempo-red);
+}
+
+.tempo-studio-index {
+    margin-bottom: 45px;
+    color: #d0d0d0;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-studio .tempo-eyebrow {
+    color: #ff596b;
+}
+
+.tempo-studio h2 {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    color: #f5f5f5;
+}
+
+.tempo-studio h2 span {
+    color: var(--tempo-red);
+    text-decoration: none;
+}
+
+.tempo-studio-description {
+    position: relative;
+    z-index: 1;
+    max-width: 470px;
+    margin: 22px 0 28px;
+    color: #dedede;
+}
+
+.tempo-button-dark {
+    position: relative;
+    z-index: 1;
+    background: var(--tempo-black);
+    border-color: var(--tempo-black);
+}
+
+.tempo-button-dark:hover {
+    background: #fff;
+    border-color: #fff;
+
+
+color: var(--tempo-black);
+}
+
+.tempo-studio-decoration {
+    position: absolute;
+    right: 15px;
+    bottom: -100px;
+    color: rgba(255, 255, 255, 0.035);
+    font-size: clamp(12rem, 30vw, 25rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -20px;
+    pointer-events: none;
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+
+@media(max-width: 768px) {
     .navbar {
         padding: 12px 0;
     }
@@ -190,12 +667,130 @@ footer a:hover {
         font-size: 1.4rem;
     }
 
-    main.container {
-        flex: 1 0 auto;
-        width: 100%;
-    }
-
     .card-body {
         padding: 1.1rem;
+    }
+
+    .tempo-hero-content {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 24px 0;
+    }
+
+    .tempo-hero-copy h1 {
+        font-size: clamp(3.2rem, 12vw, 5rem);
+    }
+
+    .tempo-hero-graphic.tempo-photo-placeholder {
+        min-height: 260px;
+    }
+
+    .tempo-marquee {
+        margin-bottom: 40px;
+    }
+
+    .tempo-section {
+        margin-bottom: 35px;
+    }
+
+    .tempo-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .tempo-styles-section {
+        padding: 22px 16px;
+    }
+
+    .tempo-style-list {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .tempo-style-item {
+        grid-template-columns: 35px minmax(0, 1fr) 25px;
+        gap: 10px;
+    }
+
+    .tempo-studio-index {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 420px) {
+    .tempo-hero-top,
+    .tempo-hero-bottom {
+        font-size: 0.58rem;
+        letter-spacing: 0.8px;
+    }
+
+    .tempo-hero {
+        padding: 20px 16px;
+    }
+
+    .tempo-hero-copy h1 {
+        font-size: 3.3rem;
+    }
+
+    .tempo-marquee {
+        gap: 10px;
+        letter-spacing: 1px;
+    }
+
+    .tempo-section-heading h2,
+    .tempo-studio h2 {
+        font-size: 1.8rem;
+    }
+
+    .tempo-info-card {
+        min-height: 155px;
+    }
+}
+/* ===== СПИСОК НАПРАВЛЕНИЙ ===== */
+
+.tempo-styles-section {
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+    padding: 30px;
+}
+
+.tempo-style-list {
+    display: block;
+    border-top: 1px solid #b9bbc0;
+}
+
+.tempo-style-item {
+    display: grid;
+    grid-template-columns: 45px minmax(0, 1fr) 30px;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 12px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #b9bbc0;
+    color: #191919;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Выделяется вся строка */
+.tempo-style-item:hover {
+    padding: 18px 12px;
+    background: #191919;
+    color: #fff;
+    transform: none;
+}
+
+.tempo-style-item:hover .tempo-style-name {
+    color: #fff;
+}
+
+.tempo-style-item:hover .tempo-style-number,
+.tempo-style-item:hover .tempo-style-arrow {
+    color: #ff596b;
+}
+
+@media (max-width: 768px) {
+    .tempo-styles-section {
+        padding: 22px 16px;
     }
 }

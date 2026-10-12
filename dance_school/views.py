@@ -21,6 +21,20 @@ def dance_class_list(request):
         context,
     )
 
+def home(request):
+    teachers = Teacher.objects.all()[:3]
+    dance_styles = DanceStyle.objects.all()[:3]
+
+    return render(
+        request,
+        "dance_school/home.html",
+        {
+            "teachers": teachers,
+            "dance_styles": dance_styles,
+            "title": "TEMPO — найди свой ритм",
+        },
+    )
+
 def dance_class_detail(request, slug):
     dance_class = get_object_or_404(
         DanceClass.objects.filter(is_available=True)
