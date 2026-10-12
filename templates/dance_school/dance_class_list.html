@@ -3,50 +3,79 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1 class="mb-4">{{ title }}</h1>
+<div class="classes-page">
 
-    <p class="text-muted">Всего занятий: {{ total_count }}</p>
+    <header class="classes-heading">
+        <p class="classes-eyebrow">TEMPO / CLASS SCHEDULE</p>
+        <h1>НАЙДИ СВОЙ <span>РИТМ.</span></h1>
+        <p>Выбирай направление, знакомься с хореографами и открывай новые возможности.</p>
+        <span class="classes-count">ЗАНЯТИЙ: {{ total_count }}</span>
+    </header>
 
     {% if has_classes %}
-        <div class="row">
+        <div class="classes-grid">
             {% for dance_class in dance_classes %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ dance_class.title }}
-                            </h5>
+                <article class="class-card{% for style in dance_class.dance_styles.all %} class-style-{{ style.slug }}{% endfor %}"
+         
+                   data-title="{{ dance_class.title }}">
 
-                            <p class="card-text">
-                                Хореограф:
-                                {{ dance_class.teacher.first_name }}
-                                {{ dance_class.teacher.last_name }}
-                            </p>
+                    <div class="class-card-art">
+                        <span class="class-card-number">
+                            {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                        </span>
 
-                            <p class="card-text">
-                                Продолжительность:
-                                {{ dance_class.duration_minutes }} мин.
-                            </p>
+                        <span class="class-card-orbit"></span>
+                        <span class="class-card-shape"></span>
 
-                            <p class="card-text">
-                                Цена: {{ dance_class.price }}
-                            </p>
-
-                            <p class="card-text">
-                                {{ dance_class.description|default:"Описание пока не добавлено."|truncatewords:20 }}
-                            </p>
-
-                            <a href="{% url 'dance_school:class_detail' dance_class.slug %}" class="btn btn-primary">
-                                Подробнее
-                            </a>
+                        <div class="class-card-style">
+                            {% for style in dance_class.dance_styles.all %}
+                                <span>{{ style.name }}</span>
+                            {% empty %}
+                                <span>TEMPO ORIGINAL</span>
+                            {% endfor %}
                         </div>
+
+                        <h2>{{ dance_class.title }}</h2>
+                        <span class="class-card-decoration">✳</span>
                     </div>
-                </div>
+
+                    <div class="class-card-body">
+                        <p class="class-card-teacher">
+                            <span>ХОРЕОГРАФ</span>
+                            {{ dance_class.teacher.first_name }}
+                            {{ dance_class.teacher.last_name }}
+                        </p>
+
+                        <p class="class-card-description">
+                            {{ dance_class.description|default:"Описание скоро появится."|truncatewords:20 }}
+                        </p>
+
+                        <div class="class-card-meta">
+                            <div>
+                                <span>ДЛИТЕЛЬНОСТЬ</span>
+                                <strong>{{ dance_class.duration_minutes }} мин.</strong>
+                            </div>
+                            <div>
+                                <span>СТОИМОСТЬ</span>
+                                <strong>{{ dance_class.price }} ₽</strong>
+                            </div>
+                        </div>
+
+                        <a href="{% url 'dance_school:class_detail' dance_class.slug %}"
+                           class="class-card-link">
+                            ПОДРОБНЕЕ <span>↗</span>
+                        </a>
+                    </div>
+
+                </article>
             {% endfor %}
         </div>
     {% else %}
-        <div class="col-12">
-            <p class="alert alert-info">Пока занятий нет.</p>
+        <div class="classes-empty">
+            <h2>ПОКА ТИХО.</h2>
+            <p>Занятия скоро появятся. Загляни сюда немного позже.</p>
         </div>
     {% endif %}
+
+</div>
 {% endblock %}

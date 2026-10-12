@@ -794,3 +794,992 @@ color: var(--tempo-black);
         padding: 22px 16px;
     }
 }
+/* ===== TEMPO — STUDIO PAGE ===== */
+
+.studio-page {
+    padding-bottom: 30px;
+    color: #191919;
+}
+
+.studio-heading {
+    margin-bottom: 28px;
+    padding: 24px 28px;
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.studio-eyebrow {
+    margin-bottom: 12px;
+    color: #e6293f;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.studio-heading h1 {
+    margin: 0 0 12px;
+    color: #191919;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.studio-heading h1 span {
+    color: #e6293f;
+}
+
+.studio-heading > p:last-child {
+    margin: 0;
+    color: #55585e;
+}
+
+/* Плиточная композиция */
+
+.studio-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 220px 220px 100px;
+    gap: 14px;
+}
+
+.studio-tile {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    background: #292929;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.studio-tile:hover {
+    background: #3a3a3a;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.studio-tile-halls {
+    grid-row: span 2;
+    background: #303030;
+}
+
+.studio-tile-classes {
+    background: #e3e5e8;
+    border: 1px solid #c9cbd0;
+    border-bottom: 4px solid #e6293f;
+    color: #191919;
+}
+
+.studio-tile-classes:hover {
+    background: #d5d8dd;
+    color: #191919;
+}
+
+.studio-tile-life {
+    background: #191919;
+}
+
+.studio-tile-events {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    background: #e6293f;
+    border: 0;
+}
+
+.studio-tile-events:hover {
+    background: #c91f34;
+}
+
+.studio-tile-number {
+    color: #ff596b;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.studio-tile-classes .studio-tile-number {
+    color: #c91f34;
+}
+
+.studio-tile-caption {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.studio-tile-caption h2 {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(1.1rem, 2.5vw, 2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.studio-tile-caption > span {
+    flex-shrink: 0;
+    color: #ff596b;
+    font-size: 1.5rem;
+}
+
+.studio-tile-events .studio-tile-number,
+.studio-tile-events .studio-tile-caption > span {
+    color: #fff;
+}
+
+.studio-tile-events .studio-tile-caption {
+    flex: 1;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.studio-tile-events .studio-tile-caption h2 {
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+/* Галереи ниже плиток */
+
+.studio-photo-sections {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 42px;
+}
+
+.studio-photo-sections section {
+    min-width: 0;
+    padding: 20px;
+    background: #f5f5f5;
+    border-top: 3px solid #e6293f;
+}
+
+.studio-photo-sections h2 {
+    margin: 0 0 8px;
+    color: #191919;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.studio-photo-sections p {
+    margin: 0 0 18px;
+    color: #55585e;
+    font-size: 0.9rem;
+}
+
+.studio-photo-placeholder {
+    display: flex;
+    min-height: 190px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: #303030;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+/* Адаптация студийной страницы */
+
+@media (max-width: 768px) {
+    .studio-heading {
+        padding: 22px 18px;
+    }
+
+    .studio-grid {
+        grid-template-rows: 190px 160px 160px 90px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .studio-tile-halls {
+        grid-column: 1 / -1;
+        grid-row: auto;
+    }
+
+    .studio-tile-classes,
+    .studio-tile-life {
+        grid-column: auto;
+    }
+
+    .studio-tile-events {
+        grid-column: 1 / -1;
+    }
+
+    .studio-tile {
+        padding: 15px;
+    }
+
+    .studio-
+
+
+photo-sections {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    .studio-grid {
+        grid-template-rows: 170px 145px 145px 100px;
+        gap: 8px;
+    }
+
+    .studio-tile {
+        padding: 12px;
+    }
+
+    .studio-tile-number {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+    }
+
+    .studio-tile-caption h2 {
+        font-size: 1rem;
+    }
+
+    .studio-tile-events .studio-tile-caption {
+        margin-left: 12px;
+    }
+
+    .studio-photo-sections section {
+        padding: 15px;
+    }
+}
+/* ===== TEMPO — ABOUT PAGE ===== */
+
+.about-page {
+    padding-bottom: 30px;
+    color: #191919;
+}
+
+.about-heading {
+    margin-bottom: 24px;
+    padding: clamp(28px, 5vw, 48px);
+    background: #252525;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+}
+
+.about-eyebrow,
+.about-index {
+    display: block;
+    margin-bottom: 16px;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.about-heading h1 {
+    margin: 0 0 18px;
+    color: #fff;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 1000;
+    line-height: 0.95;
+    letter-spacing: -2px;
+}
+
+.about-heading h1 span {
+    color: #e6293f;
+}
+
+.about-lead {
+    max-width: 570px;
+    margin: 0;
+    color: #dedede;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+/* История школы */
+
+.about-description {
+    margin-bottom: 24px;
+    padding: clamp(24px, 4vw, 38px);
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.about-description h2,
+.about-contact-heading h2 {
+    margin: 0 0 20px;
+    color: #191919;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.about-description > p {
+    max-width: 720px;
+    color: #454545;
+    line-height: 1.8;
+}
+
+.about-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-top: 10px;
+    padding: 14px 18px;
+    background: #e6293f;
+    border: 2px solid #e6293f;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.about-button:hover {
+    background: #191919;
+    border-color: #191919;
+    color: #fff;
+}
+
+.about-button span {
+    font-size: 1.2rem;
+}
+
+/* Контакты */
+
+.about-contacts {
+    padding: clamp(24px, 4vw, 38px);
+    background: #e3e5e8;
+    border-top: 3px solid #191919;
+}
+
+.about-contact-heading > p {
+    margin-bottom: 24px;
+    color: #55585e;
+}
+
+.about-contact-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid #b9bbc0;
+}
+
+.about-contact-item {
+    min-width: 0;
+    padding: 22px 18px 8px 0;
+}
+
+.about-contact-item + .about-contact-item {
+    padding-left: 18px;
+    border-left: 1px solid #b9bbc0;
+}
+
+.about-contact-item > span {
+    display: block;
+    margin-bottom: 10px;
+    color: #c91f34;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.about-contact-item p {
+    margin: 0;
+    color: #191919;
+    font-size: 1rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .about-contact-list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-contact-item,
+    .about-contact-item + .about-contact-item {
+        padding: 18px 0;
+        border-left: 0;
+        border-bottom: 1px solid #b9bbc0;
+    }
+
+    .about-contact-item:last-child {
+        border-bottom: 0;
+    }
+}
+/* ===== TEMPO — DANCE CLASSES ===== */
+
+.classes-page {
+    padding-bottom: 35px;
+    color: #191919;
+}
+
+.classes-heading {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    padding: clamp(28px, 5vw, 48px);
+    background: #191919;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+}
+
+.classes-eyebrow {
+    margin-bottom: 18px;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.classes-heading h1 {
+    margin: 0 0 15px;
+    color: #fff;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.classes-heading h1 span {
+    color: #e6293f;
+}
+
+.classes-heading > p:not(.classes-eyebrow) {
+    max-width: 550px;
+    color: #d0d0d0;
+    line-height: 1.7;
+}
+
+.classes-count {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: 1px solid #555;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.class-card {
+    min-width: 0;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #d0d1d4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px #19191918;
+}
+
+.class-card-art {
+    --art-main: #e6293f;
+    --art-light: #ff7180;
+    position: relative;
+    display: flex;
+    min-height: 245px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 80% 25%, color-mix(in srgb, var(--art-main) 65%, transparent), transparent 48%),
+        linear-gradient(135deg, #292929, #101010);
+    color: #fff;
+}
+
+.class-card-art::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: repeating-linear-gradient(
+        135deg,
+        transparent 0 23px,
+        #ffffff08 24px 25px
+    );
+    content: "";
+}
+
+.class-card-number {
+    align-self: flex-start;
+    color: var(--art-light);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.class-card-orbit {
+    position: absolute;
+    z-index: -1;
+    top: 25px;
+    right: -45px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid color-mix(in srgb, var(--art-light) 65%, transparent);
+    border-radius: 50%;
+    transform: rotate(-25deg);
+}
+
+.class-card-orbit::before,
+.class-card-orbit::after {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid #ffffff35;
+    border-radius: 50%;
+    content: "";
+}
+
+.class-card-orbit::after {
+    inset: 34px;
+}
+
+.class-card-shape {
+    position: absolute;
+    z-index: -1;
+    top: 65px;
+    right: 38px;
+    width: 85px;
+    height: 115px;
+    background: linear-gradient(145deg, var(--art-light), var(--art-main));
+    opacity: 0.25;
+    clip-path: polygon(50% 0, 68% 18%, 60% 38%, 100% 70%, 78% 100%, 50% 78%, 22% 100%, 0 70%, 40% 38%, 32% 18%);
+    transform: rotate(15deg);
+}
+
+.class-card-style {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+.class-card-style span {
+    padding: 5px 8px;
+    border: 1px solid color-mix(in srgb, var(--art-light) 60%, transparent);
+    background: #10101080;
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.class-card-art h2 {
+    max-width: 90%;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 1000;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+}
+
+.class-card-decoration {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: var(--art-light);
+    font-size: 1.8rem;
+    opacity: 0.85;
+}
+
+/* K-POP — сценические огни и вспышки */
+
+.class-card:has(.class-card-style span:is(:first-child)) .class-card-art {
+    background:
+        radial-
+
+
+gradient(ellipse at 80% 20%, #c026d355, transparent 42%),
+        radial-gradient(ellipse at 15% 80%, #2563eb50, transparent 45%),
+        linear-gradient(135deg, #171126, #08080d);
+}
+
+/* Информация о занятии */
+
+.class-card-body {
+    padding: 20px;
+}
+
+.class-card-teacher {
+    margin-bottom: 16px;
+    color: #191919;
+    font-weight: 800;
+}
+
+.class-card-teacher > span,
+.class-card-meta span {
+    display: block;
+    margin-bottom: 6px;
+    color: #c91f34;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+}
+
+.class-card-description {
+    min-height: 58px;
+    margin-bottom: 20px;
+    color: #55585e;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.class-card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 15px 0;
+    border-top: 1px solid #d0d1d4;
+    border-bottom: 1px solid #d0d1d4;
+}
+
+.class-card-meta > div {
+    min-width: 0;
+}
+
+.class-card-meta strong {
+    color: #191919;
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
+}
+
+.class-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 13px 15px;
+    background: #191919;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: background 0.2s ease;
+}
+
+.class-card-link:hover {
+    background: #e6293f;
+    color: #fff;
+}
+
+.class-card-link span {
+    color: #ff596b;
+    font-size: 1.2rem;
+}
+
+.class-card-link:hover span {
+    color: #fff;
+}
+
+/* Пустой список */
+
+.classes-empty {
+    padding: 45px 25px;
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.classes-empty h2 {
+    font-weight: 900;
+}
+
+/* Адаптация */
+
+@media (max-width: 1000px) {
+    .classes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media(max-width: 600px) {
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .class-card-art {
+        min-height: 220px;
+    }
+
+    .class-card-description {
+        min-height: 0;
+    }
+
+    .classes-heading {
+        padding: 26px 20px;
+    }
+}
+/* ===== TEMPO — STYLE-SPECIFIC CLASS ART ===== */
+
+/* K-POP — неон, сцена, вспышки */
+.class-card[class*="class-style-k-pop"] .class-card-art,
+.class-card[class*="class-style-kpop"] .class-card-art {
+    --art-main: #c026d3;
+    --art-light: #67e8f9;
+    background:
+        radial-gradient(circle at 78% 24%, #e879f966, transparent 24%),
+        radial-gradient(circle at 20% 75%, #2563eb66, transparent 34%),
+        linear-gradient(135deg, #170d2d, #08080e 75%);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-shape,
+.class-card[class*="class-style-kpop"] .class-card-shape {
+    width: 100px;
+    height: 125px;
+    clip-path: polygon(50% 0, 61% 32%, 100% 50%, 61% 62%, 50% 100%, 38% 62%, 0 50%, 38% 32%);
+    transform: rotate(20deg);
+}
+
+/* HIP-HOP — граффити и уличная геометрия */
+.class-card[class*="class-style-hip-hop"] .class-card-art,
+.class-card[class*="class-style-hiphop"] .class-card-art {
+    --art-main: #f97316;
+    --art-light: #facc15;
+    background:
+        repeating-linear-gradient(125deg, transparent 0 28px, #ffffff0b 29px 31px),
+        linear-gradient(145deg, #343434, #111 70%);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-shape,
+.class-card[class*="class-style-hiphop"] .class-card-shape {
+    width: 115px;
+    height: 100px;
+    clip-path: polygon(0 12%, 78% 0, 100% 35%, 70% 48%, 92% 100%, 18% 78%);
+    transform: rotate(-15deg);
+}
+
+/* CONTEMPORARY — текучесть и мягкие формы */
+.class-card[class*="class-style-contemporary"] .class-card-art {
+    --art-main: #8b9cb6;
+    --art-light: #e2d9ff;
+    background:
+        radial-gradient(ellipse at 80% 20%, #a78bfa66, transparent 40%),
+        radial-gradient(ellipse at 15% 85%, #67e8f966, transparent 40%),
+        linear-gradient(145deg, #242a38, #10131b);
+}
+
+.class-card[class*="class-style-contemporary"] .class-card-shape {
+    width: 100px;
+    height: 140px;
+    border-radius: 50%;
+    clip-path: ellipse(32% 50% at 50% 50%);
+    transform: rotate(35deg);
+}
+
+/* HIGH HEELS — контраст, красный свет */
+.class-card[class*="class-style-high-heels"] .class-card-art,
+.class-card[class*="class-style-heels"] .class-card-art {
+    --art-main: #e11d48;
+    --art-light: #fda4af;
+    background:
+        radial-gradient(ellipse at 85% 25%, #e11d4855, transparent 35%),
+        linear-gradient(120deg, #292027, #090909 75%);
+}
+
+.class-card[class*="class-style-high-heels"] .class-card-shape,
+.class-card[class*="class-style-heels"] .class-card-shape {
+    width: 65px;
+    height: 145px;
+    clip-path: polygon(50% 0, 65% 20%, 60% 45%, 100% 75%, 75% 100%, 35% 65%, 45% 42%, 30% 20%);
+}
+
+/* JAZZ-FUNK — яркая энергия и резкие формы */
+.class-card[class*="class-style-jazz-funk"] .class-card-art,
+.class-card[class*="class-style-jazzfunk"] .class-card-art {
+    --art-main: #f43f5e;
+    --art-light: #f0abfc;
+    background:
+        radial-gradient(circle at 80% 25%, #f0abfc55, transparent 30%),
+        linear-gradient(145deg, #30102c, #100d17 75%);
+}
+
+.class-card[class*="class-style-jazz-funk"] .class-card-shape,
+.class-card[class*="class-style-jazzfunk"] .class-card-shape {
+    width: 110px;
+    height: 110px;
+    clip-path: polygon(50% 0, 62% 32%, 100% 20%, 75% 52%, 100% 85%, 60% 72%, 40% 100%, 35% 65%, 0 50%, 35% 35%);
+}
+
+/* BALLET — лёгкость и изящные линии */
+.class-card[class*="class-style-ballet"] .class-card-art,
+.class-card[class*="class-style-classical"] .class-card-art {
+    --art-main: #a78bfa;
+    --art-light: #f5d0fe;
+    background:
+        radial-gradient(ellipse at 75% 25%, #c4b5fd66, transparent 38%),
+        linear-gradient(145deg, #33303d, #17151e);
+}
+
+.class-card[class*="class-style-ballet"] .class-card-orbit,
+.class-card[class*="class-style-classical"] .class-card-orbit {
+    width: 230px;
+    height: 230px;
+    right: -55px;
+    border-style: dotted;
+}
+
+/* DANCEHALL — тропические оттенки и ритм */
+.class-card[class*="class-style-dancehall"] .class-card-art {
+    --art-main: #16a34a;
+    --art-light: #bef264;
+    background:
+        radial-gradient(ellipse at 85% 20%, #65a30d66, transparent 35%),
+        linear-gradient(145deg, #172c22, #0c110e);
+}
+
+/* VOGUE — геометрия и подиум */
+.class-card[class*="class-style-vogue"] .class-card-art {
+    --art-main: #d946ef;
+    --art-light: #f5d0fe;
+    background:
+        linear-gradient(115deg, transparent 45%, #d946ef22 45% 60%, transparent 60%),
+        linear-gradient(145deg, #28132e, #0d0a10);
+}
+
+/* LOCKING / POPPING — роботизированные формы */
+.class-card[class*="class-style-locking"] .class-card-art,
+.class-card[class*="class-style-popping"] .class-card-art {
+    --art-main: #0ea5e9;
+    --art-light: #a5f3fc;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 30px, #38bdf81a 31px 32px),
+        linear-gradient(145deg, #10283b, #090d14);
+}
+
+/* Общая выразительность декоративных форм */
+.class-card-art .class-card-shape {
+    filter: drop-shadow(0 0 14px var(--art-main));
+}
+
+.class-card:hover .class-card-orbit {
+    transform: rotate(15deg) scale(1.06);
+    transition: transform 0.35s ease;
+}
+/* ===== TEMPO — INDIVIDUAL DANCE STYLE CARDS ===== */
+
+/* K-POP — НЕОНОВАЯ СЦЕНА */
+.class-card[class*="class-style-k-pop"] .class-card-art {
+    --art-main: #d946ef;
+    --art-light: #67e8f9;
+    background:
+        radial-gradient(circle at 80% 22%, #d946ef88, transparent 30%),
+        radial-gradient(circle at 18% 78%, #2563eb88, transparent 38%),
+        linear-gradient(135deg, #1a0b2e, #090713 75%);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-art::before {
+    background:
+        linear-gradient(115deg, transparent 35%, #ffffff20 36%, transparent 39%),
+        repeating-linear-gradient(
+            135deg,
+            transparent 0 18px,
+            #ffffff12 19px 20px
+        );
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-shape {
+    top: 45px;
+    right: 40px;
+    width: 105px;
+    height: 130px;
+    background: linear-gradient(145deg, #f0abfc, #7c3aed);
+    opacity: 0.8;
+    clip-path: polygon(
+        50% 0, 62% 30%, 100% 45%, 68% 60%,
+        58% 100%, 42% 68%, 5% 55%, 35% 35%
+    );
+    filter: drop-shadow(0 0 18px #d946ef);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-orbit {
+    border-color: #e879f9;
+    box-shadow: 0 0 25px #a855f744;
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-decoration {
+    color: #67e8f9;
+    text-shadow: 0 0 15px #67e8f9;
+}
+
+/* HIP-HOP — УЛИЧНЫЙ СТИЛЬ */
+.class-card[class*="class-style-hip-hop"] .class-card-art {
+    --art-main: #f97316;
+    --art-light: #facc15;
+    background:
+        radial-gradient(circle at 85% 25%, #f9731677, transparent 30%),
+        repeating-linear-gradient(
+            125deg,
+            transparent 0 28px,
+            #ffffff10 29px 31px
+        ),
+        linear-gradient(145deg, #383838, #171717 65%, #090909);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-art::before {
+    background:
+        repeating-linear-gradient(
+            -15deg,
+            transparent 0 26px,
+            #facc1520 27px 29px
+        );
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-shape {
+    top: 55px;
+    right: 28px;
+    width: 125px;
+    height: 100px;
+    background: linear-gradient(135deg, #facc15, #f97316);
+    opacity: 0.8;
+    clip-path: polygon(
+        0 15%, 72% 0, 100% 28%,
+        77% 45%, 92% 100%, 25% 78%
+    );
+    filter: drop-shadow(0 0 12px #f97316);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-orbit {
+    right: -65px;
+    border: 3px dashed #facc15aa;
+    border-radius: 15%;
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-decoration {
+    color: #facc15;
+    transform: rotate(-12deg);
+}
+
+/* ПЛАВНОЕ ДВИЖЕНИЕ ДЕКОРА */
+.class-card .class-card-shape,
+.class-card .class-card-orbit {
+    transition: transform 0.35s ease;
+}
+
+.class-card:hover .class-card-orbit {
+    transform: rotate(15deg) scale(1.06);
+}
+
+
+
+
+
+

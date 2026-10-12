@@ -95,6 +95,13 @@ def about(request):
         {"title": "О танцевальной школе"},
     )
 
+def studio(request):
+    return render(
+        request,
+        "dance_school/studio.html",
+        {"title": "Залы и жизнь TEMPO"},
+    )
+
 def dance_style_list(request):
     dance_styles = DanceStyle.objects.prefetch_related("dance_classes")
 
