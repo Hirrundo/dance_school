@@ -36,14 +36,17 @@
             </a>
         </div>
 
-      <div class="tempo-hero-graphic tempo-photo-placeholder">
-    <span class="tempo-photo-label">TEMPO / REHEARSAL</span>
-    <div class="tempo-photo-message">
-        <span>ФОТО</span>
-        <span>КОМАНДЫ</span>
+        <div class="tempo-hero-graphic tempo-photo-placeholder">
+           <img
+                src="/media/tempo_team.jpg"
+                alt="Команда хореографов TEMPO"
+                class="tempo-team-photo"
+            >
+
+            <span class="tempo-photo-caption">DANCE COVER CREW · 001</span>
+        </div>
     </div>
-    <span class="tempo-photo-caption">DANCE COVER CREW · 001</span>
-</div>
+
     <div class="tempo-hero-bottom">
         <span>НЕ СТОЙ НА МЕСТЕ</span>
         <span>MOVE AT YOUR OWN PACE ↘</span>
@@ -62,7 +65,8 @@
         <div>
             <p class="tempo-eyebrow">MEET THE CREW / 01</p>
             <h2>ЛЮДИ, КОТОРЫЕ
-<span>ЧУВСТВУЮТ РИТМ.</span></h2>
+                <span>ЧУВСТВУЮТ РИТМ.</span>
+            </h2>
         </div>
 
         <a href="{% url 'dance_school:teacher_list' %}"
@@ -73,21 +77,21 @@
 
     <div class="row g-3">
         {% for teacher in teachers %}
-        <div class="col-md-4">
-           <a href="{% url 'dance_school:teacher_detail' teacher.pk %}"
-   class="tempo-info-card tempo-teacher-card">
-    <span class="tempo-card-number">
-        0{{ forloop.counter }}
-    </span>
-    <h3>{{ teacher }}</h3>
-    <p>ХОРЕОГРАФ TEMPO</p>
-    <span class="tempo-card-arrow">↗</span>
-</a>
-        </div>
+            <div class="col-md-4">
+                <a href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+                   class="tempo-info-card tempo-teacher-card">
+                    <span class="tempo-card-number">
+                        0{{ forloop.counter }}
+                    </span>
+                    <h3>{{ teacher }}</h3>
+                    <p>ХОРЕОГРАФ TEMPO</p>
+                    <span class="tempo-card-arrow">↗</span>
+                </a>
+            </div>
         {% empty %}
-        <div class="col-12">
-            <p>Скоро познакомим тебя с нашей командой.</p>
-        </div>
+            <div class="col-12">
+                <p>Скоро познакомим тебя с нашей командой.</p>
+            </div>
         {% endfor %}
     </div>
 </section>
@@ -97,7 +101,8 @@
         <div>
             <p class="tempo-eyebrow">CHOOSE YOUR STYLE / 02</p>
             <h2>НАЙДИ СВОЁ
-<span>ДВИЖЕНИЕ.</span></h2>
+                <span>ДВИЖЕНИЕ.</span>
+            </h2>
         </div>
 
         <a href="{% url 'dance_school:style_list' %}"
@@ -108,16 +113,19 @@
 
     <div class="tempo-style-list">
         {% for style in dance_styles %}
-        <a href="{% url 'dance_school:style_detail' style.slug %}"
-           class="tempo-style-item">
-            <span class="tempo-style-number">
-                0{{ forloop.counter }}
-            </span>
-            <span class="tempo-style-name">{{ style }}</span>
-            <span class="tempo-style-arrow">↗</span>
-        </a>
+            <a href="{% url 'dance_school:style_detail' style.slug %}"
+               class="tempo-style-item">
+                <span class="tempo-style-number">
+                    0{{ forloop.counter }}
+                </span>
+                <span class="tempo-style-name">{{ style }}</span>
+                <span class="tempo-style-arrow">↗</span>
+            </a>
         {% empty %}
-        <p>Направления скоро появятся.</p>
+            <p>Направления скоро появят
+
+
+ся.</p>
         {% endfor %}
     </div>
 </section>
@@ -129,7 +137,6 @@
 
     <h2>
         ТВОЁ ПРОСТРАНСТВО.
-
         <span>ТВОЯ ЭНЕРГИЯ.</span>
     </h2>
 
@@ -139,8 +146,7 @@
         частью твоей истории.
     </p>
 
-
-<a href="{% url 'dance_school:studio' %}"
+    <a href="{% url 'dance_school:studio' %}"
        class="tempo-button tempo-button-dark">
         ПОЗНАКОМИТЬСЯ С TEMPO
         <span>↗</span>

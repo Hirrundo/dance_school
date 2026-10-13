@@ -116,6 +116,9 @@ def teacher_list(request):
     )
 
 def teacher_detail(request, pk):
+    from pathlib import Path
+    from django.conf import settings
+
     teacher = get_object_or_404(
         Teacher.objects.prefetch_related(
             Prefetch(
@@ -134,10 +137,91 @@ def teacher_detail(request, pk):
         for style in dance_class.dance_styles.all()
     }.values()
 
+    image_extensions = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+
+    def get_gallery_images(directory):
+        directory = Path(directory)
+
+        if not directory.exists():
+            return []
+
+        images = []
+
+        for image_path in sorted(directory.rglob("*")):
+            if image_path.is_file() and image_path.suffix.lower() in image_extensions:
+                relative_path = image_path.relative_to(
+                    settings.MEDIA_ROOT
+                ).as_posix()
+
+                images.append({
+                    "url": (
+                        f"{settings.MEDIA_URL.rstrip('/')}/"
+                        f"{relative_path}"
+                    ),
+                    "name": image_path.stem,
+                })
+
+        return images
+
+    media_directory = Path(settings.MEDIA_ROOT)
+
+    all_studio_photos = get_gallery_images(
+    media_directory / "studios"
+)
+
+    if all_studio_photos:
+        teacher_index = teacher.pk % len(all_studio_photos)
+        studio_photos = [
+            all_studio_photos[teacher_index],
+            all_studio_photos[
+                (teacher_index + 1) % len(all_studio_photos)
+            ],
+    ]
+    else:
+        studio_photos = []
+  
+    teacher_style_slugs = {
+        style.slug
+        for style in teacher.unique_styles
+    }
+
+    class_photo_groups = []
+    classes_directory = media_directory / "classes"
+
+    if classes_directory.exists():
+        for folder in sorted(classes_directory.iterdir()):
+            if not folder.is_dir():
+                continue
+
+            # Название папки должно начинаться со slug стиля.
+            matching_style = next(
+                (
+                    slug
+                    for slug in teacher_style_slugs
+                    if folder.name.lower().startswith(slug.lower())
+                ),
+                None,
+            )
+
+            if not matching_style:
+                continue
+
+            photos = get_gallery_images(folder)
+
+            if photos:
+                class_photo_groups.append({
+                    "name": folder.name,
+                    "photos": photos,
+                })
+
     return render(
         request,
         "dance_school/teacher_detail.html",
-        {"teacher": teacher},
+        {
+            "teacher": teacher,
+            "studio_photos": studio_photos,
+            "class_photo_groups": class_photo_groups,
+        },
     )
 def about(request):
     return render(
@@ -147,10 +231,66 @@ def about(request):
     )
 
 def studio(request):
+    from pathlib import Path
+    from django.conf import settings
+
+    image_extensions = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+
+    def get_images(folder):
+        directory = Path(settings.MEDIA_ROOT) / folder
+
+        if not directory.exists():
+            return []
+
+        images = []
+
+        for path in sorted(directory.rglob("*")):
+            if path.is_file() and path.suffix.lower() in image_extensions:
+                relative_path = path.relative_to(settings.MEDIA_ROOT).as_posix()
+
+                images.append({
+                    "url": settings.MEDIA_URL + relative_path,
+                    "name": path.stem.replace("_", " ").replace("-", " "),
+                })
+
+        return images
+
+    studio_photos = get_images("studios")
+
+    classes_directory = Path(settings.MEDIA_ROOT) / "classes"
+    class_photo_groups = []
+
+    if classes_directory.exists():
+        for folder in sorted(classes_directory.iterdir()):
+            if folder.is_dir():
+                photos = get_images(folder.relative_to(settings.MEDIA_ROOT).as_posix())
+
+                if photos:
+                    class_photo_groups.append({
+                        "name": folder.name.replace("-", " ").replace("_", " "),
+                        "photos": photos,
+                    })
+
+    all_gallery_photos = [
+        {**photo, "category": "Наши залы"}
+        for photo in studio_photos
+    ]
+
+    for group in class_photo_groups:
+        all_gallery_photos.extend(
+            {**photo, "category": group["name"]}
+            for photo in group["photos"]
+        )
+
     return render(
         request,
         "dance_school/studio.html",
-        {"title": "Залы и жизнь TEMPO"},
+        {
+            "title": "Залы и жизнь TEMPO",
+            "studio_photos": studio_photos,
+            "class_photo_groups": class_photo_groups,
+            "all_gallery_photos": all_gallery_photos,
+        },
     )
 
 def dance_style_list(request):
