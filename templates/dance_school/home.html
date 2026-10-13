@@ -74,14 +74,15 @@
     <div class="row g-3">
         {% for teacher in teachers %}
         <div class="col-md-4">
-            <article class="tempo-info-card">
-                <span class="tempo-card-number">
-                    0{{ forloop.counter }}
-                </span>
-                <h3>{{ teacher }}</h3>
-                <p>ХОРЕОГРАФ TEMPO</p>
-                <span class="tempo-card-arrow">↗</span>
-            </article>
+           <a href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+   class="tempo-info-card tempo-teacher-card">
+    <span class="tempo-card-number">
+        0{{ forloop.counter }}
+    </span>
+    <h3>{{ teacher }}</h3>
+    <p>ХОРЕОГРАФ TEMPO</p>
+    <span class="tempo-card-arrow">↗</span>
+</a>
         </div>
         {% empty %}
         <div class="col-12">
@@ -107,7 +108,7 @@
 
     <div class="tempo-style-list">
         {% for style in dance_styles %}
-        <a href="{% url 'dance_school:style_list' %}"
+        <a href="{% url 'dance_school:style_detail' style.slug %}"
            class="tempo-style-item">
             <span class="tempo-style-number">
                 0{{ forloop.counter }}

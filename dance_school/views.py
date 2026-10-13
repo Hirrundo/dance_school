@@ -162,6 +162,18 @@ def dance_style_list(request):
         {"dance_styles": dance_styles},
     )
 
+def dance_style_detail(request, slug):
+    dance_style = get_object_or_404(
+        DanceStyle.objects.prefetch_related("dance_classes"),
+        slug=slug,
+    )
+
+    return render(
+        request,
+        "dance_school/dance_style_detail.html",
+        {"dance_style": dance_style},
+    )
+
 def student_list(request):
     students = Student.objects.order_by("last_name", "first_name")
 

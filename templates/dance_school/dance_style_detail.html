@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ dance_style.name }} — TEMPO{% endblock %}
+
+{% block content %}
+<section class="class-detail-page  {% with name=dance_style.name|lower %}
+        {% if 'k-pop' in name or 'kpop' in name or 'k pop' in name %}class-detail-kpop
+        {% elif 'folk' in name or 'народ' in name or 'folklore' in name %}class-detail-folk
+        {% elif 'hip-hop' in name or 'hip hop' in name or 'хип-хоп' in name %}class-detail-hiphop
+        {% elif 'contemporary' in name or 'контемп' in name %}class-detail-contemporary
+        {% elif 'jazz' in name or 'джаз' in name %}class-detail-jazz
+        {% elif 'vogue' in name or 'вог' in name %}class-detail-vogue
+        {% else %}class-detail-default
+        {% endif %}
+    {% endwith %}">
+
+    <header class="class-detail-header">
+        <p class="class-detail-label">TEMPO / DANCE STYLE</p>
+        <h1 class="class-detail-title">{{ dance_style.name }}</h1>
+    </header>
+
+    <section class="class-detail-section">
+        <h2 class="class-detail-section-title">Об этом стиле</h2>
+
+        <div class="class-detail-description">
+            {{ dance_style.description|default:"Описание этого направления скоро появится." }}
+        </div>
+    </section>
+
+    <section class="class-detail-section">
+        <h2 class="class-detail-section-title">Занятия в этом направлении</h2>
+
+        <div class="row g-3">
+            {% for dance_class in dance_style.dance_classes.all %}
+                {% if dance_class.is_available %}
+                    <div class="col-md-6 col-lg-4">
+                        <a href="{% url 'dance_school:class_detail' dance_class.slug %}"
+                           class="tempo-info-card tempo-teacher-card">
+                            <span class="tempo-card-number">
+                                0{{ forloop.counter }}
+                            </span>
+                            <h3>{{ dance_class.title }}</h3>
+                            <p>ЗАНЯТИЕ TEMPO</p>
+                            <span class="tempo-card-arrow">↗</span>
+                        </a>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>Занятия пока не добавлены.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="class-detail-actions">
+        <a href="{% url 'dance_school:style_list' %}"
+           class="class-detail-back">
+            ← Все направления
+        </a>
+    </div>
+
+</section>
+{% endblock %}
+
+
+

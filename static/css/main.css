@@ -1664,7 +1664,40 @@ footer a:hover {
         repeating-linear-gradient(90deg, transparent 0 30px, #38bdf81a 31px 32px),
         linear-gradient(145deg, #10283b, #090d14);
 }
+/* FOLK DANCE — НАРОДНЫЕ ТАНЦЫ */
+.class-card[class*="class-style-folk"] .class-card-art,
+.class-card[class*="class-style-folklore"] .class-card-art,
+.class-card[class*="class-style-narod"] .class-card-art {
+    --art-main: #e9a23b;
+    --art-light: #f5d98b;
+    background:
+        radial-gradient(circle at 80% 25%, #e9a23b66, transparent 32%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 24px,
+            #f5d98b12 25px 27px
+        ),
+        linear-gradient(145deg, #382316, #17100c 75%);
+}
 
+.class-card[class*="class-style-folk"] .class-card-shape,
+.class-card[class*="class-style-folklore"] .class-card-shape,
+.class-card[class*="class-style-narod"] .class-card-shape {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #f5d98b, #e9a23b);
+    clip-path: polygon(
+        50% 0, 61% 35%, 100% 50%, 61% 65%,
+        50% 100%, 39% 65%, 0 50%, 39% 35%
+    );
+    filter: drop-shadow(0 0 14px #e9a23b);
+}
+
+.class-card[class*="class-style-folk"] .class-card-decoration,
+.class-card[class*="class-style-folklore"] .class-card-decoration,
+.class-card[class*="class-style-narod"] .class-card-decoration {
+    color: #f5d98b;
+}
 /* Общая выразительность декоративных форм */
 .class-card-art .class-card-shape {
     filter: drop-shadow(0 0 14px var(--art-main));
@@ -3269,6 +3302,10 @@ min-width: 0;
 /* ===== TEMPO — CLASS DETAIL PAGE ===== */
 
 .class-detail-page {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: rgba(230, 41, 63, 0.12);
+
     width: 100%;
     max-width: 1500px;
     margin: 0 auto 40px;
@@ -3276,7 +3313,11 @@ min-width: 0;
     box-sizing: border-box;
     color: #eeeeee;
     background:
-        radial-gradient(ellipse at 10% 0%, rgba(230, 41, 63, 0.12), transparent 45%),
+        radial-gradient(
+            ellipse at 10% 0%,
+            var(--detail-glow),
+            transparent 45%
+        ),
         #111111;
     border: 1px solid #30272a;
     border-radius: 28px;
@@ -3449,8 +3490,500 @@ min-width: 0;
         text-align: center;
     }
 }
+/* ===== TEMPO — CLICKABLE TEACHER CARDS ===== */
+
+a.tempo-info-card,
+a.tempo-info-card:visited {
+    display: block;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+}
+
+a.tempo-info-card:hover,
+a.tempo-info-card:focus-visible {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.tempo-info-card h3 {
+    color: #fff;
+}
+
+a.tempo-info-card p {
+    color: #bcbcbc;
+}
+
+a.tempo-info-card .tempo-card-number,
+a.tempo-info-card .tempo-card-arrow {
+    color: var(--tempo-red);
+}
+
+a.tempo-info-card .tempo-card-arrow {
+    transition: transform 0.2s ease;
+}
+
+a.tempo-info-card:hover .tempo-card-arrow {
+    transform: translate(4px, -4px);
+}
+/* ===== TEMPO — DANCE STYLES PAGE ===== */
+
+.styles-page {
+    padding: 30px 0 70px;
+    color: #fff;
+}
+
+.styles-page-header {
+    margin-bottom: 42px;
+}
+
+.styles-page-label {
+    margin-bottom: 12px;
+    color: var(--tempo-red);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.styles-page-title {
+    margin-bottom: 12px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 1000;
+    text-transform: uppercase;
+}
+
+.styles-page-description {
+    color: #aaa;
+    font-size: 1rem;
+}
+
+.styles-grid > div {
+    display: flex;
+}
+
+.style-card,
+.style-card:visited {
+    --style-main: #e63946;
+    --style-light: #ff9aa2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    background: #171717;
+    border: 1px solid #303030;
+    border-bottom: 4px solid var(--style-main);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.style-card:hover {
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-6px);
+    border-color: var(--style-main);
+}
+
+/* ART AREA */
+
+.style-card-art {
+    position: relative;
+    display: grid;
+    min-height: 210px;
+    overflow: hidden;
+    place-items: center;
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            color-mix(in srgb, var(--style-main) 45%, transparent),
+            transparent 38%
+        ),
+        linear-gradient(145deg, #282828, #101010 78%);
+}
+
+.style-card-shape {
+    position: absolute;
+    width: 125px;
+    height: 125px;
+    background: linear-gradient(
+        135deg,
+        var(--style-light),
+        var(--style-main)
+    );
+    clip-path: polygon(
+        50% 0, 61% 35%, 100% 50%, 61% 65%,
+        50% 100%, 39% 65%, 0 50%, 39% 35%
+    );
+    filter: drop-shadow(0 0 18px var(--style-main));
+    opacity: 0.9;
+    transition: transform 0.35s ease;
+}
+
+.style-card:hover .style-card-shape {
+    transform: rotate(25deg) scale(1.12);
+}
+
+.style-card-decoration {
+    position: absolute;
+    right: -8px;
+    bottom: -24px;
+    color: var(--style-light);
+    font-size: 4.5rem;
+    font-weight: 1000;
+    letter-spacing: -4px;
+    opacity: 0.1;
+}
+
+.style-card-number {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: var(--style-light);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* CARD CONTENT */
+
+.style-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.style-card-content h2 {
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.style-card-description {
+    flex: 1;
+    margin-bottom: 24px;
+    color: #bcbcbc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.style-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    color: var(--style-light);
+    border-top: 1px solid #333;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.style-card-arrow {
+    color: var(--style-main);
+    font-size: 1.4rem;
+    transition: transform 0.2s ease;
+}
+
+.style-card:hover .style-card-arrow {
+    transform: translate(4px, -4px);
+}
+
+/* K-POP — BLUE */
+
+.style-card-kpop {
+    --style-main: #36b9ff;
+    --style-light: #a5e5ff;
+}
+
+.style-card-kpop .style-card-art {
+    background:
+        radial-gradient(circle at 80% 25%, #36b9ff66, transparent 35%),
+        repeating-linear-gradient(
+            135deg,
+            transparent 0 22px,
+            #a5e5ff12 23px 25px
+        ),
+        linear-gradient(145deg, #102b42, #101018 78%);
+}
+
+.style-card-kpop .style-card-shape {
+    clip-path: polygon(
+        25% 0, 75% 0, 100% 25%, 100% 75%,
+        75% 100%, 25% 100%, 0 75%, 0 25%
+    );
+}
+
+/* FOLK DANCE — GOLD */
+
+.style-card-folk {
+    --style-main: #e9a23b;
+    --style-light: #f5d98b;
+}
+
+.style-card-folk .style-card-art {
+    background:
+        radial-gradient(circle at 80%
 
 
+25%, #e9a23b66, transparent 32%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 24px,
+            #f5d98b12 25px 27px
+        ),
+        linear-gradient(145deg, #382316, #17100c 75%);
+}
+
+/* HIP-HOP — RED */
+
+.style-card-hiphop {
+    --style-main: #ff3434;
+    --style-light: #ff8a8a;
+}
+
+.style-card-hiphop .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #ff343466, transparent 35%),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0 20px,
+            #ff343418 21px 23px
+        ),
+        linear-gradient(145deg, #391515, #121010 78%);
+}
+
+.style-card-hiphop .style-card-shape {
+    clip-path: polygon(
+        0 0, 100% 15%, 80% 100%, 15% 80%
+    );
+}
+
+/* CONTEMPORARY — PURPLE */
+
+.style-card-contemporary {
+    --style-main: #a78bfa;
+    --style-light: #ddd0ff;
+}
+
+.style-card-contemporary .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #a78bfa66, transparent 38%),
+        linear-gradient(145deg, #2a1b46, #111018 78%);
+}
+
+.style-card-contemporary .style-card-shape {
+    border-radius: 50%;
+    clip-path: polygon(
+        50% 0, 90% 20%, 100% 60%, 65% 100%,
+        20% 85%, 0 45%, 25% 10%
+    );
+}
+
+/* JAZZ-FUNK — PINK */
+
+.style-card-jazz {
+    --style-main: #ff5ca8;
+    --style-light: #ffb3d7;
+}
+
+.style-card-jazz .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #ff5ca866, transparent 38%),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 28px,
+            #ffb3d710 29px 31px
+        ),
+        linear-gradient(145deg, #40152d, #130d15 78%);
+}
+
+/* VOGUE — VIOLET */
+
+.style-card-vogue {
+    --style-main: #c084fc;
+    --style-light: #f0d5ff;
+}
+
+.style-card-vogue .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #c084fc66, transparent 38%),
+        linear-gradient(145deg, #301342, #110c18 78%);
+}
+
+.style-card-vogue .style-card-shape {
+    clip-path: polygon(
+        50% 0, 100% 100%, 0 100%
+    );
+}
+
+/* DEFAULT */
+
+.style-card-default {
+    --style-main: #e63946;
+    --style-light: #ff9aa2;
+}
+/* ===== TEMPO — COLORED DANCE CLASS DETAILS ===== */
+
+.class-detail-page {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: #e6394633;
+}
+
+.class-detail-page .class-detail-label,
+.class-detail-page .class-detail-fact-value,
+.class-detail-page .class-detail-section-title {
+    color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-title {
+    text-decoration-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-teacher a {
+    color: var(--detail-light);
+    text-decoration-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-fact {
+    border-bottom-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-style {
+    color: var(--detail-light);
+    border-color: var(--detail-main);
+    background: var(--detail-glow);
+}
+
+.class-detail-page .class-detail-actions button {
+    background: var(--detail-main);
+    border-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-actions button:hover {
+    filter: brightness(1.15);
+}
+
+.class-detail-page .class-detail-back:hover {
+    color: var(--detail-light);
+}
+
+/* K-POP — BLUE */
+
+.class-detail-kpop {
+    --detail-main: #36b9ff;
+    --detail-light: #a5e5ff;
+    --detail-glow: #36b9ff22;
+}
+
+/* FOLK DANCE — GOLD */
+
+.class-detail-folk {
+    --detail-main: #e9a23b;
+    --detail-light: #f5d98b;
+    --detail-glow: #e9a23b22;
+}
+
+/* HIP-HOP — RED */
+
+.class-detail-hiphop {
+    --detail-main: #ff3434;
+    --detail-light: #ff8a8a;
+    --detail-glow: #ff343422;
+}
+
+/* CONTEMPORARY — PURPLE */
+
+.class-detail-contemporary {
+    --detail-main: #a78bfa;
+    --detail-light: #ddd0ff;
+    --detail-glow: #a78bfa22;
+}
+
+/* JAZZ-FUNK — PINK */
+
+.class-detail-jazz {
+    --detail-main: #ff5ca8;
+    --detail-light: #ffb3d7;
+    --detail-glow: #ff5ca822;
+}
+
+/* VOGUE — VIOLET */
+
+.class-detail-vogue {
+    --detail-main: #c084fc;
+    --detail-light: #f0d5ff;
+    --detail-glow: #c084fc22;
+}
+
+/* DEFAULT */
+
+.class-detail-default {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: #e6394622;
+}
+/* Цвет фона всей детальной страницы по направлению */
+
+.class-detail-page.class-detail-kpop {
+    --detail-glow: rgba(54, 185, 255, 0.22);
+}
+
+.class-detail-page.class-detail-folk {
+    --detail-glow: rgba(233, 162, 59, 0.22);
+}
+
+.class-detail-page.class-detail-hiphop {
+    --detail-glow: rgba(255, 52, 52, 0.22);
+}
+
+.class-detail-page.class-detail-contemporary {
+    --detail-glow: rgba(167, 139, 250, 0.22);
+}
+
+.class-detail-page.class-detail-jazz {
+    --detail-glow: rgba(255, 92, 168, 0.22);
+}
+
+.class-detail-page.class-detail-vogue {
+    --detail-glow: rgba(192, 132, 252, 0.22);
+}
+/* Карточки занятий на детальной странице направления */
+
+.class-detail-page .tempo-info-card {
+    --style-accent: var(--detail-main, #e6293f);
+    --style-light: var(--detail-light, #ff9aa2);
+
+    position: relative;
+    overflow: hidden;
+    border-color: color-mix(in srgb, var(--style-accent) 45%, #30272a);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.class-detail-page .tempo-info-card::before {
+    background: var(--style-accent);
+}
+
+.class-detail-page .tempo-info-card:hover {
+    border-color: var(--style-accent);
+    transform: translateY(-4px);
+}
+
+.class-detail-page .tempo-info-card .tempo-card-number {
+    color: var(--style-light);
+}
+
+.class-detail-page .tempo-info-card .tempo-card-arrow {
+    color: var(--style-accent);
+}
+
+.class-detail-page .tempo-info-card:hover .tempo-card-arrow {
+    color: var(--style-light);
+}
 
 
 
