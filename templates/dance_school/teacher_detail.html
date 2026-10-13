@@ -12,7 +12,16 @@
             <div class="teacher-detail-hero">
 
                 <div class="teacher-detail-photo">
-                    <span class="teacher-detail-photo-symbol">✳</span>
+                    {% if teacher.photo %}
+                        <img
+                            src="{{ teacher.photo.url }}"
+                            alt="{{ teacher.first_name }} {{ teacher.last_name }}"
+                            class="teacher-detail-photo-image"
+                        >
+                    {% else %}
+                        <span class="teacher-detail-photo-symbol">✳</span>
+                    {% endif %}
+
                     <span class="teacher-detail-photo-caption">
                         TEMPO / CHOREOGRAPHER
                     </span>
@@ -93,7 +102,10 @@
                                 <p class="teacher-detail-group-info">
                                     <strong>Цена:</strong>
                                     {{ dance_class.price }} ₽
-                                </p>
+                                </p
+
+
+>
                             </div>
 
                             <div class="teacher-detail-group-styles">
@@ -103,9 +115,7 @@
 
                                 <div class="teacher-detail-style-tags">
                                     {% for style in dance_class.dance_styles.all %}
-
-
-<span class="teacher-detail-style-tag">
+                                        <span class="teacher-detail-style-tag">
                                             {{ style.name }}
                                         </span>
                                     {% empty %}
@@ -136,30 +146,67 @@
 
     </div>
 
-    <section class="teacher-detail-gallery-section">
+   <section class="teacher-detail-gallery-section">
 
         <h2 class="teacher-detail-section-title">
             ПРОСТРАНСТВО <span>TEMPO.</span>
         </h2>
 
-        <div class="teacher-detail-gallery">
+        {% if studio_photos %}
+            <div class="teacher-detail-gallery-category">
+                <h3 class="teacher-detail-gallery-heading">ЗАЛЫ СТУДИИ</h3>
 
-            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--studio">
-                <span>01 / STUDIO</span>
-                <p>Пространство для движения</p>
+                <div class="teacher-detail-gallery">
+                    {% for photo in studio_photos %}
+                        <div class="teacher-detail-gallery-item teacher-detail-gallery-item--studio">
+                            <img
+                                src="{{ photo.url }}"
+                                alt="Интерьер танцевальной студии TEMPO"
+                                class="teacher-detail-gallery-image"
+                                loading="lazy"
+                            >
+                            <span>STUDIO / {{ forloop.counter|stringformat:"02d" }}</span>
+                            <p>Пространство для движения</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
+        {% endif %}
 
-            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--practice">
-                <span>02 / PRACTICE</span>
-                <p>За кулисами тренировок</p>
+        {% if class_photo_groups %}
+            <div class="teacher-detail-gallery-category">
+                <h3 class="teacher-detail-gallery-heading">ЗАНЯТИЯ</h3>
+
+                {% for group in class_photo_groups %}
+                    <div class="teacher-detail-gallery-group">
+                        <h4 class="teacher-detail-gallery-subheading">
+                            {{ group.name|upper }}
+                        </h4>
+
+                        <div class="teacher-detail-gallery">
+                            {% for photo in group.photos %}
+                                <div class="teacher-detail-gallery-item teacher-detail-gallery-item--dance">
+                                    <img
+                                        src="{{ photo.url }}"
+                                        alt="Танцевальное занятие — {{ group.name }}"
+                                        class="teacher-detail-gallery-image"
+                                        loading="lazy"
+                                    >
+                                    <span>{{ group.name|upper }} / {{ forloop.counter|stringformat:"02d" }}</span>
+                                    <p>В ритме танца</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
+        {% endif %}
 
-            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--dance">
-                <span>03 / MOVEMENT</span>
-                <p>В ритме танца</p>
-            </div>
-
-        </div>
+        {% if not studio_photos and not class_photo_groups %}
+            <p class="teacher-detail-groups-empty">
+                Фотографии галереи пока не добавлены.
+            </p>
+        {% endif %}
 
     </section>
 

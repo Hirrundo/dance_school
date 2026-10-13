@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 from django.db.models import Count
 
@@ -51,7 +52,7 @@ class DanceClassAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Основное", {
-            "fields": ("title", "slug", "description"),
+            "fields": ("title", "slug", "description","image"),
         }),
         ("Хореограф и стили", {
             "fields": ("teacher", "dance_styles"),
@@ -93,3 +94,5 @@ class TrialRequestAdmin(admin.ModelAdmin):
     list_filter = ("dance_class", "created_at")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
+
+    

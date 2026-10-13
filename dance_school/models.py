@@ -5,6 +5,10 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=100)
     birth_date = models.DateField(null=True, blank=True)
     biography = models.TextField(blank=True)
+    photo=models.ImageField(upload_to="teachers/",
+        blank=True,
+        null=True,
+        verbose_name="Фото хореографа",)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -19,6 +23,12 @@ class DanceStyle(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(
+        upload_to="styles/",
+        blank=True,
+        null=True,
+        verbose_name="Изображение направления",
+        )
 
     class Meta:
         verbose_name = "танцевальный стиль"
@@ -44,6 +54,12 @@ class DanceClass(models.Model):
     duration_minutes = models.PositiveIntegerField()
     capacity = models.PositiveIntegerField()
     description = models.TextField(blank=True)
+    image = models.ImageField(
+        upload_to="classes/",
+        blank=True,
+        null=True,
+        verbose_name="Изображение занятия",
+)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -123,4 +139,6 @@ class TrialRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.dance_class.title}"
+
+
 # Create your models here.
