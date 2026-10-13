@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}TEMPO — Find Your Tempo{% endblock %}
+
+{% block content %}
+
+<section class="tempo-hero">
+    <div class="tempo-hero-top">
+        <span>INDEPENDENT DANCE STUDIO</span>
+        <span>EST. TEMPO / 001</span>
+    </div>
+
+    <div class="tempo-hero-content">
+        <div class="tempo-hero-copy">
+            <p class="tempo-eyebrow">
+                YOUR MOVE. YOUR MOMENT.
+            </p>
+
+            <h1>
+                FIND
+
+                YOUR
+
+                <span>TEMPO<span class="tempo-dot">.</span></span>
+            </h1>
+
+            <p class="tempo-hero-description">
+                Твоя музыка. Твоё движение.
+                Твоё место в команде.
+            </p>
+
+            <a href="{% url 'dance_school:class_list' %}"
+               class="tempo-button">
+                НАЙТИ СВОЁ НАПРАВЛЕНИЕ
+                <span>↗</span>
+            </a>
+        </div>
+
+      <div class="tempo-hero-graphic tempo-photo-placeholder">
+    <span class="tempo-photo-label">TEMPO / REHEARSAL</span>
+    <div class="tempo-photo-message">
+        <span>ФОТО</span>
+        <span>КОМАНДЫ</span>
+    </div>
+    <span class="tempo-photo-caption">DANCE COVER CREW · 001</span>
+</div>
+    <div class="tempo-hero-bottom">
+        <span>НЕ СТОЙ НА МЕСТЕ</span>
+        <span>MOVE AT YOUR OWN PACE ↘</span>
+    </div>
+</section>
+
+<div class="tempo-marquee" aria-label="Музыка, движение, свобода">
+    <span>MUSIC</span><span>✳</span>
+    <span>MOVEMENT</span><span>✳</span>
+    <span>FREEDOM</span><span>✳</span>
+    <span>TEMPO</span><span>✳</span>
+</div>
+
+<section class="tempo-section">
+    <div class="tempo-section-heading">
+        <div>
+            <p class="tempo-eyebrow">MEET THE CREW / 01</p>
+            <h2>ЛЮДИ, КОТОРЫЕ
+<span>ЧУВСТВУЮТ РИТМ.</span></h2>
+        </div>
+
+        <a href="{% url 'dance_school:teacher_list' %}"
+           class="tempo-text-link">
+            ВСЯ КОМАНДА ↗
+        </a>
+    </div>
+
+    <div class="row g-3">
+        {% for teacher in teachers %}
+        <div class="col-md-4">
+           <a href="{% url 'dance_school:teacher_detail' teacher.pk %}"
+   class="tempo-info-card tempo-teacher-card">
+    <span class="tempo-card-number">
+        0{{ forloop.counter }}
+    </span>
+    <h3>{{ teacher }}</h3>
+    <p>ХОРЕОГРАФ TEMPO</p>
+    <span class="tempo-card-arrow">↗</span>
+</a>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>Скоро познакомим тебя с нашей командой.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="tempo-section tempo-styles-section">
+    <div class="tempo-section-heading">
+        <div>
+            <p class="tempo-eyebrow">CHOOSE YOUR STYLE / 02</p>
+            <h2>НАЙДИ СВОЁ
+<span>ДВИЖЕНИЕ.</span></h2>
+        </div>
+
+        <a href="{% url 'dance_school:style_list' %}"
+           class="tempo-text-link">
+            ВСЕ НАПРАВЛЕНИЯ ↗
+        </a>
+    </div>
+
+    <div class="tempo-style-list">
+        {% for style in dance_styles %}
+        <a href="{% url 'dance_school:style_detail' style.slug %}"
+           class="tempo-style-item">
+            <span class="tempo-style-number">
+                0{{ forloop.counter }}
+            </span>
+            <span class="tempo-style-name">{{ style }}</span>
+            <span class="tempo-style-arrow">↗</span>
+        </a>
+        {% empty %}
+        <p>Направления скоро появятся.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="tempo-studio">
+    <div class="tempo-studio-index">TEMPO / 003</div>
+
+    <p class="tempo-eyebrow">MORE THAN JUST DANCE</p>
+
+    <h2>
+        ТВОЁ ПРОСТРАНСТВО.
+
+        <span>ТВОЯ ЭНЕРГИЯ.</span>
+    </h2>
+
+    <p class="tempo-studio-description">
+        Место, где музыка становится движением,
+        незнакомцы — командой, а каждый шаг —
+        частью твоей истории.
+    </p>
+
+
+<a href="{% url 'dance_school:studio' %}"
+       class="tempo-button tempo-button-dark">
+        ПОЗНАКОМИТЬСЯ С TEMPO
+        <span>↗</span>
+    </a>
+
+    <span class="tempo-studio-decoration" aria-hidden="true">T.</span>
+</section>
+
+{% endblock %}

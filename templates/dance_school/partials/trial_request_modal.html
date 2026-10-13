@@ -1,0 +1,25 @@
+<div class="trial-modal" id="trial-modal" aria-hidden="true">
+    <div class="trial-modal-overlay" id="trial-modal-overlay"></div>
+
+    <div class="trial-modal-content" role="dialog" aria-modal="true">
+        <button type="button" id="close-trial-form" aria-label="Закрыть">×</button>
+
+        <h2>Оставьте заявку</h2>
+        <p>Мы свяжемся с вами и расскажем о пробном занятии.</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="trial-name">Имя</label>
+            <input id="trial-name" type="text" name="name" maxlength="200" required>
+
+            <label for="trial-phone">Телефон</label>
+            <input id="trial-phone" type="tel" name="phone" maxlength="20" required>
+
+            <label for="trial-comment">Комментарий</label>
+            <textarea id="trial-comment" name="comment"></textarea>
+
+            <button type="submit">Отправить заявку</button>
+        </form>
+    </div>
+</div>

@@ -1,26 +1,66 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}О школе — TEMPO{% endblock %}
 
 {% block content %}
-    <div class="card">
-        <div class="card-body">
-            <h1 class="card-title mb-3">{{ title }}</h1>
+<div class="about-page">
 
-            <p class="card-text">
-                Добро пожаловать в нашу танцевальную школу!
-                Здесь вы можете познакомиться с разными танцевальными
-                направлениями, нашими хореографами и доступными занятиями.
-            </p>
+    <section class="about-heading">
+        <p class="about-eyebrow">TEMPO / ABOUT US</p>
+        <h1>МЫ — <span>TEMPO.</span></h1>
+        <p class="about-lead">
+            Танцевальная школа для тех, кто хочет двигаться,
+            развиваться и быть частью команды.
+        </p>
+    </section>
 
-            <a href="{% url 'dance_school:class_list' %}" class="btn btn-primary">
-                Посмотреть занятия
-            </a>
+    <section class="about-description">
+        <span class="about-index">01 / OUR STORY</span>
+        <h2>БОЛЬШЕ, ЧЕМ ПРОСТО ТАНЦЫ.</h2>
+
+        <p>
+            TEMPO — это пространство, где каждый может найти
+            свой ритм. Мы изучаем разные танцевальные направления,
+            работаем с хореографами, готовим номера и выступаем.
+        </p>
+
+        <p>
+            Здесь важны не только техника и результат, но и
+            удовольствие от движения, поддержка команды
+            и возможность постоянно открывать в себе что-то новое.
+        </p>
+
+        <a href="{% url 'dance_school:class_list' %}"
+           class="about-button">
+            НАЙТИ СВОЁ ЗАНЯТИЕ <span>↗</span>
+        </a>
+    </section>
+
+    <section class="about-contacts">
+        <div class="about-contact-heading">
+            <span class="about-index">02 / CONTACTS</span>
+            <h2>ДАВАЙ ЗНАКОМИТЬСЯ.</h2>
+            <p>Есть вопросы? Свяжись с нами или приходи в студию.</p>
         </div>
-    </div>
+
+        <div class="about-contact-list">
+            <div class="about-contact-item">
+                <span>АДРЕС</span>
+                <p>Адрес школы</p>
+            </div>
+
+            <div class="about-contact-item">
+                <span>ТЕЛЕФОН</span>
+                <p>Телефон школы</p>
+            </div>
+
+            <div class="about-contact-item">
+                <span>EMAIL</span>
+                <p>Почта школы</p>
+            </div>
+        </div>
+    </section>
+
+</div>
 {% endblock %}
-
-
-
-
 

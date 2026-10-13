@@ -1,0 +1,3989 @@
+/* ===== TEMPO — K-POP DANCE STUDIO ===== */
+
+:root {
+    --tempo-red: #e6293f;
+    --tempo-red-dark: #c91f34;
+    --tempo-black: #191919;
+    --tempo-gray: #737373;
+    --tempo-white: #ffffff;
+    --tempo-bg: #e3e5e8;
+    --tempo-border: #c9cbd0;
+}
+
+/* Основная страница */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background: #e3e5e8;
+    color: var(--tempo-black);
+    line-height: 1.6;
+}
+
+main.container {
+    flex: 1 0 auto;
+    background: transparent;
+}
+
+a {
+    color: var(--tempo-red);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--tempo-red-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--tempo-black);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.text-danger {
+    color: var(--tempo-red) !important;
+}
+
+/* Шапка */
+
+.navbar {
+    background: var(--tempo-black) !important;
+    padding: 16px 0;
+    border-bottom: 3px solid var(--tempo-red);
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-size: 1.65rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: var(--tempo-red) !important;
+}
+
+.navbar-nav .nav-link {
+    color: #d6d6d6 !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 13px !important;
+    transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: var(--tempo-red) !important;
+}
+
+/* Кнопки */
+
+.btn-danger {
+    background: var(--tempo-red);
+    border-color: var(--tempo-red);
+    font-weight: 700;
+    transition: background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background: var(--tempo-red-dark);
+    border-color: var(--tempo-red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    font-weight: 700;
+}
+
+/* Карточки и формы */
+
+.card {
+    background: #f1f2f4;
+    border: 1px solid var(--tempo-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #f0a0a8;
+    box-shadow: 0 10px 25px rgba(25, 25, 25, 0.08);
+}
+
+.card-title {
+    font-weight: 800;
+}
+
+.card-body {
+    padding: 1.4rem;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--tempo-border);
+    border-radius: 8px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--tempo-red);
+    box-shadow: 0 0 0 0.2rem rgba(230, 41, 63, 0.12);
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.table {
+    --bs-table-bg: transparent;
+}
+
+.table thead th {
+    color: var(--tempo-gray);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Подвал */
+
+footer {
+    margin-top: auto;
+    padding: 28px 0;
+    background: var(--tempo-black);
+    color: #d6d6d6;
+    border-top: 3px solid var(--tempo-red);
+    flex-shrink: 0;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a:hover {
+    color: var(--tempo-red);
+}
+
+/* ===== ПЕРВЫЙ ЭКРАН ===== */
+
+.tempo-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 0 0 24px;
+    padding: clamp(22px, 4vw, 48px);
+    background: #242424;
+    color: #fff;
+    border: 0;
+}
+
+/* Без полосатого фона */
+
+.tempo-hero::before {
+    content: none;
+}
+
+.tempo-hero::after {
+    content: "PLAY IT LOUD";
+    position: absolute;
+    z-index: -1;
+    right: -15px;
+    bottom: 65px;
+    color: rgba(255, 255, 255, 0.035);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+    white-space: nowrap;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: right bottom;
+    pointer-events: none;
+}
+
+.tempo-hero-top,
+.tempo-hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.tempo-hero-top {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #444;
+    color: #c5c5c5;
+}
+
+.tempo-hero-top span:first-child::before {
+    content: "●";
+    margin-right: 9px;
+    color: var(--tempo-red);
+}
+
+.tempo-hero-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+    align-items: center;
+    gap: clamp(20px, 4vw, 32px);
+    min-height: 0;
+    padding: 28px 0;
+}
+
+.tempo-hero-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.tempo-hero-copy .tempo-eyebrow {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 7px 10px;
+    background: var(--tempo-red);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    transform: skew(-7deg);
+}
+
+.tempo-hero-copy h1 {
+    margin: 0 0 26px;
+    color: #fff;
+    font-size: clamp(3.4rem, 6.5vw, 6rem);
+    font-weight: 1000;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+.tempo-hero-copy h1>span {
+    display: inline-block;
+    color: var(--tempo-red);
+    text-shadow: none;
+}
+
+.tempo-hero-copy .tempo-dot {
+    color: #fff;
+    text-shadow: none;
+}
+
+.tempo-hero-description {
+    max-width: 350px;
+    margin: 0 0 28px;
+    color: #d1d1d1;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.tempo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 15px 18px;
+    background: var(--tempo-red);
+    border: 2px solid var(--tempo-red);
+    color: #fff;
+    font-size: 0.73rem;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    transition: background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tempo-button:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--tempo-black);
+    transform: translateY(-3px);
+}
+
+.tempo-button span {
+    font-size: 1.2rem;
+}
+
+/* Заглушка под фотографию команды */
+
+.tempo-hero-graphic.tempo-photo-placeholder {
+    position: relative;
+    display: flex;
+    min-height: 350px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #353535;
+    border: 1px solid #505050;
+}
+
+.tempo-hero-graphic.tempo-photo-placeholder::before,
+.tempo-hero-graphic.tempo-photo-placeholder::after {
+    content: none;
+    display: none;
+}
+
+.tempo-photo-label,
+.tempo-photo-caption {
+    position: absolute;
+    z-index: 1;
+    color: #c8c8c8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.tempo-photo-label {
+    top: 16px;
+    left: 18px;
+}
+
+.tempo-photo-caption {
+    right: 18px;
+    bottom: 16px;
+}
+
+.tempo-photo-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f4f4f4;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.tempo-photo-message span:last-child {
+    color: var(--tempo-red);
+}
+
+.tempo-hero-bottom {
+    padding-top: 16px;
+    border-top: 1px solid #444;
+    color: #eee;
+}
+
+/* ===== ЛЕНТА ===== */
+
+.tempo-marquee {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin-bottom: 55px;
+    padding: 18px 12px;
+    background: var(--tempo-red);
+    color: #fff;
+    font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+    font-weight: 1000;
+    letter-spacing: 2px;
+}
+
+.tempo-marquee span:nth-child(even) {
+    color: var(--tempo-black);
+}
+
+/* ===== СЕКЦИИ ===== */
+
+.tempo-section {
+    margin-bottom: 55px;
+    color: var(--tempo-black);
+}
+
+.tempo-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--tempo-black);
+}
+
+.tempo-section-heading .tempo-eyebrow {
+    margin-bottom: 10px;
+    color: var(--tempo-red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-section-heading h2,
+.tempo-studio h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.tempo-section-heading h2 {
+    color: var(--tempo-black);
+}
+
+.tempo-section-heading h2 span {
+    color: var(--tempo-red);
+}
+
+.tempo-text-link {
+    flex-shrink: 0;
+    padding-bottom: 5px;
+    color: var(--tempo-black);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.tempo-text-link:hover {
+    color: var(--tempo-red);
+}
+
+/* ===== КАРТОЧКИ КОМАНДЫ ===== */
+
+.tempo-info-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    overflow: hidden;
+    background: #191919;
+    border: 0;
+    border-bottom: 4px solid var(--tempo-red);
+    color: #fff;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.tempo-info-card::after {
+    content: "CREW";
+    position: absolute;
+    right: -5px;
+    bottom: -28px;
+    color: rgba(255, 255, 255, 0.06);
+    font-size: 5rem;
+    font-weight: 1000;
+    letter-spacing: -5px;
+    pointer-events: none;
+}
+
+.tempo-info-card:hover {
+    background: #303030;
+    transform: translateY(-5px);
+}
+
+.tempo-card-number {
+    color: var(--tempo-red);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-info-card h3 {
+    position: relative;
+    z-index: 1;
+    margin: 32px 0 8px;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.tempo-info-card p {
+    margin: 0;
+    color: #bcbcbc;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.tempo-card-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 18px;
+    right: 20px;
+    color: var(--tempo-red);
+    font-size: 1.3rem;
+}
+
+/* ===== НАЙДИ СВОЁ ДВИЖЕНИЕ ===== */
+
+.tempo-styles-section {
+    padding: 30px;
+    background: #d5d8dd;
+    border-left: 5px solid var(--tempo-red);
+}
+
+.tempo-styles-section .tempo-section-heading {
+    border-bottom-color: #aeb2b9;
+}
+
+.tempo-style-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 30px;
+    border-top: 1px solid #aeb2b9;
+}
+
+.tempo-style-item {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 22px;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 22px 4px;
+    border-bottom: 1px solid #aeb2b9;
+    color: var(--tempo-black);
+    transition: color 0.2s ease;
+}
+
+.tempo-style-item:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: var(--tempo-red);
+    background: transparent;
+}
+
+.tempo-style-number {
+    color: var(--tempo-red);
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.tempo-style-name {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.tempo-style-arrow {
+    justify-self: end;
+    color: var(--tempo-red);
+    font-size: 1.4rem;
+}
+
+/* ===== ФИНАЛЬНЫЙ БЛОК ===== */
+
+.tempo-studio {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    padding: clamp(28px, 5vw, 60px);
+    background: #303030;
+    color: #f5f5f5;
+    border-top: 3px solid var(--tempo-red);
+}
+
+.tempo-studio-index {
+    margin-bottom: 45px;
+    color: #d0d0d0;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tempo-studio .tempo-eyebrow {
+    color: #ff596b;
+}
+
+.tempo-studio h2 {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    color: #f5f5f5;
+}
+
+.tempo-studio h2 span {
+    color: var(--tempo-red);
+    text-decoration: none;
+}
+
+.tempo-studio-description {
+    position: relative;
+    z-index: 1;
+    max-width: 470px;
+    margin: 22px 0 28px;
+    color: #dedede;
+}
+
+.tempo-button-dark {
+    position: relative;
+    z-index: 1;
+    background: var(--tempo-black);
+    border-color: var(--tempo-black);
+}
+
+.tempo-button-dark:hover {
+    background: #fff;
+    border-color: #fff;
+
+
+    color: var(--tempo-black);
+}
+
+.tempo-studio-decoration {
+    position: absolute;
+    right: 15px;
+    bottom: -100px;
+    color: rgba(255, 255, 255, 0.035);
+    font-size: clamp(12rem, 30vw, 25rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -20px;
+    pointer-events: none;
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+
+@media(max-width: 768px) {
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+
+    .card-body {
+        padding: 1.1rem;
+    }
+
+    .tempo-hero-content {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 24px 0;
+    }
+
+    .tempo-hero-copy h1 {
+        font-size: clamp(3.2rem, 12vw, 5rem);
+    }
+
+    .tempo-hero-graphic.tempo-photo-placeholder {
+        min-height: 260px;
+    }
+
+    .tempo-marquee {
+        margin-bottom: 40px;
+    }
+
+    .tempo-section {
+        margin-bottom: 35px;
+    }
+
+    .tempo-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .tempo-styles-section {
+        padding: 22px 16px;
+    }
+
+    .tempo-style-list {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .tempo-style-item {
+        grid-template-columns: 35px minmax(0, 1fr) 25px;
+        gap: 10px;
+    }
+
+    .tempo-studio-index {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .tempo-hero-top,
+    .tempo-hero-bottom {
+        font-size: 0.58rem;
+        letter-spacing: 0.8px;
+    }
+
+    .tempo-hero {
+        padding: 20px 16px;
+    }
+
+    .tempo-hero-copy h1 {
+        font-size: 3.3rem;
+    }
+
+    .tempo-marquee {
+        gap: 10px;
+        letter-spacing: 1px;
+    }
+
+    .tempo-section-heading h2,
+    .tempo-studio h2 {
+        font-size: 1.8rem;
+    }
+
+    .tempo-info-card {
+        min-height: 155px;
+    }
+}
+
+/* ===== СПИСОК НАПРАВЛЕНИЙ ===== */
+
+.tempo-styles-section {
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+    padding: 30px;
+}
+
+.tempo-style-list {
+    display: block;
+    border-top: 1px solid #b9bbc0;
+}
+
+.tempo-style-item {
+    display: grid;
+    grid-template-columns: 45px minmax(0, 1fr) 30px;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 12px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #b9bbc0;
+    color: #191919;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Выделяется вся строка */
+.tempo-style-item:hover {
+    padding: 18px 12px;
+    background: #191919;
+    color: #fff;
+    transform: none;
+}
+
+.tempo-style-item:hover .tempo-style-name {
+    color: #fff;
+}
+
+.tempo-style-item:hover .tempo-style-number,
+.tempo-style-item:hover .tempo-style-arrow {
+    color: #ff596b;
+}
+
+@media (max-width: 768px) {
+    .tempo-styles-section {
+        padding: 22px 16px;
+    }
+}
+
+/* ===== TEMPO — STUDIO PAGE ===== */
+
+.studio-page {
+    padding-bottom: 30px;
+    color: #191919;
+}
+
+.studio-heading {
+    margin-bottom: 28px;
+    padding: 24px 28px;
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.studio-eyebrow {
+    margin-bottom: 12px;
+    color: #e6293f;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.studio-heading h1 {
+    margin: 0 0 12px;
+    color: #191919;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.studio-heading h1 span {
+    color: #e6293f;
+}
+
+.studio-heading>p:last-child {
+    margin: 0;
+    color: #55585e;
+}
+
+/* Плиточная композиция */
+
+.studio-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 220px 220px 100px;
+    gap: 14px;
+}
+
+.studio-tile {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    background: #292929;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.studio-tile:hover {
+    background: #3a3a3a;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.studio-tile-halls {
+    grid-row: span 2;
+    background: #303030;
+}
+
+.studio-tile-classes {
+    background: #e3e5e8;
+    border: 1px solid #c9cbd0;
+    border-bottom: 4px solid #e6293f;
+    color: #191919;
+}
+
+.studio-tile-classes:hover {
+    background: #d5d8dd;
+    color: #191919;
+}
+
+.studio-tile-life {
+    background: #191919;
+}
+
+.studio-tile-events {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    background: #e6293f;
+    border: 0;
+}
+
+.studio-tile-events:hover {
+    background: #c91f34;
+}
+
+.studio-tile-number {
+    color: #ff596b;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.studio-tile-classes .studio-tile-number {
+    color: #c91f34;
+}
+
+.studio-tile-caption {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.studio-tile-caption h2 {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(1.1rem, 2.5vw, 2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.studio-tile-caption>span {
+    flex-shrink: 0;
+    color: #ff596b;
+    font-size: 1.5rem;
+}
+
+.studio-tile-events .studio-tile-number,
+.studio-tile-events .studio-tile-caption>span {
+    color: #fff;
+}
+
+.studio-tile-events .studio-tile-caption {
+    flex: 1;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.studio-tile-events .studio-tile-caption h2 {
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+/* Галереи ниже плиток */
+
+.studio-photo-sections {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 42px;
+}
+
+.studio-photo-sections section {
+    min-width: 0;
+    padding: 20px;
+    background: #f5f5f5;
+    border-top: 3px solid #e6293f;
+}
+
+.studio-photo-sections h2 {
+    margin: 0 0 8px;
+    color: #191919;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.studio-photo-sections p {
+    margin: 0 0 18px;
+    color: #55585e;
+    font-size: 0.9rem;
+}
+
+.studio-photo-placeholder {
+    display: flex;
+    min-height: 190px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: #303030;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+/* Адаптация студийной страницы */
+
+@media (max-width: 768px) {
+    .studio-heading {
+        padding: 22px 18px;
+    }
+
+    .studio-grid {
+        grid-template-rows: 190px 160px 160px 90px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .studio-tile-halls {
+        grid-column: 1 / -1;
+        grid-row: auto;
+    }
+
+    .studio-tile-classes,
+    .studio-tile-life {
+        grid-column: auto;
+    }
+
+    .studio-tile-events {
+        grid-column: 1 / -1;
+    }
+
+    .studio-tile {
+        padding: 15px;
+    }
+
+    .studio- photo-sections {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    .studio-grid {
+        grid-template-rows: 170px 145px 145px 100px;
+        gap: 8px;
+    }
+
+    .studio-tile {
+        padding: 12px;
+    }
+
+    .studio-tile-number {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+    }
+
+    .studio-tile-caption h2 {
+        font-size: 1rem;
+    }
+
+    .studio-tile-events .studio-tile-caption {
+        margin-left: 12px;
+    }
+
+    .studio-photo-sections section {
+        padding: 15px;
+    }
+}
+
+/* ===== TEMPO — ABOUT PAGE ===== */
+
+.about-page {
+    padding-bottom: 30px;
+    color: #191919;
+}
+
+.about-heading {
+    margin-bottom: 24px;
+    padding: clamp(28px, 5vw, 48px);
+    background: #252525;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+}
+
+.about-eyebrow,
+.about-index {
+    display: block;
+    margin-bottom: 16px;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.about-heading h1 {
+    margin: 0 0 18px;
+    color: #fff;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 1000;
+    line-height: 0.95;
+    letter-spacing: -2px;
+}
+
+.about-heading h1 span {
+    color: #e6293f;
+}
+
+.about-lead {
+    max-width: 570px;
+    margin: 0;
+    color: #dedede;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+/* История школы */
+
+.about-description {
+    margin-bottom: 24px;
+    padding: clamp(24px, 4vw, 38px);
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.about-description h2,
+.about-contact-heading h2 {
+    margin: 0 0 20px;
+    color: #191919;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.about-description>p {
+    max-width: 720px;
+    color: #454545;
+    line-height: 1.8;
+}
+
+.about-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-top: 10px;
+    padding: 14px 18px;
+    background: #e6293f;
+    border: 2px solid #e6293f;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.about-button:hover {
+    background: #191919;
+    border-color: #191919;
+    color: #fff;
+}
+
+.about-button span {
+    font-size: 1.2rem;
+}
+
+/* Контакты */
+
+.about-contacts {
+    padding: clamp(24px, 4vw, 38px);
+    background: #e3e5e8;
+    border-top: 3px solid #191919;
+}
+
+.about-contact-heading>p {
+    margin-bottom: 24px;
+    color: #55585e;
+}
+
+.about-contact-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid #b9bbc0;
+}
+
+.about-contact-item {
+    min-width: 0;
+    padding: 22px 18px 8px 0;
+}
+
+.about-contact-item+.about-contact-item {
+    padding-left: 18px;
+    border-left: 1px solid #b9bbc0;
+}
+
+.about-contact-item>span {
+    display: block;
+    margin-bottom: 10px;
+    color: #c91f34;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.about-contact-item p {
+    margin: 0;
+    color: #191919;
+    font-size: 1rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .about-contact-list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-contact-item,
+    .about-contact-item+.about-contact-item {
+        padding: 18px 0;
+        border-left: 0;
+        border-bottom: 1px solid #b9bbc0;
+    }
+
+    .about-contact-item:last-child {
+        border-bottom: 0;
+    }
+}
+
+/* ===== TEMPO — DANCE CLASSES ===== */
+
+.classes-page {
+    padding-bottom: 35px;
+    color: #191919;
+}
+
+.classes-heading {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    padding: clamp(28px, 5vw, 48px);
+    background: #191919;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+}
+
+.classes-eyebrow {
+    margin-bottom: 18px;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.classes-heading h1 {
+    margin: 0 0 15px;
+    color: #fff;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.classes-heading h1 span {
+    color: #e6293f;
+}
+
+.classes-heading>p:not(.classes-eyebrow) {
+    max-width: 550px;
+    color: #d0d0d0;
+    line-height: 1.7;
+}
+
+.classes-count {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: 1px solid #555;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.class-card {
+    min-width: 0;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #d0d1d4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px #19191918;
+}
+
+.class-card-art {
+    --art-main: #e6293f;
+    --art-light: #ff7180;
+    position: relative;
+    display: flex;
+    min-height: 245px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 20px;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 80% 25%, color-mix(in srgb, var(--art-main) 65%, transparent), transparent 48%),
+        linear-gradient(135deg, #292929, #101010);
+    color: #fff;
+}
+
+.class-card-art::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: repeating-linear-gradient(135deg,
+            transparent 0 23px,
+            #ffffff08 24px 25px);
+    content: "";
+}
+
+.class-card-number {
+    align-self: flex-start;
+    color: var(--art-light);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.class-card-orbit {
+    position: absolute;
+    z-index: -1;
+    top: 25px;
+    right: -45px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid color-mix(in srgb, var(--art-light) 65%, transparent);
+    border-radius: 50%;
+    transform: rotate(-25deg);
+}
+
+.class-card-orbit::before,
+.class-card-orbit::after {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid #ffffff35;
+    border-radius: 50%;
+    content: "";
+}
+
+.class-card-orbit::after {
+    inset: 34px;
+}
+
+.class-card-shape {
+    position: absolute;
+    z-index: -1;
+    top: 65px;
+    right: 38px;
+    width: 85px;
+    height: 115px;
+    background: linear-gradient(145deg, var(--art-light), var(--art-main));
+    opacity: 0.25;
+    clip-path: polygon(50% 0, 68% 18%, 60% 38%, 100% 70%, 78% 100%, 50% 78%, 22% 100%, 0 70%, 40% 38%, 32% 18%);
+    transform: rotate(15deg);
+}
+
+.class-card-style {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+.class-card-style span {
+    padding: 5px 8px;
+    border: 1px solid color-mix(in srgb, var(--art-light) 60%, transparent);
+    background: #10101080;
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.class-card-art h2 {
+    max-width: 90%;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 1000;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+}
+
+.class-card-decoration {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: var(--art-light);
+    font-size: 1.8rem;
+    opacity: 0.85;
+}
+
+/* K-POP — сценические огни и вспышки */
+
+.class-card:has(.class-card-style span:is(:first-child)) .class-card-art {
+    background:
+        radial- gradient(ellipse at 80% 20%, #c026d355, transparent 42%),
+        radial-gradient(ellipse at 15% 80%, #2563eb50, transparent 45%),
+        linear-gradient(135deg, #171126, #08080d);
+}
+
+/* Информация о занятии */
+
+.class-card-body {
+    padding: 20px;
+}
+
+.class-card-teacher {
+    margin-bottom: 16px;
+    color: #191919;
+    font-weight: 800;
+}
+
+.class-card-teacher>span,
+.class-card-meta span {
+    display: block;
+    margin-bottom: 6px;
+    color: #c91f34;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+}
+
+.class-card-description {
+    min-height: 58px;
+    margin-bottom: 20px;
+    color: #55585e;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.class-card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 15px 0;
+    border-top: 1px solid #d0d1d4;
+    border-bottom: 1px solid #d0d1d4;
+}
+
+.class-card-meta>div {
+    min-width: 0;
+}
+
+.class-card-meta strong {
+    color: #191919;
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
+}
+
+.class-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 13px 15px;
+    background: #191919;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: background 0.2s ease;
+}
+
+.class-card-link:hover {
+    background: #e6293f;
+    color: #fff;
+}
+
+.class-card-link span {
+    color: #ff596b;
+    font-size: 1.2rem;
+}
+
+.class-card-link:hover span {
+    color: #fff;
+}
+
+/* Пустой список */
+
+.classes-empty {
+    padding: 45px 25px;
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.classes-empty h2 {
+    font-weight: 900;
+}
+
+/* Адаптация */
+
+@media (max-width: 1000px) {
+    .classes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media(max-width: 600px) {
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .class-card-art {
+        min-height: 220px;
+    }
+
+    .class-card-description {
+        min-height: 0;
+    }
+
+    .classes-heading {
+        padding: 26px 20px;
+    }
+}
+
+/* ===== TEMPO — STYLE-SPECIFIC CLASS ART ===== */
+
+/* K-POP — неон, сцена, вспышки */
+.class-card[class*="class-style-k-pop"] .class-card-art,
+.class-card[class*="class-style-kpop"] .class-card-art {
+    --art-main: #c026d3;
+    --art-light: #67e8f9;
+    background:
+        radial-gradient(circle at 78% 24%, #e879f966, transparent 24%),
+        radial-gradient(circle at 20% 75%, #2563eb66, transparent 34%),
+        linear-gradient(135deg, #170d2d, #08080e 75%);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-shape,
+.class-card[class*="class-style-kpop"] .class-card-shape {
+    width: 100px;
+    height: 125px;
+    clip-path: polygon(50% 0, 61% 32%, 100% 50%, 61% 62%, 50% 100%, 38% 62%, 0 50%, 38% 32%);
+    transform: rotate(20deg);
+}
+
+/* HIP-HOP — граффити и уличная геометрия */
+.class-card[class*="class-style-hip-hop"] .class-card-art,
+.class-card[class*="class-style-hiphop"] .class-card-art {
+    --art-main: #f97316;
+    --art-light: #facc15;
+    background:
+        repeating-linear-gradient(125deg, transparent 0 28px, #ffffff0b 29px 31px),
+        linear-gradient(145deg, #343434, #111 70%);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-shape,
+.class-card[class*="class-style-hiphop"] .class-card-shape {
+    width: 115px;
+    height: 100px;
+    clip-path: polygon(0 12%, 78% 0, 100% 35%, 70% 48%, 92% 100%, 18% 78%);
+    transform: rotate(-15deg);
+}
+
+/* CONTEMPORARY — текучесть и мягкие формы */
+.class-card[class*="class-style-contemporary"] .class-card-art {
+    --art-main: #8b9cb6;
+    --art-light: #e2d9ff;
+    background:
+        radial-gradient(ellipse at 80% 20%, #a78bfa66, transparent 40%),
+        radial-gradient(ellipse at 15% 85%, #67e8f966, transparent 40%),
+        linear-gradient(145deg, #242a38, #10131b);
+}
+
+.class-card[class*="class-style-contemporary"] .class-card-shape {
+    width: 100px;
+    height: 140px;
+    border-radius: 50%;
+    clip-path: ellipse(32% 50% at 50% 50%);
+    transform: rotate(35deg);
+}
+
+/* HIGH HEELS — контраст, красный свет */
+.class-card[class*="class-style-high-heels"] .class-card-art,
+.class-card[class*="class-style-heels"] .class-card-art {
+    --art-main: #e11d48;
+    --art-light: #fda4af;
+    background:
+        radial-gradient(ellipse at 85% 25%, #e11d4855, transparent 35%),
+        linear-gradient(120deg, #292027, #090909 75%);
+}
+
+.class-card[class*="class-style-high-heels"] .class-card-shape,
+.class-card[class*="class-style-heels"] .class-card-shape {
+    width: 65px;
+    height: 145px;
+    clip-path: polygon(50% 0, 65% 20%, 60% 45%, 100% 75%, 75% 100%, 35% 65%, 45% 42%, 30% 20%);
+}
+
+/* JAZZ-FUNK — яркая энергия и резкие формы */
+.class-card[class*="class-style-jazz-funk"] .class-card-art,
+.class-card[class*="class-style-jazzfunk"] .class-card-art {
+    --art-main: #f43f5e;
+    --art-light: #f0abfc;
+    background:
+        radial-gradient(circle at 80% 25%, #f0abfc55, transparent 30%),
+        linear-gradient(145deg, #30102c, #100d17 75%);
+}
+
+.class-card[class*="class-style-jazz-funk"] .class-card-shape,
+.class-card[class*="class-style-jazzfunk"] .class-card-shape {
+    width: 110px;
+    height: 110px;
+    clip-path: polygon(50% 0, 62% 32%, 100% 20%, 75% 52%, 100% 85%, 60% 72%, 40% 100%, 35% 65%, 0 50%, 35% 35%);
+}
+
+/* BALLET — лёгкость и изящные линии */
+.class-card[class*="class-style-ballet"] .class-card-art,
+.class-card[class*="class-style-classical"] .class-card-art {
+    --art-main: #a78bfa;
+    --art-light: #f5d0fe;
+    background:
+        radial-gradient(ellipse at 75% 25%, #c4b5fd66, transparent 38%),
+        linear-gradient(145deg, #33303d, #17151e);
+}
+
+.class-card[class*="class-style-ballet"] .class-card-orbit,
+.class-card[class*="class-style-classical"] .class-card-orbit {
+    width: 230px;
+    height: 230px;
+    right: -55px;
+    border-style: dotted;
+}
+
+/* DANCEHALL — тропические оттенки и ритм */
+.class-card[class*="class-style-dancehall"] .class-card-art {
+    --art-main: #16a34a;
+    --art-light: #bef264;
+    background:
+        radial-gradient(ellipse at 85% 20%, #65a30d66, transparent 35%),
+        linear-gradient(145deg, #172c22, #0c110e);
+}
+
+/* VOGUE — геометрия и подиум */
+.class-card[class*="class-style-vogue"] .class-card-art {
+    --art-main: #d946ef;
+    --art-light: #f5d0fe;
+    background:
+        linear-gradient(115deg, transparent 45%, #d946ef22 45% 60%, transparent 60%),
+        linear-gradient(145deg, #28132e, #0d0a10);
+}
+
+/* LOCKING / POPPING — роботизированные формы */
+.class-card[class*="class-style-locking"] .class-card-art,
+.class-card[class*="class-style-popping"] .class-card-art {
+    --art-main: #0ea5e9;
+    --art-light: #a5f3fc;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 30px, #38bdf81a 31px 32px),
+        linear-gradient(145deg, #10283b, #090d14);
+}
+/* FOLK DANCE — НАРОДНЫЕ ТАНЦЫ */
+.class-card[class*="class-style-folk"] .class-card-art,
+.class-card[class*="class-style-folklore"] .class-card-art,
+.class-card[class*="class-style-narod"] .class-card-art {
+    --art-main: #e9a23b;
+    --art-light: #f5d98b;
+    background:
+        radial-gradient(circle at 80% 25%, #e9a23b66, transparent 32%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 24px,
+            #f5d98b12 25px 27px
+        ),
+        linear-gradient(145deg, #382316, #17100c 75%);
+}
+
+.class-card[class*="class-style-folk"] .class-card-shape,
+.class-card[class*="class-style-folklore"] .class-card-shape,
+.class-card[class*="class-style-narod"] .class-card-shape {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #f5d98b, #e9a23b);
+    clip-path: polygon(
+        50% 0, 61% 35%, 100% 50%, 61% 65%,
+        50% 100%, 39% 65%, 0 50%, 39% 35%
+    );
+    filter: drop-shadow(0 0 14px #e9a23b);
+}
+
+.class-card[class*="class-style-folk"] .class-card-decoration,
+.class-card[class*="class-style-folklore"] .class-card-decoration,
+.class-card[class*="class-style-narod"] .class-card-decoration {
+    color: #f5d98b;
+}
+/* Общая выразительность декоративных форм */
+.class-card-art .class-card-shape {
+    filter: drop-shadow(0 0 14px var(--art-main));
+}
+
+.class-card:hover .class-card-orbit {
+    transform: rotate(15deg) scale(1.06);
+    transition: transform 0.35s ease;
+}
+
+/* ===== TEMPO — INDIVIDUAL DANCE STYLE CARDS ===== */
+
+/* K-POP — НЕОНОВАЯ СЦЕНА */
+.class-card[class*="class-style-k-pop"] .class-card-art {
+    --art-main: #d946ef;
+    --art-light: #67e8f9;
+    background:
+        radial-gradient(circle at 80% 22%, #d946ef88, transparent 30%),
+        radial-gradient(circle at 18% 78%, #2563eb88, transparent 38%),
+        linear-gradient(135deg, #1a0b2e, #090713 75%);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-art::before {
+    background:
+        linear-gradient(115deg, transparent 35%, #ffffff20 36%, transparent 39%),
+        repeating-linear-gradient(135deg,
+            transparent 0 18px,
+            #ffffff12 19px 20px);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-shape {
+    top: 45px;
+    right: 40px;
+    width: 105px;
+    height: 130px;
+    background: linear-gradient(145deg, #f0abfc, #7c3aed);
+    opacity: 0.8;
+    clip-path: polygon(50% 0, 62% 30%, 100% 45%, 68% 60%,
+            58% 100%, 42% 68%, 5% 55%, 35% 35%);
+    filter: drop-shadow(0 0 18px #d946ef);
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-orbit {
+    border-color: #e879f9;
+    box-shadow: 0 0 25px #a855f744;
+}
+
+.class-card[class*="class-style-k-pop"] .class-card-decoration {
+    color: #67e8f9;
+    text-shadow: 0 0 15px #67e8f9;
+}
+
+/* HIP-HOP — УЛИЧНЫЙ СТИЛЬ */
+.class-card[class*="class-style-hip-hop"] .class-card-art {
+    --art-main: #f97316;
+    --art-light: #facc15;
+    background:
+        radial-gradient(circle at 85% 25%, #f9731677, transparent 30%),
+        repeating-linear-gradient(125deg,
+            transparent 0 28px,
+            #ffffff10 29px 31px),
+        linear-gradient(145deg, #383838, #171717 65%, #090909);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-art::before {
+    background:
+        repeating-linear-gradient(-15deg,
+            transparent 0 26px,
+            #facc1520 27px 29px);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-shape {
+    top: 55px;
+    right: 28px;
+    width: 125px;
+    height: 100px;
+    background: linear-gradient(135deg, #facc15, #f97316);
+    opacity: 0.8;
+    clip-path: polygon(0 15%, 72% 0, 100% 28%,
+            77% 45%, 92% 100%, 25% 78%);
+    filter: drop-shadow(0 0 12px #f97316);
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-orbit {
+    right: -65px;
+    border: 3px dashed #facc15aa;
+    border-radius: 15%;
+}
+
+.class-card[class*="class-style-hip-hop"] .class-card-decoration {
+    color: #facc15;
+    transform: rotate(-12deg);
+}
+
+/* ПЛАВНОЕ ДВИЖЕНИЕ ДЕКОРА */
+.class-card .class-card-shape,
+.class-card .class-card-orbit {
+    transition: transform 0.35s ease;
+}
+
+.class-card:hover .class-card-orbit {
+    transform: rotate(15deg) scale(1.06);
+}
+
+/* ===== TEMPO — TEACHERS LIST ===== */
+
+.teachers-page {
+    padding-bottom: 35px;
+    color: #191919;
+}
+
+.teachers-heading {
+    margin-bottom: 30px;
+    padding: clamp(28px, 5vw, 48px);
+    background: #191919;
+    border-bottom: 4px solid #e6293f;
+    color: #fff;
+}
+
+.teachers-eyebrow {
+    margin-bottom: 18px;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.teachers-heading h1 {
+    margin: 0 0 15px;
+    color: #fff;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 1000;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.teachers-heading h1 span {
+    color: #e6293f;
+}
+
+.teachers-heading>p:not(.teachers-eyebrow) {
+    max-width: 550px;
+    color: #d0d0d0;
+    line-height: 1.7;
+}
+
+.teachers-count {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: 1px solid #555;
+    color: #ff596b;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.teacher-card {
+    min-width: 0;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #d0d1d4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px #19191918;
+}
+
+.teacher-card-art {
+    position: relative;
+    display: flex;
+    min-height: 245px;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 22px;
+    background:
+        radial-gradient(circle at 85% 20%, #e6293f55, transparent 35%),
+        linear-gradient(145deg, #303030, #101010);
+    color: #fff;
+}
+
+.teacher-card-number {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: #ff596b;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.teacher-card-symbol {
+    position: absolute;
+    top: 30px;
+    right: 24px;
+    color: #e6293f;
+    font-size: 3rem;
+}
+
+.teacher-card-art>p {
+    margin-bottom: 12px;
+    color: #ff596b;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.teacher-card-art h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    font-weight: 1000;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+}
+
+.teacher-card-body {
+    padding: 20px;
+}
+
+.teacher-card-birth {
+    margin-bottom: 18px;
+    color: #191919;
+    font-weight: 700;
+}
+
+.teacher-card-birth span,
+.teacher-card-groups span {
+    display: block;
+    margin-bottom: 6px;
+    color: #c91f34;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+}
+
+.teacher-card-groups {
+    padding: 15px 0;
+    border-top: 1px solid #d0d1d4;
+    border-bottom: 1px solid #d0d1d4;
+}
+
+.teacher-card-groups strong {
+    color: #191919;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.teacher-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 13px 15px;
+    background: #191919;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.teacher-card-link:hover {
+    background: #e6293f;
+    color: #fff;
+}
+
+.teacher-card-link span {
+    color: #ff596b;
+    font-size: 1.2rem;
+}
+
+.teacher-card-link:hover span {
+    color: #fff;
+}
+
+.teachers-empty {
+    padding: 45px 25px;
+    background: #f5f5f5;
+    border-left: 5px solid #e6293f;
+}
+
+.teachers-empty h2 {
+    font-weight: 900;
+}
+
+@media (max-width: 1000px) {
+    .teachers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .teachers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-card-art {
+        min-height: 220px;
+    }
+
+    .teachers-heading {
+        padding: 26px 20px;
+    }
+}
+
+/* ===== TEMPO — CHOREOGRAPHER CARDS ===== */
+
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.teacher-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #d0d1d4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px #19191918;
+}
+
+.teacher-card-art {
+    --art-main: #e6293f;
+    --art-light: #ff7180;
+    position: relative;
+    display: flex;
+    min-height: 245px;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 20px;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 80% 25%,
+            color-mix(in srgb, var(--art-main) 65%, transparent),
+            transparent 48%),
+        linear-gradient(135deg, #292929, #101010);
+    color: #fff;
+}
+
+.teacher-card-art::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: repeating-linear-gradient(135deg,
+            transparent 0 23px,
+            #ffffff08 24px 25px);
+    content: "";
+}
+
+.teacher-card-number {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: var(--art-light);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.teacher-card-orbit {
+    position: absolute;
+    z-index: -1;
+    top: 25px;
+    right: -45px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid color-mix(in srgb,
+            var(--art-light) 65%,
+            transparent);
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    transition: transform 0.35s ease;
+}
+
+.teacher-card-orbit::before,
+.teacher-card-orbit::after {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid #ffffff35;
+    border-radius: 50%;
+    content: "";
+}
+
+.teacher-card-orbit::after {
+    inset: 34px;
+}
+
+.teacher-card-shape {
+    position: absolute;
+    z-index: -1;
+    top: 65px;
+    right: 38px;
+    width: 85px;
+    height: 115px;
+    background: linear-gradient(145deg,
+            var(--art-light),
+            var(--art-main));
+    opacity: 0.55;
+    clip-path: polygon(50% 0,
+            68% 18%,
+            60% 38%,
+            100% 70%,
+            78% 100%,
+            50% 78%,
+            22% 100%,
+            0 70%,
+            40% 38%,
+            32% 18%);
+    filter: drop-shadow(0 0 14px var(--art-main));
+}
+
+.teacher-card:hover .teacher-card-orbit {
+    transform: rotate(-10deg) scale(1.06);
+}
+
+.teacher-card-style {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 45px;
+    margin-bottom: 12px;
+}
+
+.teacher-card-style span {
+    padding: 5px 8px;
+    border: 1px solid color-mix(in srgb,
+            var(--art-light) 60%,
+            transparent);
+    background: #101010a8;
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.teacher-card-art>p {
+    margin-bottom: 10px;
+    color: var(--art-light);
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.teacher-card-art h2 {
+    max-width: 90%;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 1000;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+}
+
+.teacher-card-symbol {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    color: var(--art-light);
+    font-size: 1.8rem;
+    opacity: 0.85;
+}
+
+.teacher-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.teacher-card-groups {
+    margin-top: auto;
+    padding: 15px 0;
+    border-top: 1px solid #d0d1d4;
+    border-bottom: 1px solid #d0d1d4;
+}
+
+.teacher-card-groups>span {
+    display: block;
+    margin-bottom: 6px;
+    color: #c91f34;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+}
+
+.teacher-card-groups strong {
+    color: #1919 19;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.teacher-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 13px 15px;
+    background: #191919;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.teacher-card-link:hover {
+    background: #e6293f;
+    color: #fff;
+}
+
+.teacher-card-link span {
+    font-size: 1.2rem;
+}
+
+/* Индивидуальные цветовые схемы по slug направления */
+
+/* K-pop */
+.teacher-style-k-pop .teacher-card-art,
+.teacher-style-kpop .teacher-card-art {
+    --art-main: #d946ef;
+    --art-light: #67e8f9;
+    background:
+        radial-gradient(circle at 80% 22%, #d946ef88, transparent 30%),
+        radial-gradient(circle at 18% 78%, #2563eb88, transparent 38%),
+        linear-gradient(135deg, #1a0b2e, #090713 75%);
+}
+
+.teacher-style-k-pop .teacher-card-shape,
+.teacher-style-kpop .teacher-card-shape {
+    opacity: 0.85;
+    clip-path: polygon(50% 0, 62% 30%, 100% 45%, 68% 60%,
+            58% 100%, 42% 68%, 5% 55%, 35% 35%);
+}
+
+/* Hip-hop */
+.teacher-style-hip-hop .teacher-card-art,
+.teacher-style-hiphop .teacher-card-art {
+    --art-main: #f97316;
+    --art-light: #facc15;
+    background:
+        radial-gradient(circle at 85% 25%, #f9731677, transparent 30%),
+        repeating-linear-gradient(125deg,
+            transparent 0 28px,
+            #ffffff10 29px 31px),
+        linear-gradient(145deg, #383838, #171717 65%, #090909);
+}
+
+.teacher-style-hip-hop .teacher-card-shape,
+.teacher-style-hiphop .teacher-card-shape {
+    width: 125px;
+    height: 100px;
+    clip-path: polygon(0 15%, 72% 0, 100% 28%,
+            77% 45%, 92% 100%, 25% 78%);
+    transform: rotate(-15deg);
+    opacity: 0.8;
+}
+
+/* Contemporary */
+.teacher-style-contemporary .teacher-card-art {
+    --art-main: #8b9cb6;
+    --art-light: #e2d9ff;
+    background:
+        radial-gradient(ellipse at 80% 20%, #a78bfa77, transparent 40%),
+        radial-gradient(ellipse at 15% 85%, #67e8f966, transparent 40%),
+        linear-gradient(145deg, #242a38, #10131b);
+}
+
+.teacher-style-contemporary .teacher-card-shape {
+    width: 100px;
+    height: 140px;
+    border-radius: 50%;
+    clip-path: ellipse(32% 50% at 50% 50%);
+    transform: rotate(35deg);
+}
+
+/* Jazz-funk */
+.teacher-style-jazz-funk .teacher-card-art,
+.teacher-style-jazzfunk .teacher-card-art {
+    --art-main: #f43f5e;
+    --art-light: #f0abfc;
+    background:
+        radial-gradient(circle at 80% 25%, #f0abfc66, transparent 30%),
+        linear-gradient(145deg, #40102c, #100d17 75%);
+}
+
+.teacher-style-jazz-funk .teacher-card-shape,
+.teacher-style-jazzfunk .teacher-card-shape {
+    width: 110px;
+    height: 110px;
+    clip-path: polygon(50% 0, 62% 32%, 100% 20%, 75% 52%,
+            100% 85%, 60% 72%, 40% 100%, 35% 65%,
+            0 50%, 35% 35%);
+    opacity: 0.85;
+}
+
+/* Vogue */
+.teacher-style-vogue .teacher-card-art {
+    --art-main: #d946ef;
+    --art-light: #f5d0fe;
+    background:
+        linear-gradient(115deg, transparent 45%, #d946ef33 45% 60%, transparent 60%),
+        radial-gradient(ellipse at 80% 25%, #d946ef55, transparent 35%),
+        linear-gradient(145deg, #28132e, #0d0a10);
+}
+
+.teacher-style-vogue .teacher-card-shape {
+    width: 90px;
+    height: 135px;
+    clip-path: polygon(50% 0, 100% 25%, 80% 100%, 20% 100%, 0 25%);
+    transform: rotate(15deg);
+}
+
+/* Народные танцы */
+.teacher-style-folk-dance .teacher-card-art {
+    --art-main: #b45309;
+    --art-light: #fcd9a5;
+    background:
+        repeating-linear-gradient(45deg,
+            transparent 0 20px,
+            #fcd9a511 21px 23px),
+        radial-gradient(circle at 80% 25%, #b4530966, transparent 35%),
+        linear-gradient(145deg, #39271b, #15100c);
+}
+
+.teacher-style-folk-dance .teacher-card-shape {
+    width: 115px;
+    height: 115px;
+    clip-path: polygon(50% 0, 62% 35%, 100% 50%, 62% 65%,
+            50% 100%, 38% 65%, 0 50%, 38% 35%);
+    transform: rotate(45deg);
+    opacity: 0.75;
+}
+
+/* Планшеты */
+@media(max-width: 1000px) {
+    .teachers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+/* Телефоны */
+@media(max-width: 600px) {
+    .teachers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-card-art {
+        min-height: 220px;
+    }
+}
+/* ========================================
+   TEACHER DETAIL — TEMPO
+   ======================================== */
+
+.teacher-detail-page {
+    --teacher-accent: #a9475b;
+    --teacher-accent-soft: rgba(169, 71, 91, 0.16);
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 36px 0 52px;
+    color: #f2eeee;
+}
+
+.teacher-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    align-items: start;
+    gap: 24px;
+}
+
+/* Профиль и биография */
+
+.teacher-detail-profile {
+    min-width: 0;
+    padding: 28px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            var(--teacher-accent-soft),
+            transparent 55%
+        ),
+        #191719;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--teacher-accent);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.teacher-detail-hero {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.65fr) minmax(0, 1.35fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.teacher-detail-photo {
+    position: relative;
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 16px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            var(--teacher-accent-soft),
+            rgba(255, 255, 255, 0.02)
+        ),
+        #242024;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+}
+
+.teacher-detail-photo-symbol {
+    color: var(--teacher-accent);
+    font-size: 58px;
+    line-height: 1;
+}
+
+.teacher-detail-photo-caption {
+    color: #aaa0a3;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.teacher-detail-heading {
+    min-width: 0;
+}
+
+.teacher-detail-label {
+    margin: 0 0 12px;
+    color: var(--teacher-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.teacher-detail-name {
+    margin: 0;
+    color: #fff8f8;
+    font-size: clamp(27px, 3vw, 42px);
+    font-weight: 800;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+}
+
+.teacher-detail-divider {
+    width: 54px;
+    height: 3px;
+    margin: 20px 0;
+    background: var(--teacher-accent);
+    border-radius: 3px;
+}
+
+.teacher-detail-info {
+    display: grid;
+    gap: 18px;
+}
+
+.teacher-detail-info-item > span {
+    display: block;
+    margin-bottom: 7px;
+    color: #a99da1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.teacher-detail-info-item p {
+    margin: 0;
+    color: #f0e8ea;
+    font-size: 14px;
+}
+
+.teacher-detail-style-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.teacher-detail-style-tag {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 6px 10px;
+    color: #f1dce1;
+    background: var(--teacher-accent-soft);
+    border: 1px solid color-mix(
+        in srgb,
+        var(--teacher-accent) 45%,
+        transparent
+    );
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+/* Биография — часть общего блока профиля */
+
+.teacher-detail-biography-section {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.teacher-detail-biography-title {
+    margin: 0 0 14px;
+    color: #fff5f6;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.teacher-detail-biography {
+    color: #c8bec1;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* Группы справа */
+
+.teacher-detail-groups-section {
+    min-width: 0;
+}
+
+.teacher-detail-section-title {
+    margin: 0 0 18px;
+    color: #f6eeee;
+    font-size: clamp(20px, 2.2vw, 27px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.teacher-detail-section-title span {
+    color: var(--teacher-accent);
+}
+
+.teacher-detail-groups {
+    display: grid;
+    gap: 14px;
+}
+
+.teacher-detail-group {
+
+
+min-width: 0;
+    padding: 20px;
+    background: #1c191b;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-left: 3px solid var(--teacher-accent);
+    border-radius: 8px;
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.teacher-detail-group:hover {
+    transform: translateY(-4px);
+    background: #242024;
+    border-color: var(--teacher-accent);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-detail-group-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.teacher-detail-group-title {
+    margin: 0;
+    color: #fff5f6;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.teacher-detail-group-details {
+    display: grid;
+    gap: 7px;
+    width: 100%;
+}
+
+.teacher-detail-group-info {
+    margin: 0;
+    color: #c8bec1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.teacher-detail-group-info strong {
+    color: #f3e8eb;
+}
+
+.teacher-detail-group-styles {
+    display: grid;
+    gap: 9px;
+    width: 100%;
+}
+
+.teacher-detail-group-styles-label {
+    color: #a99da1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.teacher-detail-group-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2px;
+    padding: 10px 14px;
+    color: #fff;
+    background: var(--teacher-accent);
+    border: 1px solid var(--teacher-accent);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.teacher-detail-group-link:hover {
+    color: #fff;
+    background: transparent;
+    transform: translateY(-1px);
+}
+
+.teacher-detail-groups-empty {
+    margin: 0;
+    padding: 18px;
+    color: #c8bec1;
+    background: #1c191b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Галерея */
+
+.teacher-detail-gallery-section {
+    margin-top: 38px;
+}
+
+.teacher-detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.teacher-detail-gallery-item {
+    position: relative;
+    display: flex;
+    min-height: 190px;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 20px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            var(--teacher-accent-soft),
+            transparent 55%
+        ),
+        #201c1f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease;
+}
+
+.teacher-detail-gallery-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--teacher-accent);
+}
+
+.teacher-detail-gallery-item::before {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    border: 1px solid var(--teacher-accent);
+    border-radius: 50%;
+    content: "";
+    opacity: 0.45;
+}
+
+.teacher-detail-gallery-item > span {
+    color: var(--teacher-accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.teacher-detail-gallery-item p {
+    margin: 0;
+    color: #f6eeee;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.teacher-detail-gallery-item--practice {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent),
+        #252023;
+}
+
+.teacher-detail-gallery-item--dance {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            var(--teacher-accent-soft),
+            transparent 55%
+        ),
+        #191719;
+}
+
+/* Возврат к списку */
+
+.teacher-detail-back {
+    display: inline-flex;
+    margin-top: 30px;
+    padding: 10px 0;
+    color: #c8bec1;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+.teacher-detail-back:hover {
+    color: var(--teacher-accent);
+}
+
+/* Адаптация под планшеты и телефоны */
+
+@media (max-width: 850px) {
+    .teacher-detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .teacher-detail-groups-section {
+        margin-top: 10px;
+    }
+
+    .teacher-detail-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .teacher-detail-page {
+        width: calc(100% - 28px);
+        padding-top: 22px;
+    }
+
+    .teacher-detail-profile {
+        padding: 18px;
+    }
+
+    .teacher-detail-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .teacher-detail-photo {
+        min-height: 150px;
+    }
+
+    .teacher-detail-photo-symbol {
+        font-size: 44px;
+    }
+
+    .teacher-detail-name {
+        font-size: 30px;
+    }
+
+    .teacher-detail-groups {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .teacher-detail-gallery {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .teacher-detail-gallery-item {
+        min-height: 150px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .teacher-detail-group,
+    .teacher-detail-group-link,
+    .teacher-detail-gallery-item,
+    .teacher-detail-back {
+        transition: none;
+    }
+
+    .teacher-detail-group:hover,
+    .teacher-detail-gallery-item:hover {
+        transform: none;
+    }
+}
+/* ===== TEACHER DETAIL — FIXES ===== */
+
+.teacher-detail-page {
+    --teacher-accent: #e6293f;
+    --teacher-light: #ff7180;
+    color: #f5f5f5;
+}
+
+.teacher-detail-layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    align-items: stretch;
+    gap: 26px;
+}
+
+.teacher-detail-profile {
+    min-height: 100%;
+    padding: 34px;
+    background:
+        radial-gradient(
+            ellipse at 85% 10%,
+            color-mix(in srgb, var(--teacher-accent) 22%, transparent),
+            transparent 48%
+        ),
+        #191919;
+    border: 1px solid #383838;
+    border-top: 4px solid var(--teacher-accent);
+}
+
+.teacher-detail-hero {
+    grid-template-columns: minmax(150px, 0.7fr) minmax(0, 1.3fr);
+    gap: 28px;
+}
+
+.teacher-detail-photo {
+    min-height: 260px;
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            color-mix(in srgb, var(--teacher-light) 45%, transparent),
+            transparent 42%
+        ),
+        #242024;
+}
+
+.teacher-detail-photo-symbol,
+.teacher-detail-label,
+.teacher-detail-divider,
+.teacher-detail-gallery-item > span {
+    color: var(--teacher-light);
+}
+
+.teacher-detail-divider {
+    background: var(--teacher-accent);
+}
+
+.teacher-detail-name,
+.teacher-detail-biography-title,
+.teacher-detail-section-title,
+.teacher-detail-group-title,
+.teacher-detail-gallery-item p {
+    color: #ffffff;
+}
+
+.teacher-detail-info-item > span,
+.teacher-detail-group-styles-label {
+    color: #c6bdc0;
+}
+
+.teacher-detail-info-item p,
+.teacher-detail-biography,
+.teacher-detail-group-info {
+    color: #e0d9db;
+}
+
+.teacher-detail-style-tag {
+    color: #ffffff;
+    background: color-mix(in srgb, var(--teacher-accent) 20%, #191919);
+    border-color: color-mix(in srgb, var(--teacher-light) 55%, transparent);
+}
+
+.teacher-detail-group {
+    background: #191919;
+    border-color: #393939;
+    border-left: 3px solid var(--teacher-accent);
+}
+
+.teacher-detail-group:hover {
+    border-color: var(--teacher-accent);
+}
+
+.teacher-detail-group-link {
+    background: var(--teacher-accent);
+    border-color: var(--teacher-accent);
+    color: #ffffff;
+}
+
+.teacher-detail-group-link:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+.teacher-detail-groups-empty {
+    background: #191919;
+    color: #e0d9db;
+}
+
+/* Кнопка возврата */
+
+.teacher-detail-back {
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 13px 18px;
+    background: #191919;
+    border: 1px solid #414141;
+    border-left: 3px solid var(--teacher-accent);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.teacher-detail-back:hover {
+    background: #292929;
+    border-color: var(--teacher-accent);
+    color: #ffffff;
+    transform: translateX(-3px);
+}
+
+/* Галерея */
+
+.teacher-detail-gallery-item {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            color-mix(in srgb, var(--teacher-accent) 25%, transparent),
+            transparent 55%
+        ),
+        #191919;
+    border-color: #393939;
+}
+
+.teacher-detail-gallery-item:hover {
+    border-color: var(--teacher-accent);
+}
+
+/* ===== ЦВЕТА ПО SLUG НАПРАВЛЕНИЯ ===== */
+
+/* K-pop */
+
+.teacher-style-k-pop,
+.teacher-style-kpop {
+    --teacher-accent: #d946ef;
+    --teacher-light: #67e8f9;
+}
+
+/* Hip-hop */
+
+.teacher-style-hip-hop,
+.teacher-style-hiphop {
+    --teacher-accent: #f97316;
+    --teacher-light: #facc15;
+}
+
+/* Contemporary */
+
+.teacher-style-contemporary {
+    --teacher-accent: #8b9cb6;
+    --teacher-light: #e2d9ff;
+}
+
+/* Jazz-funk */
+
+.teacher-style-jazz-funk,
+.teacher-style-jazzfunk {
+    --teacher-accent: #f43f5e;
+    --teacher-light: #f0abfc;
+}
+
+/* Vogue */
+
+.teacher-style-vogue {
+    --teacher-accent: #d946ef;
+    --teacher-light: #f5d0fe;
+}
+
+/* Народные танцы */
+
+.teacher-style-folk-dance {
+    --teacher-accent: #b45309;
+    --teacher-light
+
+
+: #fcd9a5;
+}
+
+/* Адаптация */
+
+@media (max-width: 850px) {
+    .teacher-detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .teacher-detail-profile {
+        min-height: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .teacher-detail-profile {
+        padding: 20px;
+    }
+
+    .teacher-detail-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+/* FIX: CONTRAST ON TEACHER DETAIL PAGE */
+
+.teacher-detail-page {
+    background: #111111;
+    color: #eeeeee;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto 40px;
+    padding: 40px;
+    border-radius: 28px;
+    box-sizing: border-box;
+    overflow: visible;
+    height: auto;
+    max-height: none;
+}
+
+.teacher-detail-page .teacher-detail-layout {
+    overflow: visible;
+    height: auto;
+    max-height: none;
+}
+
+.teacher-detail-page .teacher-detail-profile,
+.teacher-detail-page .teacher-detail-group,
+.teacher-detail-page .teacher-detail-gallery-item,
+.teacher-detail-page .teacher-detail-groups-empty {
+    background-color: #1b1b1b;
+    color: #eeeeee;
+}
+
+.teacher-detail-page .teacher-detail-profile,
+.teacher-detail-page .teacher-detail-groups-section,
+.teacher-detail-page .teacher-detail-gallery-section {
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+}
+
+.teacher-detail-page .teacher-detail-name,
+.teacher-detail-page .teacher-detail-biography-title,
+.teacher-detail-page .teacher-detail-section-title,
+.teacher-detail-page .teacher-detail-group-title,
+.teacher-detail-page .teacher-detail-gallery-item p {
+    color: #ffffff;
+}
+
+.teacher-detail-page .teacher-detail-biography,
+.teacher-detail-page .teacher-detail-info-item p,
+.teacher-detail-page .teacher-detail-group-info,
+.teacher-detail-page .teacher-detail-groups-empty {
+    color: #dddddd;
+}
+
+.teacher-detail-page .teacher-detail-info-item > span,
+.teacher-detail-page .teacher-detail-group-styles-label,
+.teacher-detail-page .teacher-detail-photo-caption {
+    color: #bbbbbb;
+}
+
+.teacher-detail-page .teacher-detail-style-tag {
+    background-color: #292929;
+    color: #ffffff;
+}
+
+.teacher-detail-page .teacher-detail-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 12px 18px;
+    background: #1b1b1b;
+    color: #ffffff;
+    border: 1px solid #555555;
+    border-left: 3px solid var(--teacher-accent, #e6293f);
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.teacher-detail-page .teacher-detail-back:hover {
+    background: #303030;
+    color: #ffffff;
+}
+
+.teacher-detail-page .teacher-detail-group-link {
+    color: #ffffff;
+}
+
+.teacher-detail-page .teacher-detail-group-link:hover {
+    color: #ffffff;
+    background: #292929;
+}
+
+.teacher-detail-page .teacher-detail-gallery {
+    overflow: visible;
+    height: auto;
+    max-height: none;
+}
+/* ===== TRIAL REQUEST MODAL ===== */
+
+.trial-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.trial-modal.is-open {
+    display: flex;
+}
+
+.trial-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.trial-modal-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 36px;
+    box-sizing: border-box;
+    background: #191719;
+    color: #eeeeee;
+    border: 1px solid #393239;
+    border-top: 3px solid #e6293f;
+    border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.trial-modal-content h2 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.trial-modal-content p {
+    color: #bbbbbb;
+    line-height: 1.6;
+}
+
+.trial-modal-content label {
+    display: block;
+    margin: 18px 0 8px;
+    color: #dddddd;
+    font-size: 14px;
+}
+
+.trial-modal-content input,
+.trial-modal-content textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    background: #242124;
+    color: #ffffff;
+    border: 1px solid #484148;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.trial-modal-content input:focus,
+.trial-modal-content textarea:focus {
+    outline: 2px solid #e6293f;
+    outline-offset: 1px;
+}
+
+.trial-modal-content form button[type="submit"] {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    background: #e6293f;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.trial-modal-content form button[type="submit"]:hover {
+    background: #c91e33;
+}
+
+.trial-modal-content #close-trial-form {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    padding: 4px 10px;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#open-trial-form {
+    margin-top: 16px;
+    padding: 13px 20px;
+    background: #e6293f;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#open-trial-form:hover {
+    background: #c91e33;
+}
+
+@media (max-width: 520px) {
+    .trial-modal-content {
+        padding: 28px 22px;
+    }
+}
+/* ===== TEMPO — CLASS DETAIL PAGE ===== */
+
+.class-detail-page {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: rgba(230, 41, 63, 0.12);
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto 40px;
+    padding: 48px;
+    box-sizing: border-box;
+    color: #eeeeee;
+    background:
+        radial-gradient(
+            ellipse at 10% 0%,
+            var(--detail-glow),
+            transparent 45%
+        ),
+        #111111;
+    border: 1px solid #30272a;
+    border-radius: 28px;
+}
+
+.class-detail-header {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #393237;
+}
+
+.class-detail-label {
+    margin-bottom: 14px;
+    color: #e6293f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.class-detail-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+}
+
+.class-detail-teacher {
+    margin-top: 20px;
+    color: #bbbbbb;
+    font-size: 16px;
+}
+
+.class-detail-teacher a {
+    color: #ffffff;
+    text-decoration-color: #e6293f;
+    text-underline-offset: 4px;
+}
+
+.class-detail-teacher a:hover {
+    color: #ff7b89;
+}
+
+.class-detail-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.class-detail-fact {
+    min-width: 0;
+    padding: 22px;
+    background: #1b191b;
+    border: 1px solid #373137;
+    border-radius: 14px;
+}
+
+.class-detail-fact-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #aaaaaa;
+    font-size: 13px;
+}
+
+.class-detail-fact-value {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.class-detail-section {
+    margin-top: 36px;
+}
+
+.class-detail-section-title {
+    margin-bottom: 16px;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.class-detail-styles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.class-detail-style {
+    padding: 8px 14px;
+    background: #292124;
+    color: #ffdce1;
+    border: 1px solid #563039;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.class-detail-description {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.class-detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 40px;
+}
+
+.class-detail-page #open-trial-form {
+    margin: 0;
+    padding: 15px 24px;
+    background: #e6293f;
+    color: #ffffff;
+    border: 1px solid #e6293f;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.class-detail-page #open-trial-form:hover {
+    background: #c91e33;
+    transform: translateY(-2px);
+}
+
+.class-detail-back {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 20px;
+    background: #201d20;
+    color: #eeeeee;
+    border: 1px solid #484148;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.class-detail-back:hover {
+    background: #302a2e;
+    color: #ffffff;
+}
+
+@media (max-width: 760px) {
+    .class-detail-page {
+        padding: 28px 20px;
+        border-radius: 18px;
+    }
+
+    .class-detail-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .class-detail-fact {
+        padding: 18px;
+    }
+
+    .class-detail-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .class-detail-actions > * {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+/* ===== TEMPO — CLICKABLE TEACHER CARDS ===== */
+
+a.tempo-info-card,
+a.tempo-info-card:visited {
+    display: block;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+}
+
+a.tempo-info-card:hover,
+a.tempo-info-card:focus-visible {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.tempo-info-card h3 {
+    color: #fff;
+}
+
+a.tempo-info-card p {
+    color: #bcbcbc;
+}
+
+a.tempo-info-card .tempo-card-number,
+a.tempo-info-card .tempo-card-arrow {
+    color: var(--tempo-red);
+}
+
+a.tempo-info-card .tempo-card-arrow {
+    transition: transform 0.2s ease;
+}
+
+a.tempo-info-card:hover .tempo-card-arrow {
+    transform: translate(4px, -4px);
+}
+/* ===== TEMPO — DANCE STYLES PAGE ===== */
+
+.styles-page {
+    padding: 30px 0 70px;
+    color: #fff;
+}
+
+.styles-page-header {
+    margin-bottom: 42px;
+}
+
+.styles-page-label {
+    margin-bottom: 12px;
+    color: var(--tempo-red);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.styles-page-title {
+    margin-bottom: 12px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 1000;
+    text-transform: uppercase;
+}
+
+.styles-page-description {
+    color: #aaa;
+    font-size: 1rem;
+}
+
+.styles-grid > div {
+    display: flex;
+}
+
+.style-card,
+.style-card:visited {
+    --style-main: #e63946;
+    --style-light: #ff9aa2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    background: #171717;
+    border: 1px solid #303030;
+    border-bottom: 4px solid var(--style-main);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.style-card:hover {
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-6px);
+    border-color: var(--style-main);
+}
+
+/* ART AREA */
+
+.style-card-art {
+    position: relative;
+    display: grid;
+    min-height: 210px;
+    overflow: hidden;
+    place-items: center;
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            color-mix(in srgb, var(--style-main) 45%, transparent),
+            transparent 38%
+        ),
+        linear-gradient(145deg, #282828, #101010 78%);
+}
+
+.style-card-shape {
+    position: absolute;
+    width: 125px;
+    height: 125px;
+    background: linear-gradient(
+        135deg,
+        var(--style-light),
+        var(--style-main)
+    );
+    clip-path: polygon(
+        50% 0, 61% 35%, 100% 50%, 61% 65%,
+        50% 100%, 39% 65%, 0 50%, 39% 35%
+    );
+    filter: drop-shadow(0 0 18px var(--style-main));
+    opacity: 0.9;
+    transition: transform 0.35s ease;
+}
+
+.style-card:hover .style-card-shape {
+    transform: rotate(25deg) scale(1.12);
+}
+
+.style-card-decoration {
+    position: absolute;
+    right: -8px;
+    bottom: -24px;
+    color: var(--style-light);
+    font-size: 4.5rem;
+    font-weight: 1000;
+    letter-spacing: -4px;
+    opacity: 0.1;
+}
+
+.style-card-number {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: var(--style-light);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* CARD CONTENT */
+
+.style-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.style-card-content h2 {
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.style-card-description {
+    flex: 1;
+    margin-bottom: 24px;
+    color: #bcbcbc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.style-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    color: var(--style-light);
+    border-top: 1px solid #333;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.style-card-arrow {
+    color: var(--style-main);
+    font-size: 1.4rem;
+    transition: transform 0.2s ease;
+}
+
+.style-card:hover .style-card-arrow {
+    transform: translate(4px, -4px);
+}
+
+/* K-POP — BLUE */
+
+.style-card-kpop {
+    --style-main: #36b9ff;
+    --style-light: #a5e5ff;
+}
+
+.style-card-kpop .style-card-art {
+    background:
+        radial-gradient(circle at 80% 25%, #36b9ff66, transparent 35%),
+        repeating-linear-gradient(
+            135deg,
+            transparent 0 22px,
+            #a5e5ff12 23px 25px
+        ),
+        linear-gradient(145deg, #102b42, #101018 78%);
+}
+
+.style-card-kpop .style-card-shape {
+    clip-path: polygon(
+        25% 0, 75% 0, 100% 25%, 100% 75%,
+        75% 100%, 25% 100%, 0 75%, 0 25%
+    );
+}
+
+/* FOLK DANCE — GOLD */
+
+.style-card-folk {
+    --style-main: #e9a23b;
+    --style-light: #f5d98b;
+}
+
+.style-card-folk .style-card-art {
+    background:
+        radial-gradient(circle at 80%
+
+
+25%, #e9a23b66, transparent 32%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0 24px,
+            #f5d98b12 25px 27px
+        ),
+        linear-gradient(145deg, #382316, #17100c 75%);
+}
+
+/* HIP-HOP — RED */
+
+.style-card-hiphop {
+    --style-main: #ff3434;
+    --style-light: #ff8a8a;
+}
+
+.style-card-hiphop .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #ff343466, transparent 35%),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0 20px,
+            #ff343418 21px 23px
+        ),
+        linear-gradient(145deg, #391515, #121010 78%);
+}
+
+.style-card-hiphop .style-card-shape {
+    clip-path: polygon(
+        0 0, 100% 15%, 80% 100%, 15% 80%
+    );
+}
+
+/* CONTEMPORARY — PURPLE */
+
+.style-card-contemporary {
+    --style-main: #a78bfa;
+    --style-light: #ddd0ff;
+}
+
+.style-card-contemporary .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #a78bfa66, transparent 38%),
+        linear-gradient(145deg, #2a1b46, #111018 78%);
+}
+
+.style-card-contemporary .style-card-shape {
+    border-radius: 50%;
+    clip-path: polygon(
+        50% 0, 90% 20%, 100% 60%, 65% 100%,
+        20% 85%, 0 45%, 25% 10%
+    );
+}
+
+/* JAZZ-FUNK — PINK */
+
+.style-card-jazz {
+    --style-main: #ff5ca8;
+    --style-light: #ffb3d7;
+}
+
+.style-card-jazz .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #ff5ca866, transparent 38%),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 28px,
+            #ffb3d710 29px 31px
+        ),
+        linear-gradient(145deg, #40152d, #130d15 78%);
+}
+
+/* VOGUE — VIOLET */
+
+.style-card-vogue {
+    --style-main: #c084fc;
+    --style-light: #f0d5ff;
+}
+
+.style-card-vogue .style-card-art {
+    background:
+        radial-gradient(circle at 75% 25%, #c084fc66, transparent 38%),
+        linear-gradient(145deg, #301342, #110c18 78%);
+}
+
+.style-card-vogue .style-card-shape {
+    clip-path: polygon(
+        50% 0, 100% 100%, 0 100%
+    );
+}
+
+/* DEFAULT */
+
+.style-card-default {
+    --style-main: #e63946;
+    --style-light: #ff9aa2;
+}
+/* ===== TEMPO — COLORED DANCE CLASS DETAILS ===== */
+
+.class-detail-page {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: #e6394633;
+}
+
+.class-detail-page .class-detail-label,
+.class-detail-page .class-detail-fact-value,
+.class-detail-page .class-detail-section-title {
+    color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-title {
+    text-decoration-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-teacher a {
+    color: var(--detail-light);
+    text-decoration-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-fact {
+    border-bottom-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-style {
+    color: var(--detail-light);
+    border-color: var(--detail-main);
+    background: var(--detail-glow);
+}
+
+.class-detail-page .class-detail-actions button {
+    background: var(--detail-main);
+    border-color: var(--detail-main);
+}
+
+.class-detail-page .class-detail-actions button:hover {
+    filter: brightness(1.15);
+}
+
+.class-detail-page .class-detail-back:hover {
+    color: var(--detail-light);
+}
+
+/* K-POP — BLUE */
+
+.class-detail-kpop {
+    --detail-main: #36b9ff;
+    --detail-light: #a5e5ff;
+    --detail-glow: #36b9ff22;
+}
+
+/* FOLK DANCE — GOLD */
+
+.class-detail-folk {
+    --detail-main: #e9a23b;
+    --detail-light: #f5d98b;
+    --detail-glow: #e9a23b22;
+}
+
+/* HIP-HOP — RED */
+
+.class-detail-hiphop {
+    --detail-main: #ff3434;
+    --detail-light: #ff8a8a;
+    --detail-glow: #ff343422;
+}
+
+/* CONTEMPORARY — PURPLE */
+
+.class-detail-contemporary {
+    --detail-main: #a78bfa;
+    --detail-light: #ddd0ff;
+    --detail-glow: #a78bfa22;
+}
+
+/* JAZZ-FUNK — PINK */
+
+.class-detail-jazz {
+    --detail-main: #ff5ca8;
+    --detail-light: #ffb3d7;
+    --detail-glow: #ff5ca822;
+}
+
+/* VOGUE — VIOLET */
+
+.class-detail-vogue {
+    --detail-main: #c084fc;
+    --detail-light: #f0d5ff;
+    --detail-glow: #c084fc22;
+}
+
+/* DEFAULT */
+
+.class-detail-default {
+    --detail-main: var(--tempo-red);
+    --detail-light: #ff9aa2;
+    --detail-glow: #e6394622;
+}
+/* Цвет фона всей детальной страницы по направлению */
+
+.class-detail-page.class-detail-kpop {
+    --detail-glow: rgba(54, 185, 255, 0.22);
+}
+
+.class-detail-page.class-detail-folk {
+    --detail-glow: rgba(233, 162, 59, 0.22);
+}
+
+.class-detail-page.class-detail-hiphop {
+    --detail-glow: rgba(255, 52, 52, 0.22);
+}
+
+.class-detail-page.class-detail-contemporary {
+    --detail-glow: rgba(167, 139, 250, 0.22);
+}
+
+.class-detail-page.class-detail-jazz {
+    --detail-glow: rgba(255, 92, 168, 0.22);
+}
+
+.class-detail-page.class-detail-vogue {
+    --detail-glow: rgba(192, 132, 252, 0.22);
+}
+/* Карточки занятий на детальной странице направления */
+
+.class-detail-page .tempo-info-card {
+    --style-accent: var(--detail-main, #e6293f);
+    --style-light: var(--detail-light, #ff9aa2);
+
+    position: relative;
+    overflow: hidden;
+    border-color: color-mix(in srgb, var(--style-accent) 45%, #30272a);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.class-detail-page .tempo-info-card::before {
+    background: var(--style-accent);
+}
+
+.class-detail-page .tempo-info-card:hover {
+    border-color: var(--style-accent);
+    transform: translateY(-4px);
+}
+
+.class-detail-page .tempo-info-card .tempo-card-number {
+    color: var(--style-light);
+}
+
+.class-detail-page .tempo-info-card .tempo-card-arrow {
+    color: var(--style-accent);
+}
+
+.class-detail-page .tempo-info-card:hover .tempo-card-arrow {
+    color: var(--style-light);
+}
+
+
+

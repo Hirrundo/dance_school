@@ -91,4 +91,36 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+class TrialRequest(models.Model):
+    dance_class = models.ForeignKey(
+        DanceClass,
+        on_delete=models.CASCADE,
+        related_name="trial_requests",
+        verbose_name="Занятие",
+    )
+    name = models.CharField(
+        max_length=200,
+        verbose_name="Имя",
+    )
+    phone = models.CharField(
+        max_length=20,
+        verbose_name="Телефон",
+    )
+    comment = models.TextField(
+        blank=True,
+        verbose_name="Комментарий",
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата заявки",
+    )
+
+    class Meta:
+        verbose_name = "заявка на пробное занятие"
+        verbose_name_plural = "Заявки на пробное занятие"
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.name} — {self.dance_class.title}"
 # Create your models here.

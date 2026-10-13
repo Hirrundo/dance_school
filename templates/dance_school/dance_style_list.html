@@ -1,36 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}Танцевальные стили{% endblock %}
+{% block title %}Танцевальные направления — TEMPO{% endblock %}
 
 {% block content %}
-    <h1 class="mb-4">Танцевальные стили</h1>
+<section class="styles-page">
 
-    <div class="row">
+    <header class="styles-page-header">
+        <p class="styles-page-label">TEMPO / DIRECTIONS</p>
+        <h1 class="styles-page-title">Танцевальные направления</h1>
+        <p class="styles-page-description">
+            Найди свой стиль. Почувствуй свой ритм.
+        </p>
+    </header>
+
+    <div class="row g-4 styles-grid">
         {% for style in dance_styles %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ style.name }}</h5>
+            <div class="col-md-6 col-lg-4">
 
-                        {% if style.description %}
-                            <p class="card-text">
-                                {{ style.description }}
-                            </p>
-                        {% endif %}
+                <a href="{% url 'dance_school:style_detail' style.slug %}"
+                   class="style-card {% with name=style.name|lower %}{% if 'k-pop' in name or 'kpop' in name or 'k pop' in name %}style-card-kpop{% elif 'folk' in name or 'народ' in name or 'folklore' in name %}style-card-folk{% elif 'hip-hop' in name or 'hip hop' in name or 'хип-хоп' in name %}style-card-hiphop{% elif 'contemporary' in name or 'контемп' in name %}style-card-contemporary{% elif 'jazz' in name or 'джаз' in name %}style-card-jazz{% elif 'vogue' in name or 'вог' in name %}style-card-vogue{% else %}style-card-default{% endif %}{% endwith %}">
 
-                        <p class="card-text">
-                            Количество занятий:
-                            {{ style.dance_classes.all|length }}
-                        </p>
+                    <div class="style-card-art">
+                        <span class="style-card-shape"></span>
+                        <span class="style-card-decoration">TEMPO</span>
+                        <span class="style-card-number">
+                            {{ forloop.counter|stringformat:"02d" }}
+                        </span>
                     </div>
-                </div>
+
+                    <div class="style-card-content">
+                        <h2>{{ style.name }}</h2>
+
+                        <p class="style-card-description">
+                            {{ style.description|default:"Открой направление и узнай больше."|truncatewords:18 }}
+                        </p>
+
+                        <div class="style-card-footer">
+                            <span>
+                                {{ style.dance_classes.all|length }} занятий
+                            </span>
+                            <span class="style-card-arrow">↗</span>
+                        </div>
+                    </div>
+
+                </a>
             </div>
         {% empty %}
             <div class="col-12">
-                <p class="alert alert-info">
-                    Пока танцевальных стилей нет.
-                </p>
+                <p>Танцевальные направления скоро появятся.</p>
             </div>
         {% endfor %}
     </div>
+
+</section>
 {% endblock %}
+
+
+
