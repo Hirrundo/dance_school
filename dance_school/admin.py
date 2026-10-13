@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import Teacher, DanceStyle, DanceClass,Student
+from .models import Teacher, DanceStyle, DanceClass,Student,TrialRequest
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
@@ -85,3 +85,11 @@ class StudentAdmin(admin.ModelAdmin):
     ordering = ("last_name", "first_name")
     readonly_fields = ("registered_at",)
     date_hierarchy = "registered_at"
+
+@admin.register(TrialRequest)
+class TrialRequestAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone", "dance_class", "created_at")
+    search_fields = ("name", "phone")
+    list_filter = ("dance_class", "created_at")
+    readonly_fields = ("created_at",)
+    ordering = ("-created_at",)

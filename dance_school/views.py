@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
-from .models import DanceClass, DanceStyle, Teacher,Student
+from .models import DanceClass, DanceStyle, Teacher,Student,TrialRequest
 
 
 def dance_class_list(request):
@@ -44,11 +44,44 @@ def dance_class_detail(request, slug):
         slug=slug,
     )
 
+    if request.method == "POST":
+        name = request.POST.get("name", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        comment = request.POST.get("comment", "").strip()
+
+        if name and phone:
+            TrialRequest.objects.create(
+                dance_class=dance_class,
+                name=name,
+                phone=phone,
+                comment=comment,
+            )
+            return render(
+                request,
+                "dance_school/dance_class_detail.html",
+                {
+                    "dance_class": dance_class,
+                    "trial_request_success": True,
+                },
+            )
+
+        return render(
+            request,
+            "dance_school/dance_class_detail.html",
+            {
+                "dance_class": dance_class,
+                "trial_request_error": True,
+            },
+        )
+
     return render(
         request,
         "dance_school/dance_class_detail.html",
         {"dance_class": dance_class},
     )
+
+
+
 
 def teacher_list(request):
     teachers = Teacher.objects.prefetch_related(
