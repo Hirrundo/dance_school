@@ -14,6 +14,4 @@ urlpatterns = [
     path("styles/<slug:slug>/", views.dance_style_detail, name="style_detail"),
     path("about/", views.about, name="about"),
     path("studio/", views.studio,name="studio"),
-    path("students/", views.student_list, name="student_list"),
-    path("students/<int:pk>/", views.student_detail, name="student_detail"),
 ]

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — TEMPO{% endblock %}
+{% block content %}
+<section class="login-wrapper">
+    <h1 class="login-title">Вход</h1>
+    <p class="login-description">
+        Войди в свой аккаунт TEMPO
+    </p>
+
+    {% if error %}
+        <div class="login-error" role="alert">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label class="login-label" for="username">Логин</label>
+        <input
+            class="login-input"
+            type="text"
+            id="username"
+            name="username"
+            autocomplete="username"
+            required>
+
+        <label class="login-label" for="password">Пароль</label>
+        <input
+            class="login-input"
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            required>
+
+        <button class="login-button" type="submit">Войти</button>
+    </form>
+</section>
+{% endblock %}

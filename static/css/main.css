@@ -4312,4 +4312,220 @@ a.tempo-info-card:hover .tempo-card-arrow {
     object-position: center;
     display: block;
 }
+/* =========================
+   TEMPO — LOGIN PAGE
+   ========================= */
 
+.login-wrapper {
+    max-width: 460px;
+    margin: 60px auto;
+    padding: 36px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: 5px solid #e6293f;
+    border-radius: 8px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+}
+
+.login-title {
+    margin-bottom: 8px;
+    color: #191919;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.login-description {
+    margin-bottom: 28px;
+    color: #555;
+}
+
+.login-label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-input:focus {
+    outline: 2px solid #e6293f;
+    outline-offset: 1px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 5px;
+    background: #e6293f;
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.login-button:hover {
+    background: #c91f32;
+}
+
+.login-error {
+    margin-bottom: 18px;
+    padding: 12px;
+    border-radius: 5px;
+    background: #fff0f0;
+    color: #b42332;
+}
+
+@media (max-width: 500px) {
+    .login-wrapper {
+        margin: 30px auto;
+        padding: 24px 20px;
+    }
+}
+/* ADMIN DASHBOARD */
+
+.admin-dashboard {
+    max-width: 1200px;
+    margin: 50px auto 80px;
+    padding: 0 24px;
+}
+
+.admin-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 36px;
+}
+
+.admin-eyebrow {
+    margin-bottom: 10px;
+    color: #e6293f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.admin-dashboard-header h1 {
+    margin-bottom: 12px;
+    color: #191919;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.admin-description {
+    color: #666;
+    margin: 0;
+}
+
+.admin-logout {
+    flex-shrink: 0;
+    padding: 11px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #222;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.admin-logout:hover {
+    border-color: #e6293f;
+    color: #e6293f;
+}
+
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.admin-dashboard-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    padding: 26px;
+    border: 1px solid #e5e5e5;
+    border-top: 4px solid #e6293f;
+    border-radius: 7px;
+    background: #fff;
+    color: #191919;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.admin-dashboard-card:hover {
+    color: #191919;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.admin-card-number {
+    margin-bottom: 18px;
+    color: #e6293f;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.admin-dashboard-card h2 {
+    margin-bottom: 12px;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.admin-dashboard-card p {
+    margin-bottom: 24px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.admin-card-link {
+    margin-top: auto;
+    color: #e6293f;
+    font-weight: 800;
+}
+
+.admin-card-pending {
+    border-top-color: #aaa;
+    background: #fafafa;
+}
+
+.admin-card-status {
+    margin-top: auto;
+    color: #777;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+@media(max-width: 900px) {
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(max-width: 600px) {
+    .admin-dashboard {
+        margin-top: 30px;
+        padding: 0 16px;
+    }
+
+    .admin-dashboard-header {
+        align-items: flex-start;
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard-card {
+        min-height: 200px;
+    }
+}

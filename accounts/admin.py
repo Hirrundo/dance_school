@@ -24,6 +24,7 @@ admin.site.register(User, CustomUserAdmin)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
         "user",
+        "role",
         "phone",
         "birth_date",
         "membership_number",
