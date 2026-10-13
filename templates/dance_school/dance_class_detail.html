@@ -44,16 +44,6 @@
                 {{ dance_class.description|default:"Описание пока не добавлено." }}
             </p>
 
-            <p>
-                <strong>Дата создания:</strong>
-                {{ dance_class.created_at|date:"d.m.Y H:i" }}
-            </p>
-
-            <p>
-                <strong>Последнее обновление:</strong>
-                {{ dance_class.updated_at|date:"d.m.Y H:i" }}
-            </p>
-
             <a href="{% url 'dance_school:class_list' %}" class="btn btn-secondary mt-3">
                 ← Назад к занятиям
             </a>

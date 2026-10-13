@@ -3,74 +3,172 @@
 {% block title %}{{ teacher.first_name }} {{ teacher.last_name }} — TEMPO{% endblock %}
 
 {% block content %}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h1 class="card-title">
-                {{ teacher.first_name }} {{ teacher.last_name }}
-            </h1>
+<div class="teacher-detail-page{% for style in teacher.unique_styles %} teacher-style-{{ style.slug }}{% endfor %}">
 
-            {% if teacher.birth_date %}
-                <p>
-                    <strong>Дата рождения:</strong>
-                    {{ teacher.birth_date|date:"d.m.Y" }}
-                </p>
-            {% endif %}
+    <div class="teacher-detail-layout">
 
-            <p>
-                <strong>Биография:</strong>
-                {{ teacher.biography|default:"Биография пока не добавлена." }}
-            </p>
-        </div>
-    </div>
+        <section class="teacher-detail-profile">
 
-    <h2 class="mb-3">Занятия хореографа</h2>
+            <div class="teacher-detail-hero">
 
-    <div class="row">
-        {% for dance_class in teacher.dance_classes.all %}
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {{ dance_class.title }}
-                        </h5>
+                <div class="teacher-detail-photo">
+                    <span class="teacher-detail-photo-symbol">✳</span>
+                    <span class="teacher-detail-photo-caption">
+                        TEMPO / CHOREOGRAPHER
+                    </span>
+                </div>
 
-                        <p class="card-text">
-                            <strong>Продолжительность:</strong>
-                            {{ dance_class.duration_minutes }} мин.
-                        </p>
+                <div class="teacher-detail-heading">
+                    <p class="teacher-detail-label">TEMPO / OUR CREW</p>
 
-                        <p class="card-text">
-                            <strong>Цена:</strong> {{ dance_class.price }} ₽
-                        </p>
+                    <h1 class="teacher-detail-name">
+                        {{ teacher.first_name }} {{ teacher.last_name }}
+                    </h1>
 
-                        <p class="card-text">
-                            <strong>Танцевальные стили:</strong>
-                            {% for style in dance_class.dance_styles.all %}
-                                {{ style.name }}{% if not forloop.last %}, {% endif %}
-                            {% empty %}
-                                Не указаны
-                            {% endfor %}
-                        </p>
+                    <div class="teacher-detail-divider"></div>
 
-                        <a
-                            href="{% url 'dance_school:class_detail' dance_class.slug %}"
-                            class="btn btn-primary"
-                        >
-                            Подробнее
-                        </a>
+                    <div class="teacher-detail-info">
+
+                        {% if teacher.birth_date %}
+                            <div class="teacher-detail-info-item">
+                                <span>Дата рождения</span>
+                                <p>{{ teacher.birth_date|date:"d.m.Y" }}</p>
+                            </div>
+                        {% endif %}
+
+                        <div class="teacher-detail-info-item">
+                            <span>Направления</span>
+
+                            <div class="teacher-detail-style-tags">
+                                {% for style in teacher.unique_styles %}
+                                    <span class="teacher-detail-style-tag">
+                                        {{ style.name }}
+                                    </span>
+                                {% empty %}
+                                    <p>Пока не указаны</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
-        {% empty %}
-            <div class="col-12">
-                <p class="alert alert-info">
-                    У этого хореографа пока нет доступных занятий.
-                </p>
+
+            <div class="teacher-detail-biography-section">
+                <h2 class="teacher-detail-biography-title">
+                    О хореографе
+                </h2>
+
+                <div class="teacher-detail-biography">
+                    {{ teacher.biography|default:"Биография пока не добавлена." }}
+                </div>
             </div>
-        {% endfor %}
+
+        </section>
+
+        <section class="teacher-detail-groups-section">
+
+            <h2 class="teacher-detail-section-title">
+                ГРУППЫ <span>ХОРЕОГРАФА.</span>
+            </h2>
+
+            <div class="teacher-detail-groups">
+
+                {% for dance_class in teacher.dance_classes.all %}
+                    <article class="teacher-detail-group">
+
+                        <div class="teacher-detail-group-body">
+
+                            <h3 class="teacher-detail-group-title">
+                                {{ dance_class.title }}
+                            </h3>
+
+                            <div class="teacher-detail-group-details">
+                                <p class="teacher-detail-group-info">
+                                    <strong>Продолжительность:</strong>
+                                    {{ dance_class.duration_minutes }} мин.
+                                </p>
+
+                                <p class="teacher-detail-group-info">
+                                    <strong>Цена:</strong>
+                                    {{ dance_class.price }} ₽
+                                </p>
+                            </div>
+
+                            <div class="teacher-detail-group-styles">
+                                <span class="teacher-detail-group-styles-label">
+                                    Танцевальные стили
+                                </span>
+
+                                <div class="teacher-detail-style-tags">
+                                    {% for style in dance_class.dance_styles.all %}
+
+
+<span class="teacher-detail-style-tag">
+                                            {{ style.name }}
+                                        </span>
+                                    {% empty %}
+                                        <span>Не указаны</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <a
+                                href="{% url 'dance_school:class_detail' dance_class.slug %}"
+                                class="teacher-detail-group-link"
+                            >
+                                Подробнее <span>↗</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+                {% empty %}
+                    <p class="teacher-detail-groups-empty">
+                        У этого хореографа пока нет доступных занятий.
+                    </p>
+                {% endfor %}
+
+            </div>
+
+        </section>
+
     </div>
 
-    <a href="{% url 'dance_school:teacher_list' %}" class="btn btn-secondary mt-3">
+    <section class="teacher-detail-gallery-section">
+
+        <h2 class="teacher-detail-section-title">
+            ПРОСТРАНСТВО <span>TEMPO.</span>
+        </h2>
+
+        <div class="teacher-detail-gallery">
+
+            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--studio">
+                <span>01 / STUDIO</span>
+                <p>Пространство для движения</p>
+            </div>
+
+            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--practice">
+                <span>02 / PRACTICE</span>
+                <p>За кулисами тренировок</p>
+            </div>
+
+            <div class="teacher-detail-gallery-item teacher-detail-gallery-item--dance">
+                <span>03 / MOVEMENT</span>
+                <p>В ритме танца</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <a
+        href="{% url 'dance_school:teacher_list' %}"
+        class="teacher-detail-back"
+    >
         ← Назад к хореографам
     </a>
+
+</div>
 {% endblock %}

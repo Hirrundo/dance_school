@@ -12,6 +12,7 @@ def dance_class_list(request):
         "dance_classes": dance_classes,
         "title": "Расписание занятий",
         "total_count": dance_classes.count(),
+        "styles_count": DanceStyle.objects.count(),
         "has_classes": dance_classes.exists(),
     }
 
@@ -53,9 +54,20 @@ def teacher_list(request):
     teachers = Teacher.objects.prefetch_related(
         Prefetch(
             "dance_classes",
-            queryset=DanceClass.objects.filter(is_available=True),
+            queryset=DanceClass.objects.filter(
+                is_available=True
+            ).prefetch_related("dance_styles"),
         )
     )
+
+    for teacher in teachers:
+        styles = {}
+
+        for dance_class in teacher.dance_classes.all():
+            for style in dance_class.dance_styles.all():
+                styles[style.pk] = style
+
+        teacher.unique_styles = list(styles.values())
 
     context = {
         "teachers": teachers,
@@ -82,6 +94,12 @@ def teacher_detail(request, pk):
         ),
         pk=pk,
     )
+
+    teacher.unique_styles = {
+        style.id: style
+        for dance_class in teacher.dance_classes.all()
+        for style in dance_class.dance_styles.all()
+    }.values()
 
     return render(
         request,
