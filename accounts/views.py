@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
-
 from .models import Profile
+from dance_school.models import DanceClass
+
+
 
 def role_required(required_role):
     def decorator(view_func):
@@ -93,7 +95,28 @@ def student_dashboard(request):
 
 @role_required(Profile.Role.CHOREOGRAPHER)
 def choreographer_dashboard(request):
-    return render(request, "accounts/choreographer_dashboard.html")
+    profile = request.user.profile
+
+    try:
+        teacher = profile.teacher_record
+    except Exception:
+        teacher = None
+
+    classes = (
+        DanceClass.objects.filter(teacher=teacher)
+        .prefetch_related("dance_styles")
+        if teacher
+        else DanceClass.objects.none()
+    )
+
+    return render(
+        request,
+        "accounts/choreographer_dashboard.html",
+        {
+            "teacher": teacher,
+            "classes": classes,
+        },
+    )
 
 @role_required(Profile.Role.ADMIN)
 def admin_dashboard(request):

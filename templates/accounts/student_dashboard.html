@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Кабинет ученика — TEMPO{% endblock %}
+
+{% block content %}
+<section class="account-dashboard">
+    <header class="account-dashboard-header">
+        <p class="account-eyebrow">TEMPO · ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1>Кабинет ученика</h1>
+        <p>Твоё расписание, видео занятий и личные данные.</p>
+    </header>
+
+    <section class="account-section" id="schedule">
+        <h2>Моё расписание</h2>
+        <p>Здесь будут отображаться занятия твоей группы.</p>
+        <div class="account-empty-state">
+            Расписание пока не добавлено.
+        </div>
+    </section>
+
+    <section class="account-section" id="videos">
+        <h2>Видео занятий</h2>
+        <p>Материалы для повторения хореографии.</p>
+        <div class="account-empty-state">
+            Видео появятся здесь после добавления.
+        </div>
+    </section>
+
+    <section class="account-section" id="profile">
+        <h2>Мой профиль</h2>
+        <p>Личные данные.</p>
+        <div class="account-empty-state">
+            <p>Логин: {{ request.user.username }}</p>
+            <p>Email: {{ request.user.email|default:"Не указан" }}</p>
+        </div>
+    </section>
+</section>
+{% endblock %}

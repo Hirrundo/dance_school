@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models import Profile
 
+
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False

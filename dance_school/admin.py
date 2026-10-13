@@ -2,14 +2,35 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import Teacher, DanceStyle, DanceClass,TrialRequest
+from accounts.models import Profile
+from .models import Teacher, DanceStyle, DanceClass, TrialRequest
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "birth_date")
-    search_fields = ("first_name", "last_name")
+    list_display = (
+        "first_name",
+        "last_name",
+        "birth_date",
+        "profile",
+    )
+    search_fields = (
+        "first_name",
+        "last_name",
+        "profile__user__username",
+        "profile__user__email",
+    )
     list_filter = ("birth_date",)
     ordering = ("last_name",)
+    autocomplete_fields = ("profile",)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "profile":
+            kwargs["queryset"] = Profile.objects.filter(
+                role=Profile.Role.CHOREOGRAPHER
+            ).select_related("user")
+        return super().formfield_for_foreignkey(
+            db_field, request, **kwargs
+        )
 
 @admin.register(DanceStyle)
 class DanceStyleAdmin(admin.ModelAdmin):
@@ -23,7 +44,10 @@ class DanceStyleAdmin(admin.ModelAdmin):
             dance_class_count=Count("dance_classes")
         )
 
-    @admin.display(description="Количество занятий", ordering="dance_class_count")
+    @admin.display(
+        description="Количество занятий",
+        ordering="dance_class_count",
+    )
     def classes_count(self, obj):
         return obj.dance_class_count
 
@@ -52,7 +76,7 @@ class DanceClassAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Основное", {
-            "fields": ("title", "slug", "description","image"),
+            "fields": ("title", "slug", "description", "image"),
         }),
         ("Хореограф и стили", {
             "fields": ("teacher", "dance_styles"),
@@ -68,6 +92,7 @@ class DanceClassAdmin(admin.ModelAdmin):
             "classes": ("collapse",),
         }),
     )
+
 @admin.register(TrialRequest)
 class TrialRequestAdmin(admin.ModelAdmin):
     list_display = ("name", "phone", "dance_class", "created_at")
