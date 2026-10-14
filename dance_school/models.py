@@ -102,7 +102,17 @@ class TrialRequest(models.Model):
         auto_now_add=True,
         verbose_name="Дата заявки",
     )
+    class Status(models.TextChoices):
+        PENDING = "pending", "Ожидает обработки"
+        CONFIRMED = "confirmed", "Подтверждена"
+        REJECTED = "rejected", "Отклонена"
 
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.PENDING,
+        verbose_name="Статус",
+    )
     class Meta:
         verbose_name = "заявка на пробное занятие"
         verbose_name_plural = "Заявки на пробное занятие"
@@ -110,6 +120,7 @@ class TrialRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.dance_class.title}"
+
 class DanceGroup(models.Model):
     name = models.CharField(
         max_length=150,

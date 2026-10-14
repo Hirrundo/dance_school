@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+
+{% block title %}Учётные записи — TEMPO{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard" id="admin-accounts">
+    <div class="admin-dashboard-header">
+        <div>
+            <p class="admin-eyebrow">TEMPO · УПРАВЛЕНИЕ СТУДИЕЙ</p>
+            <h1>Учётные записи</h1>
+            <p class="admin-description">
+                Пользователи, роли и доступ к системе.
+            </p>
+        </div>
+
+        <a href="{% url 'admin_dashboard' %}" class="admin-card-link">
+            ← Назад в кабинет
+        </a>
+    </div>
+
+    <div class="admin-dashboard-stats">
+        <div class="admin-stat-card">
+            <span>Всего аккаунтов</span>
+            <strong>{{ users_count }}</strong>
+        </div>
+        <div class="admin-stat-card">
+            <span>Найдено пользователей</span>
+            <strong>{{ users|length }}</strong>
+        </div>
+    </div>
+
+    <section class="admin-recent-section">
+        <h2>Создать аккаунт</h2>
+
+        {% if error %}
+            <p class="admin-form-error">{{ error }}</p>
+        {% endif %}
+
+        {% if success %}
+            <p class="admin-form-success">Аккаунт успешно создан.</p>
+        {% endif %}
+
+        <form method="post" class="admin-create-form">
+            {% csrf_token %}
+
+            <div class="admin-form-field">
+                <label for="username">Логин *</label>
+                <input type="text" id="username" name="username"
+                       maxlength="150" value="{{ form_data.username|default:'' }}" required>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="first_name">Имя</label>
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ form_data.first_name|default:'' }}">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="last_name">Фамилия</label>
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ form_data.last_name|default:'' }}">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" name="email"
+                       value="{{ form_data.email|default:'' }}">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="password">Пароль *</label>
+                <input type="password" id="password" name="password"
+                       minlength="8" required>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="role">Роль *</label>
+                <select id="role" name="role" required>
+                    <option value="student">Ученик</option>
+                    <option value="choreographer">Хореограф</option>
+                    <option value="admin">Администратор</option>
+                </select>
+            </div>
+
+            <button type="submit" name="create_account">Создать аккаунт</button>
+        </form>
+    </section>
+
+    <section class="admin-recent-section" id="users-list">
+        <h2>Пользователи</h2>
+
+        <form method="get" class="admin-search-form" id="accounts-search-form">
+            <input type="search" name="search" value="{{ search }}"
+                   placeholder="Имя, логин или электронная почта">
+            <button type="submit">Найти</button>
+
+            {% if search %}
+                <a href="{% url 'admin_accounts' %}#users-list">Сбросить</a>
+            {% endif %}
+        </form>
+
+        {% for account in users %}
+            <div class="admin-recent-item">
+                <div>
+                    <strong>
+                        {% if account.get_full_name %}
+                            {{ account.get_full_name }}
+                        {% else %}
+                            {{ account.username }}
+                        {% endif %}
+                    </strong>
+
+                    <p>Логин: {{ account.username }}</p>
+                    <p>{{ account.email|default:"Почта не указана" }}</p>
+                    <p>
+                        Роль:
+                        {% if account.profile.role == "student" %}
+                            Ученик
+                        {% elif account.profile.role == "choreographer" %}
+                            Хореограф
+                        {% elif account.profile.role == "admin" %}
+                            Администратор
+                        {% else %}
+                            Не назначена
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <span>
+                        {% if account.is_active %}Активен{% else %}Заблокирован{% endif %}
+                    </span>
+
+                    <div class="admin-account-actions">
+                        {% if not account.is_superuser %}
+                            <button
+                                type="button"
+                                class="edit-account-button"
+                                data-id="{{ account.id }}"
+                                data-username="{{ account.username }}"
+                                data-first-name="{{ account.first_name }}"
+                                data-last-name="{{ account.last_name }}"
+                                data-email="{{ account.email }}"
+                                data-role="{{ account.profile.role|default:'student' }}"
+                            >
+                                Редактировать
+                            </button>
+                        {% endif %}
+
+                        {% if not account.is_superuser and account.id != request.user.id %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ account.id }}">
+                                <button type="submit" name="toggle_active">
+                                    {% if account.is_active %}Заблокировать{% else %}Разблокировать{% endif %}
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Пользователи не найдены.</p>
+        {% endfor %}
+    </section>
+
+    <section class="admin-recent-section" id="edit-account-section" hidden>
+        <h2>Редактировать аккаунт</h2>
+
+        <form method="post" class="admin-create-form" id="edit-account-form">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" id="edit-user-id">
+
+            <div class="admin-form-field">
+                <label for="edit-username">Логин *</label>
+                <input type="text" name="username" id="edit-username"
+                       maxlength="150" required>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-first-name">Имя</label>
+                <input type="text" name="first_name" id="edit-first-name">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-last-name">Фамилия</label>
+                <input type="text" name="last_name" id="edit-last-name">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-email">Электронная почта</label>
+                <input type="email" name="email" id="edit-email">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-password">Новый пароль</label>
+                <input type="password" name="password" id="edit-password"
+                       minlength="8" placeholder="Оставь пустым без изменений">
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-role">Роль *</label>
+                <select name="role" id="edit-role" required>
+                    <option value="student">Ученик</option>
+                    <option value="choreographer">Хореограф</option>
+                    <option value="admin">Администратор</option>
+                </select>
+            </div>
+
+            <button type="submit" name="edit_account">Сохранить изменения</button>
+            <button type="button" id="cancel-edit-account">Отмена</button>
+        </form>
+    </section>
+</section>
+
+<script>
+    (() => {
+        const searchForm = document.getElementById("accounts-search-form");
+
+        if (searchForm) {
+            searchForm.addEventListener("submit", () => {
+                sessionStorage.setItem(
+                    "accountsSearchScroll",
+                    String(window.scrollY)
+                );
+            });
+
+            const savedScroll = sessionStorage.getItem("accountsSearchScroll");
+
+            if (savedScroll !== null) {
+                sessionStorage.removeItem("accountsSearchScroll");
+
+                window.addEventListener("load", () => {
+                    window.scrollTo(0, Number(savedScroll));
+                }, { once: true });
+            }
+        }
+
+        document.querySelectorAll(
+            ".admin-form-error, .admin-form-success"
+        ).forEach((message) => {
+            setTimeout(() => {
+                message.style.transition = "opacity 0.4s ease";
+                message.style.opacity = "0";
+
+                setTimeout(() => message.remove(), 400);
+            }, 4000);
+        });
+
+        const editSection = document.getElementById("edit-account-section");
+        const cancelButton = document.getElementById("cancel-edit-account");
+
+        document.querySelectorAll(".edit-account-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                document.getElementById("edit-user-id").value = button.dataset.id;
+                document.getElementById("edit-username").value = button.dataset.username;
+                document.getElementById("edit-first-name").value = button.dataset.firstName;
+                document.getElementById("edit-last-name").value = button.dataset.lastName;
+                document.getElementById("edit-email").value = button.dataset.email;
+                document.getElementById("edit-role").value = button.dataset.role;
+                document.getElementById("edit-password").value = "";
+
+                editSection.hidden = false;
+                editSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+        });
+
+        if (cancelButton) {
+            cancelButton.addEventListener("click", () => {
+                editSection.hidden = true;
+            });
+        }
+    })();
+</script>
+{% endblock %}

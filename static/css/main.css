@@ -4389,146 +4389,7 @@ a.tempo-info-card:hover .tempo-card-arrow {
         padding: 24px 20px;
     }
 }
-/* ADMIN DASHBOARD */
 
-.admin-dashboard {
-    max-width: 1200px;
-    margin: 50px auto 80px;
-    padding: 0 24px;
-}
-
-.admin-dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 36px;
-}
-
-.admin-eyebrow {
-    margin-bottom: 10px;
-    color: #e6293f;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.admin-dashboard-header h1 {
-    margin-bottom: 12px;
-    color: #191919;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.admin-description {
-    color: #666;
-    margin: 0;
-}
-
-.admin-logout {
-    flex-shrink: 0;
-    padding: 11px 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #222;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.admin-logout:hover {
-    border-color: #e6293f;
-    color: #e6293f;
-}
-
-.admin-dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-}
-
-.admin-dashboard-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 230px;
-    padding: 26px;
-    border: 1px solid #e5e5e5;
-    border-top: 4px solid #e6293f;
-    border-radius: 7px;
-    background: #fff;
-    color: #191919;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-a.admin-dashboard-card:hover {
-    color: #191919;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-}
-
-.admin-card-number {
-    margin-bottom: 18px;
-    color: #e6293f;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 1px;
-}
-
-.admin-dashboard-card h2 {
-    margin-bottom: 12px;
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.admin-dashboard-card p {
-    margin-bottom: 24px;
-    color: #666;
-    line-height: 1.6;
-}
-
-.admin-card-link {
-    margin-top: auto;
-    color: #e6293f;
-    font-weight: 800;
-}
-
-.admin-card-pending {
-    border-top-color: #aaa;
-    background: #fafafa;
-}
-
-.admin-card-status {
-    margin-top: auto;
-    color: #777;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-@media(max-width: 900px) {
-    .admin-dashboard-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media(max-width: 600px) {
-    .admin-dashboard {
-        margin-top: 30px;
-        padding: 0 16px;
-    }
-
-    .admin-dashboard-header {
-        align-items: flex-start;
-    }
-
-    .admin-dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .admin-dashboard-card {
-        min-height: 200px;
-    }
-}
 /* STUDENT DASHBOARD */
 
 .account-dashboard {
@@ -5617,5 +5478,1056 @@ a.admin-dashboard-card:hover {
         flex: none;
     }
 }
+/* ==========================================
+   TEMPO — ADMIN DASHBOARD
+   BLACK / RED / WHITE
+   ========================================== */
+
+.admin-dashboard {
+    --tempo-bg: #080808;
+    --tempo-panel: #141414;
+    --tempo-panel-hover: #1d1d1d;
+    --tempo-red: #d71920;
+    --tempo-red-dark: #94131a;
+    --tempo-text: #ffffff;
+    --tempo-muted: #c4c4c4;
+    --tempo-line: #353535;
+    --tempo-accent: #e32630;
+    width: min(1320px, 100%);
+    margin: 0 auto;
+    padding: 44px 28px 80px;
+    color: var(--tempo-text);
+    box-sizing: border-box;
+}
+
+.admin-dashboard *,
+.admin-dashboard *::before,
+.admin-dashboard *::after {
+    box-sizing: border-box;
+}
+
+/* ===== Заголовок ===== */
+
+.admin-dashboard-header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 36px;
+    padding: 42px 44px;
+    background: linear-gradient(110deg, #171717 0%, #0b0b0b 100%);
+    border: 1px solid #414141;
+    border-left: 6px solid var(--tempo-red);
+    border-radius: 3px;
+}
+
+.admin-dashboard-header::after {
+    content: "T";
+    position: absolute;
+    top: 50%;
+    right: 42px;
+    transform: translateY(-55%);
+    color: rgba(255, 23, 31, 0.13);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 220px;
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.admin-dashboard-header > div {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+}
+
+.admin-dashboard .admin-eyebrow {
+    margin: 0 0 16px;
+    color: var(--tempo-red);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.8px;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.admin-dashboard-header h1 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 4.5vw, 51px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.7px;
+}
+
+.admin-dashboard .admin-description {
+    max-width: 520px;
+    margin: 0;
+    color: #e0e0e0;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ===== Статистика ===== */
+
+.admin-dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+}
+
+.admin-dashboard .admin-stat-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 22px;
+    min-width: 0;
+    min-height: 140px;
+    padding: 22px 23px;
+    background: #101010;
+    border: 1px solid #414141;
+    border-top: 2px solid #94131a;
+    border-radius: 3px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-dashboard .admin-stat-card:hover {
+    background: #191919;
+    border-color: var(--tempo-red);
+}
+
+.admin-dashboard .admin-stat-card span {
+    color: #e2e2e2;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.admin-dashboard .admin-stat-card strong {
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== Карточки управления ===== */
+
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 52px;
+}
+
+.admin-dashboard .admin-dashboard-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    min-height: 250px;
+    padding: 27px 27px 25px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    background: #101010;
+    border: 1px solid #414141;
+    border-top: 2px solid #94131a ;
+    border-radius: 3px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.admin-dashboard .admin-dashboard-card:hover {
+    transform: translateY(-4px);
+    color: #fff;
+    background: #1a1a1a;
+    border-color: #79232a;
+}
+
+.admin-dashboard .admin-card-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 0 23px;
+    color: #fff;
+    background: #291416;
+    border: 1px solid #632027;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.admin-dashboard .admin-dashboard-card h2 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.admin-dashboard .admin-dashboard-card p {
+    margin: 0 0 25px;
+    color: #dedede;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.admin-dashboard .admin-card-link {
+    display: inline-block;
+    margin-top: auto;
+    padding-bottom: 4px;
+    color: var(--tempo-red);
+    border-bottom: 2px solid var(--tempo-red);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
+}
+
+.admin-dashboard .admin-dashboard-card:hover .admin-card-link {
+    color: #fff;
+}
+
+/* ===== Последние заявки и бронирования ===== */
+
+.admin-dashboard .admin-recent-section {
+    margin: 0 0 26px;
+    padding: 28px 32px;
+    color: #fff;
+    background: #101010;
+    border: 1px solid #414141;
+    border-radius: 3px;
+}
+
+.admin-dashboard .admin-recent-section > h2 {
+    margin: 0 0 8px;
+    padding-bottom: 19px;
+    color: #fff;
+    border-bottom: 2px solid var(--tempo-red);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.admin-dashboard .admin-recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 21px 4px;
+    border-bottom: 1px solid #632027;
+}
+
+.admin-dashboard .admin-recent-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.admin-dashboard .admin-recent-item strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.admin-dashboard .admin-recent-item p {
+    margin: 5px 0 0;
+    color: #dedede;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.admin-dashboard .admin-recent-item time,
+.admin-dashboard .admin-recent-item > span {
+    flex-shrink: 0;
+    padding: 7px 10px;
+    color: #fff;
+    background: #202020;
+    border: 1px solid var(--tempo-red);
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* ===== Планшеты ===== */
+
+@media (max-width: 1000px ){
+    .admin-dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===== Телефоны ===== */
+
+@media (max-width: 600px) {
+    .admin-dashboard {
+        padding: 25px 14px 48px;
+    }
+
+    .admin-dashboard-header {
+        margin-bottom: 25px;
+        padding: 31px 22px;
+    }
+
+    .admin-dashboard-header::after {
+        right: 0;
+        font-size: 150px;
+    }
+
+    .admin-dashboard .admin-eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .admin-dashboard-header h1 {
+        font-size: 34px;
+    }
+
+    .admin-dashboard .admin-description {
+        font-size: 13px;
+    }
+
+    .admin-dashboard-stats {
+        gap: 9px;
+        margin-bottom: 35px;
+    }
+
+    .admin-dashboard .admin-stat-card {
+        min-height: 115px;
+        gap: 17px;
+        padding: 16px;
+    }
+
+    .admin-dashboard .admin-stat-card span {
+        font-size: 11px;
+    }
+
+    .admin-dashboard .admin-stat-card strong {
+        font-size: 30px;
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        margin-bottom: 36px;
+    }
+
+    .admin-dashboard .admin-dashboard-card {
+        min-height: 215px;
+        padding: 23px;
+    }
+
+    .admin-dashboard .admin-card-number {
+        margin-bottom: 18px;
+    }
+
+    .admin-dashboard .admin-dashboard-card h2 {
+        font-size: 22px;
+    }
+
+    .admin-dashboard .admin-recent-section {
+        margin-bottom: 20px;
+        padding: 22px 17px;
+    }
+
+    .admin-dashboar
+
+
+d .admin-recent-section > h2 {
+        font-size: 23px;
+    }
+
+    .admin-dashboard .admin-recent-item {
+        flex-direction: column;
+        gap: 11px;
+    }
+}
+
+/* ==========================================
+   TEMPO — ADMIN DASHBOARD
+   Стиль карточек сайта
+   ========================================== */
+
+/* Статистика */
+.admin-dashboard .admin-stat-card {
+    background: #191919;
+    border: none;
+    border-bottom: 4px solid var(--tempo-red);
+    border-radius: 0;
+    box-shadow: none;
+    transition: background 0.2s ease;
+}
+
+.admin-dashboard .admin-stat-card:hover {
+    background: #303030;
+    border-color: var(--tempo-red);
+}
+
+.admin-dashboard .admin-stat-card span {
+    color: #ffffff;
+}
+
+.admin-dashboard .admin-stat-card strong {
+    color: #ffffff;
+}
+
+/* Карточки управления */
+.admin-dashboard .admin-dashboard-card {
+    background: #191919;
+    border: none;
+    border-bottom: 4px solid var(--tempo-red);
+    border-radius: 0;
+    box-shadow: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-dashboard .admin-dashboard-card:hover {
+    background: #303030;
+    border-color: var(--tempo-red);
+    transform: translateY(-3px);
+}
+
+.admin-dashboard .admin-dashboard-card h2 {
+    color: #ffffff;
+}
+
+.admin-dashboard .admin-dashboard-card p {
+    color: #bcbcbc;
+}
+
+/* Номера карточек */
+.admin-dashboard .admin-card-number {
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid var(--tempo-red);
+    border-radius: 0;
+}
+
+/* Ссылки управления */
+.admin-dashboard .admin-card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 9px 14px;
+    color: #ffffff;
+    background: var(--tempo-red);
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.admin-dashboard .admin-dashboard-card:hover .admin-card-link {
+    color: #ffffff;
+    background: #a9151c;
+}
+
+/* Последние заявки и бронирования */
+.admin-dashboard .admin-recent-section {
+    background: #191919;
+    border: none;
+    border-bottom: 4px solid var(--tempo-red);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.admin-dashboard .admin-recent-section > h2 {
+    color: #ffffff;
+    border-bottom: 2px solid var(--tempo-red);
+}
+
+.admin-dashboard .admin-recent-item {
+    border-bottom: 1px solid #333333;
+}
+
+.admin-dashboard .admin-recent-item strong {
+    color: #ffffff;
+}
+
+.admin-dashboard .admin-recent-item p {
+    color: #bcbcbc;
+}
+
+.admin-dashboard .admin-recent-item time,
+.admin-dashboard .admin-recent-item > span {
+    color: #ffffff;
+    background: #191919;
+    border: 1px solid var(--tempo-red);
+    border-radius: 0;
+}
+/* ==========================================
+   TEMPO — ВНЕШНИЕ БЛОКИ АДМИН-ПАНЕЛИ
+   ========================================== */
+
+/* Контейнер статистики */
+.admin-dashboard-stats {
+    padding: 26px;
+    margin-bottom: 48px;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-left: 5px solid #c62828;
+    border-radius: 8px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* Контейнер карточек управления */
+.admin-dashboard-grid {
+    padding: 26px;
+    margin-bottom: 52px;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-left: 5px solid #c62828;
+    border-radius: 8px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* Отступы на телефонах */
+@media (max-width: 600px) {
+    .admin-dashboard-stats,
+    .admin-dashboard-grid {
+        padding: 14px;
+    }
+}
+/* ==========================================
+   TEMPO — ЕДИНЫЙ СТИЛЬ ФОРМ
+   ========================================== */
+
+.admin-create-form,
+.admin-search-form {
+    box-sizing: border-box;
+    color: #292929;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid #c62828;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* Создание аккаунта */
+
+.admin-create-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    padding: 26px;
+    margin-top: 20px;
+}
+
+.admin-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-form-field label {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-form-field input,
+.admin-form-field select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: #292929;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-form-field input:hover,
+.admin-form-field select:hover,
+.admin-search-form input[type="search"]:hover {
+    border-color: #b7b7b7;
+}
+
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-search-form input[type="search"]:focus {
+    outline: none;
+    border-color: #c62828;
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+}
+
+.admin-create-form > button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 44px;
+    padding: 11px 24px;
+    color: #fff;
+    background: #c62828;
+    border: 1px solid #c62828;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.admin-create-form > button:hover,
+.admin-search-form button:hover {
+    background: #a91f1f;
+    border-color: #a91f1f;
+}
+
+/* Поиск */
+
+.admin-search-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px 20px;
+    margin: 20px 0 24px;
+}
+
+.admin-search-form input[type="search"] {
+    box-sizing: border-box;
+    flex: 1 1 260px;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 13px;
+    color: #292929;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-search-form button {
+    min-height: 44px;
+    padding: 10px 22px;
+    color: #fff;
+    background: #c62828;
+    border: 1px solid #c62828;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.admin-search-form a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 10px;
+    color: #555;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.admin-search-form a:hover {
+    color: #a91f1f;
+    background: #f1e8e8;
+}
+
+/* Сообщения */
+
+.admin-form-error,
+.admin-form-success {
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-form-error {
+    color: #a91f1f;
+    background: #faf0f0;
+    border: 1px solid #e8cccc;
+}
+
+.admin-form-success {
+    color: #28643b;
+    background: #f0f6f1;
+    border: 1px solid #cfe0d2;
+}
+
+/* Телефоны */
+
+@media (max-width: 600px ){
+    .admin-create-form {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .admin-create-form > button {
+        width: 100%;
+    }
+
+    .admin-search-form {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .admin-search-form input[type="search"] {
+        flex: none;
+        width: 100%;
+    }
+
+    .admin-search-form button {
+        width: 100%;
+    }
+
+    .admin-search-form a
+
+
+{
+        align-self: center;
+    }
+}
+
+/* Фон полей в стиле TEMPO */
+.admin-form-field input,
+.admin-form-field select,
+.admin-search-form input[type="search"] {
+    background: #f2f2f2;
+    border: 1px solid #d5d5d5;
+    color: #292929;
+}
+
+/* При вводе — чуть светлее */
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-search-form input[type="search"]:focus {
+    background: #f8f8f8;
+    border-color: #c62828;
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+}
+.admin-recent-item form button[name="toggle_active"] {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #e53945;
+    color: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-recent-item form button[name="toggle_active"]:hover {
+    background: #c62836;
+    transform: translateY(-1px);
+}
+
+.admin-recent-item form button[name="toggle_active"]:active {
+    transform: translateY(0);
+}
+/* Действия с аккаунтом */
+.admin-account-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.admin-account-actions > form {
+    margin: 0;
+}
+
+/* Кнопка редактирования */
+.admin-account-actions .edit-account-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #171717;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-account-actions .edit-account-button:hover {
+    background: #f5f5f5;
+    border-color: #cfcfcf;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.09);
+    transform: translateY(-1px);
+}
+
+.admin-account-actions .edit-account-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Статус аккаунта */
+.admin-recent-item > div > span {
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+/* Кнопка блокировки — отдельный отступ */
+.admin-account-actions form button[name="toggle_active"] {
+    margin-top: 2px;
+}
+/* Формы TEMPO */
+#classes-admin input:not([type="hidden"]),
+#classes-admin select,
+#classes-admin textarea {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #454545;
+    border-radius: 7px;
+    background: #191919;
+    color: #fff;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#classes-admin input:focus,
+#classes-admin select:focus,
+#classes-admin textarea:focus {
+    border-color: #e53945;
+    background: #202020;
+}
+
+/* Основные кнопки */
+#classes-admin button,
+#classes-admin input[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 1px solid #e53945;
+    border-radius: 7px;
+    background: #e53945;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#classes-admin button:hover,
+#classes-admin input[type="submit"]:hover {
+    background: #c62832;
+    border-color: #c62832;
+}
+
+/* Удаление */
+#classes-admin .remove-student-button,
+#classes-admin button.danger,
+#classes-admin .danger-button {
+    background: #191919;
+    border-color: #e53945;
+    color: #ff6b73;
+}
+
+#classes-admin .remove-student-button:hover,
+#classes-admin button.danger:hover,
+#classes-admin .danger-button:hover {
+    background: #351b1d;
+}
+
+/* Формы в отдельных панелях */
+#classes-admin .ajax-form,
+#classes-admin #edit-class-section {
+    padding: 18px;
+    margin: 14px 0;
+    border: 1px solid #454545;
+    border-radius: 9px;
+    background: #191919;
+}
+
+#classes-admin .ajax-form label,
+#classes-admin #edit-class-section label {
+    display: block;
+    margin-bottom: 7px;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+#classes-admin .ajax-form input,
+#classes-admin .ajax-form select,
+#classes-admin .ajax-form textarea,
+#classes-admin #edit-class-section input,
+#classes-admin #edit-class-section select,
+#classes-admin #edit-class-section textarea {
+    margin-bottom: 12px;
+}
+
+/* Кнопки редактирования и расписания — разнести */
+#classes-admin .edit-class-button,
+#classes-admin .edit-schedule-button,
+#classes-admin .add-schedule-button {
+    margin: 8px 8px 8px 0;
+}
+
+#classes-admin .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#classes-admin .schedule-item,
+#classes-admin [id^="schedule-"] {
+    margin-bottom: 12px;
+}
+
+#classes-admin .schedule-item button,
+#classes-admin [id^="schedule-"] button {
+    margin: 8px 8px 0 0;
+}
+
+#classes-admin input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: 1px solid #454545;
+    border-radius: 5px;
+    background: #292929;
+    color: #fff;
+    cursor: pointer;
+}
+
+#classes-admin input[type="file"]::file-selector-button:hover {
+    background: #383838;
+}
+
+@media (max-width: 600px) {
+    #classes-admin .ajax-form,
+    #classes-admin #edit-class-section {
+        padding: 13px;
+    }
+
+    #classes-admin .edit-class-button,
+    #classes-admin .edit-schedule-button,
+    #classes-admin .add-schedule-button {
+        margin: 6px 6px 6px 0;
+    }
+}
+/* TEMPO — обработка заявок и бронирований */
+#trial-requests .request-actions,
+#room-bookings .booking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+#trial-requests .admin-action-button,
+#room-bookings .admin-action-button {
+    padding: 10px 16px;
+    border: 1px solid #e53945;
+    border-radius: 6px;
+    background: #e53945;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#trial-requests .admin-action-button:hover,
+#room-bookings .admin-action-button:hover {
+    background: #c62832;
+    border-color: #c62832;
+}
+
+#trial-requests .admin-action-button.danger,
+#room-bookings .admin-action-button.danger {
+    background: #191919;
+    border-color: #454545;
+    color: #ff7777;
+}
+
+#trial-requests .admin-action-button.danger:hover,
+#room-bookings .admin-action-button.danger:hover {
+    background: #301b1b;
+    border-color: #e53945;
+}
+
+#trial-requests .admin-action-button:disabled,
+#room-bookings .admin-action-button:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+#admin-action-message {
+    margin-top: 12px;
+}
+
+#admin-action-message.admin-action-success {
+    color: #fff;
+}
+
+#admin-action-message.admin-action-error {
+    color: #ff7777;
+}
+.admin-action-success {
+    color: #ffffff;
+    background: #191919;
+    border: 1px solid #2e8b57;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-action-error {
+    color: #ffffff;
+    background: #191919;
+    border: 1px solid #e53945;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
 
 

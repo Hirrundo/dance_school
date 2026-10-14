@@ -30,5 +30,15 @@ urlpatterns = [
         views.admin_dashboard,
         name="admin_dashboard",
     ),
+    path(
+        "admin/accounts/",
+        views.admin_accounts,
+        name="admin_accounts",
+    ),
+    path(
+        "admin/classes/",
+        views.admin_classes,
+        name="admin_classes",
+    ),
  
 ]

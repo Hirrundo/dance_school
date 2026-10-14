@@ -156,57 +156,51 @@
         </div>
     </section>
 
-    <section class="account-section" id="rooms">
+   <section class="account-section" id="rooms">
     <h2>Забронированные залы</h2>
-    <p>Залы с ожидающими подтверждения и подтверждёнными бронированиями.</p>
+    <p>Твои ожидающие подтверждения и подтверждённые бронирования.</p>
 
-    {% if rooms %}
+    {% if room_bookings %}
         <div class="choreographer-rooms">
-            {% for room in rooms %}
-                {% with bookings=room.bookings.all %}
-                    {% if bookings %}
-                        {% for booking in bookings %}
-                           {% if booking.status == "confirmed" %}
-                                <article class="choreographer-room">
-                                    {% if room.image %}
-                                        <img
-                                            src="{{ room.image.url }}"
-                                            alt="{{ room.name }}"
-                                            class="choreographer-room-image"
-                                        >
-                                    {% endif %}
+            {% for booking in room_bookings %}
+                {% if booking.status == "pending" or booking.status == "confirmed" %}
+                    <article class="choreographer-room">
+                        {% if booking.room.image %}
+                            <img
+                                src="{{ booking.room.image.url }}"
+                                alt="{{ booking.room.name }}"
+                                class="choreographer-room-image"
+                            >
+                        {% endif %}
 
-                                    <div class="choreographer-room-info">
-                                        <h3>{{ room.name }}</h3>
+                        <div class="choreographer-room-info">
+                            <h3>{{ booking.room.name }}</h3>
 
-                                        <p class="choreographer-room-capacity">
-                                            Вместимость: {{ room.capacity }} чел.
-                                        </p>
+                            <p class="choreographer-room-capacity">
+                                Вместимость: {{ booking.room.capacity }} чел.
+                            </p>
 
-                                        <div class="choreographer-room-booking">
-                                            <p>
-                                                <strong>Дата:</strong>
-                                                {{ booking.date|date:"d.m.Y" }}
-                                            </p>
-                                            <p>
-                                                <strong>Время:</strong>
-                                                {{ booking.start_time|time:"H:i" }}–{{ booking.end_time|time:"H:i" }}
-                                            </p>
-                                            <p>
-                                                <strong>Цель:</strong>
-                                                {{ booking.purpose }}
-                                            </p>
-                                            <p>
-                                                <strong>Статус:</strong>
-                                                {{ booking.get_status_display }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
+                            <div class="choreographer-room-booking">
+                                <p>
+                                    <strong>Дата:</strong>
+                                    {{ booking.date|date:"d.m.Y" }}
+                                </p>
+                                <p>
+                                    <strong>Время:</strong>
+                                    {{ booking.start_time|time:"H:i" }}–{{ booking.end_time|time:"H:i" }}
+                                </p>
+                                <p>
+                                    <strong>Цель:</strong>
+                                    {{ booking.purpose }}
+                                </p>
+                                <p>
+                                    <strong>Статус:</strong>
+                                    {{ booking.get_status_display }}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                {% endif %}
             {% endfor %}
         </div>
 
@@ -215,11 +209,10 @@
         </p>
     {% else %}
         <div class="account-empty-state">
-            Сейчас нет доступных залов с бронированиями.
+            У тебя пока нет ожидающих подтверждения или подтверждённых бронирований.
         </div>
     {% endif %}
 </section>
-
 
 
 

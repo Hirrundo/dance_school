@@ -5,18 +5,24 @@ from decimal import Decimal, InvalidOperation
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.http import FileResponse
+from django.http import FileResponse,JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime, timedelta
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models import Q
+from django.db import transaction
 from .models import Profile
 from dance_school.models import (
     DanceClass,
-    GroupVideo,
+    DanceStyle,
+    Teacher,
+    TrialRequest,
+    DanceGroup,
     ClassSchedule,
+    GroupVideo,
     StudioRoom,
     RoomBooking,
-    Teacher,
 )
 
 def role_required(required_role):
@@ -377,12 +383,490 @@ def choreographer_dashboard(request):
     return response
 @role_required(Profile.Role.ADMIN)
 def admin_dashboard(request):
-    return render(request, "accounts/admin_dashboard.html")
+    if request.method == "POST":
+        action = request.POST.get("action")
+        object_id = request.POST.get("object_id")
+        new_status = request.POST.get("status")
 
+        try:
+            if action == "trial_request":
+                trial_request = get_object_or_404(
+                    TrialRequest,
+                    pk=object_id,
+                )
+
+                if new_status not in (
+                    TrialRequest.Status.CONFIRMED,
+                    TrialRequest.Status.REJECTED,
+                ):
+                    return JsonResponse({
+                        "success": False,
+                        "message": "Недопустимый статус заявки.",
+                    }, status=400)
+
+                trial_request.status = new_status
+                trial_request.save(update_fields=["status"])
+
+                message = (
+                    "Заявка подтверждена."
+                    if new_status == TrialRequest.Status.CONFIRMED
+                    else "Заявка отклонена."
+                )
+
+            elif action == "room_booking":
+                booking = get_object_or_404(
+                    RoomBooking,
+                    pk=object_id,
+                )
+
+                if new_status not in (
+                    RoomBooking.Status.CONFIRMED,
+                    RoomBooking.Status.REJECTED,
+                ):
+                    return JsonResponse({
+                        "success": False,
+                        "message": "Недопустимый статус бронирования.",
+                    }, status=400)
+
+                booking.status = new_status
+                booking.save(update_fields=["status"])
+
+                message = (
+                    "Бронирование подтверждено."
+                    if new_status == RoomBooking.Status.CONFIRMED
+                    else "Бронирование отклонено."
+                )
+
+            else:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Неизвестное действие.",
+                }, status=400)
+
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "success": True,
+                    "message": message,
+                    "status": new_status,
+                    "status_label": (
+                        trial_request.get_status_display()
+                        if action == "trial_request"
+                        else booking.get_status_display()
+                    ),
+                    "object_id": object_id,
+                })
+
+            return redirect("admin_dashboard")
+
+        except (ValueError, TypeError):
+            return JsonResponse({
+                "success": False,
+                "message": "Не удалось обработать запрос.",
+            }, status=400)
+
+    context = {
+        "students_count": Profile.objects.filter(
+            role=Profile.Role.STUDENT
+        ).count(),
+        "choreographers_count": Teacher.objects.count(),
+        "classes_count": DanceClass.objects.count(),
+        "styles_count": DanceStyle.objects.count(),
+        "groups_count": DanceGroup.objects.count(),
+        "active_groups_count": DanceGroup.objects.filter(
+            is_active=True
+        ).count(),
+        "schedules_count": ClassSchedule.objects.count(),
+        "trial_requests_count": TrialRequest.objects.count(),
+        "pending_trial_requests_count": TrialRequest.objects.filter(
+            status=TrialRequest.Status.PENDING
+        ).count(),
+        "rooms_count": StudioRoom.objects.count(),
+        "pending_bookings_count": RoomBooking.objects.filter(
+            status=RoomBooking.Status.PENDING
+        ).count(),
+        "confirmed_bookings_count": RoomBooking.objects.filter(
+            status=RoomBooking.Status.CONFIRMED
+        ).count(),
+        "recent_trial_requests": TrialRequest.objects.select_related(
+            "dance_class"
+        ).order_by("-created_at")[:5],
+        "recent_bookings": RoomBooking.objects.select_related(
+            "room",
+            "teacher",
+        ).order_by("-created_at")[:5],
+        "videos_count": GroupVideo.objects.count(),
+    }
+
+    return render(
+        request,
+        "accounts/admin_dashboard.html",
+        context,
+    )
 def logout_view(request):
     logout(request)
     return redirect("login")
 
+@role_required(Profile.Role.ADMIN)
+def admin_accounts(request):
+    search = request.GET.get("search", "").strip()
+    error = None
+    form_data = {}
+
+    if request.method == "POST" and "toggle_active" in request.POST:
+        user_id = request.POST.get("user_id")
+        user = get_object_or_404(User, id=user_id)
+
+        if user.is_superuser:
+            error = "Нельзя заблокировать суперпользователя."
+        elif user == request.user:
+            error = "Нельзя заблокировать собственный аккаунт."
+        else:
+            user.is_active = not user.is_active
+            user.save(update_fields=["is_active"])
+            return redirect("admin_accounts")
+
+    if request.method == "POST" and "edit_account" in request.POST:
+        user_id = request.POST.get("user_id")
+        user = get_object_or_404(User, id=user_id)
+
+        username = request.POST.get("username", "").strip()
+        first_name = request.POST.get("first_name", "").strip()
+        last_name = request.POST.get("last_name", "").strip()
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "")
+        role = request.POST.get("role", "")
+
+        valid_roles = {
+            choice[0] for choice in Profile.Role.choices
+        }
+
+        if user.is_superuser:
+            error = "Нельзя редактировать суперпользователя."
+
+        elif not username:
+            error = "Логин не может быть пустым."
+
+        elif User.objects.filter(
+            username=username
+        ).exclude(id=user.id).exists():
+            error = "Пользователь с таким логином уже существует."
+
+        elif role not in valid_roles:
+            error = "Выбери корректную роль."
+
+        elif password and len(password) < 8:
+            error = "Новый пароль должен содержать минимум 8 символов."
+
+        elif user == request.user and role != Profile.Role.ADMIN:
+            error = "Нельзя изменить собственную роль администратора."
+
+        else:
+            try:
+                with transaction.atomic():
+                    user.username = username
+                    user.first_name = first_name
+                    user.last_name = last_name
+                    user.email = email
+
+                    if password:
+                        user.set_password(password)
+
+                    user.save()
+
+                    profile, created = Profile.objects.get_or_create(
+                        user=user,
+                        defaults={"role": role},
+                    )
+
+                    if not created and profile.role != role:
+                        profile.role = role
+                        profile.save(update_fields=["role"])
+
+                return redirect("admin_accounts")
+
+            except Exception:
+                error = "Не удалось сохранить изменения аккаунта."
+
+    if request.method == "POST" and "create_account" in request.POST:
+        username = request.POST.get("username", "").strip()
+        first_name = request.POST.get("first_name", "").strip()
+        last_name = request.POST.get("last_name", "").strip()
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "")
+        role = request.POST.get("role", "")
+
+        form_data = {
+            "username": username,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+        }
+
+        valid_roles = {
+            choice[0] for choice in Profile.Role.choices
+        }
+
+        if not username or not password:
+            error = "Заполни логин и пароль."
+
+        elif len(password) < 8:
+            error = "Пароль должен содержать минимум 8 символов."
+
+        elif User.objects.filter(username=username).exists():
+            error = "Пользователь с таким логином уже существует."
+
+        elif role not in valid_roles:
+            error = "Выбери корректную роль."
+
+        else:
+            try:
+                with transaction.atomic():
+                    user = User.objects.create_user(
+                        username=username,
+                        password=password,
+                        first_name=first_name,
+                        last_name=last_name,
+                        email=email,
+                    )
+
+                    profile, created = Profile.objects.get_or_create(
+                        user=user,
+                        defaults={"role": role},
+                    )
+
+                    if not created:
+                        profile.role = role
+                        profile.save(update_fields=["role"])
+
+                return redirect("/accounts/admin/accounts/?created=1")
+
+            except Exception:
+                error = "Не удалось создать аккаунт. Проверь введённые данные."
+
+    users = User.objects.select_related("profile").order_by("username")
+
+    if search:
+        users = users.filter(
+            Q(username__icontains=search)
+            | Q(first_name__icontains=search)
+            | Q(last_name__icontains=search)
+            | Q(email__icontains=search)
+        )
+
+    return render(
+        request,
+        "accounts/admin_accounts.html",
+        {
+            "users": users,
+            "search": search,
+            "users_count": User.objects.count(),
+            "error": error,
+            "success": request.GET.get("created") == "1",
+            "form_data": form_data,
+        },
+    )
+
+@role_required(Profile.Role.ADMIN)
+def admin_classes(request):
+    error = None
+
+    if request.method == "POST":
+        action = (
+            "edit_class" if "edit_class" in request.POST else
+            "add_student" if "add_student" in request.POST else
+            "remove_student" if "remove_student" in request.POST else
+            "save_schedule" if "save_schedule" in request.POST else
+            "add_video" if "add_video" in request.POST else
+            None
+        )
+
+        try:
+            if action == "edit_class":
+                dance_class = get_object_or_404(
+                    DanceClass,
+                    id=request.POST.get("class_id"),
+                )
+                teacher = get_object_or_404(
+                    Teacher,
+                    id=request.POST.get("teacher"),
+                )
+                price = Decimal(request.POST.get("price", "").strip())
+
+                if not price.is_finite() or price < 0:
+                    raise ValueError
+
+                dance_class.price = price
+                dance_class.teacher = teacher
+                dance_class.save(
+                    update_fields=["price", "teacher", "updated_at"]
+                )
+
+                message = "Занятие обновлено."
+
+            elif action in ("add_student", "remove_student"):
+                group = get_object_or_404(
+                    DanceGroup,
+                    id=request.POST.get("group_id"),
+                )
+                student = get_object_or_404(
+                    Profile,
+                    id=request.POST.get("student_id"),
+                )
+
+                if action == "add_student":
+                    group.students.add(student)
+                    message = "Ученик добавлен в группу."
+                else:
+                    group.students.remove(student)
+                    message = "Ученик удалён из группы."
+
+                return JsonResponse({
+                    "success": True,
+                    "message": message,
+                    "group_id": group.id,
+                    "student_id": student.id,
+                    "student_count": group.students.count(),
+                })
+
+            elif action == "save_schedule":
+                group = get_object_or_404(
+                    DanceGroup,
+                    id=request.POST.get("group_id"),
+                )
+
+                schedule_id = request.POST.get("schedule_id")
+                if schedule_id:
+                    schedule = get_object_or_404(
+                        ClassSchedule,
+                        id=schedule_id,
+                        group=group,
+                    )
+                else:
+                    schedule = ClassSchedule(group=group)
+
+                weekday = int(request.POST.get("weekday"))
+                start_time = datetime.strptime(
+                    request.POST.get("start_time", ""),
+                    "%H:%M",
+                ).time()
+                end_time = datetime.strptime(
+                    request.POST.get("end_time", ""),
+                    "%H:%M",
+                ).time()
+
+                if weekday not in dict(ClassSchedule.Weekday.choices):
+                    raise ValueError
+
+                if end_time <= start_time:
+                    return JsonResponse({
+                        "success": False,
+                        "message": "Время окончания должно быть позже начала.",
+                    }, status=400)
+
+                schedule.weekday = weekday
+                schedule.start_time = start_time
+                schedule.end_time = end_time
+                schedule.save()
+
+                return JsonResponse({
+                    "success": True,
+                    "message": "Расписание сохранено.",
+                    "schedule_id": schedule.id,
+                    "group_id": group.id,
+                    "weekday": schedule.get_weekday_display(),
+                    "start_time": schedule.start_time.strftime("%H:%M"),
+
+                    "end_time": schedule.end_time.strftime("%H:%M"),
+                })
+
+            elif action == "add_video":
+                group = get_object_or_404(
+                    DanceGroup,
+                    id=request.POST.get("group_id"),
+                )
+                title = request.POST.get("title", "").strip()
+                video_file = request.FILES.get("video")
+
+                if not title or not video_file:
+                    return JsonResponse({
+                        "success": False,
+                        "message": "Укажи название и выбери видеофайл.",
+                    }, status=400)
+
+                video = GroupVideo.objects.create(
+                    group=group,
+                    title=title,
+                    description=request.POST.get("description", "").strip(),
+                    video=video_file,
+                )
+
+                return JsonResponse({
+                    "success": True,
+                    "message": "Видео добавлено.",
+                    "video_id": video.id,
+                    "title": video.title,
+                    "group": group.name,
+                    "description": video.description,
+                })
+
+            else:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Неизвестное действие.",
+                }, status=400)
+
+            if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                return JsonResponse({
+                    "success": True,
+                    "message": message,
+                })
+
+            return redirect("admin_classes")
+
+        except (InvalidOperation, ValueError, TypeError):
+            error = "Проверь введённые данные."
+        except (DanceClass.DoesNotExist, Teacher.DoesNotExist):
+            error = "Занятие или хореограф не найдены."
+
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({
+                "success": False,
+                "message": error,
+            }, status=400)
+
+    classes = (
+        DanceClass.objects
+        .select_related("teacher")
+        .prefetch_related("dance_styles", "groups")
+        .order_by("title")
+    )
+
+    groups = (
+        DanceGroup.objects
+        .select_related("dance_class")
+        .prefetch_related("students", "schedule_entries")
+        .order_by("name")
+    )
+
+    return render(
+        request,
+        "accounts/admin_classes.html",
+        {
+            "classes": classes,
+            "groups": groups,
+            "students": Profile.objects.select_related(
+                "user"
+            ).order_by("user__username"),
+            "styles": DanceStyle.objects.order_by("name"),
+            "teachers": Teacher.objects.order_by("last_name"),
+            "schedules": ClassSchedule.objects.select_related(
+                "group",
+                "group__dance_class",
+            ),
+            "videos": GroupVideo.objects.select_related("group"),
+            "error": error,
+        },
+    )
 @role_required(Profile.Role.CHOREOGRAPHER)
 def room_booking(request):
     profile = request.user.profile
@@ -455,7 +939,6 @@ def room_booking(request):
         if teacher
         else RoomBooking.objects.none()
     )
-
     return render(
         request,
         "accounts/room_booking.html",

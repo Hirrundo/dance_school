@@ -1,0 +1,676 @@
+
+{% extends "base.html" %}
+
+{% block title %}Занятия и группы — TEMPO{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard" id="classes-admin">
+    <div class="admin-dashboard-header">
+        <div>
+            <p class="admin-eyebrow">TEMPO · УПРАВЛЕНИЕ СТУДИЕЙ</p>
+            <h1>Занятия и группы</h1>
+            <p class="admin-description">
+                Управление занятиями, учениками, расписанием и видео.
+            </p>
+        </div>
+
+        <a href="{% url 'admin_dashboard' %}" class="admin-card-link">
+            ← Назад в кабинет
+        </a>
+    </div>
+
+    <div class="admin-dashboard-stats">
+        <div class="admin-stat-card">
+            <span>Занятия</span>
+            <strong>{{ classes|length }}</strong>
+        </div>
+        <div class="admin-stat-card">
+            <span>Направления</span>
+            <strong>{{ styles|length }}</strong>
+        </div>
+        <div class="admin-stat-card">
+            <span>Группы</span>
+            <strong>{{ groups|length }}</strong>
+        </div>
+        <div class="admin-stat-card">
+            <span>Хореографы</span>
+            <strong>{{ teachers|length }}</strong>
+        </div>
+    </div>
+
+    <div id="ajax-message" role="status" aria-live="polite" hidden></div>
+
+    {% if error %}
+        <p class="admin-form-error">{{ error }}</p>
+    {% endif %}
+
+    <!-- ЗАНЯТИЯ -->
+    <section class="admin-recent-section">
+        <h2>Занятия</h2>
+
+        {% for dance_class in classes %}
+            <div class="admin-recent-item" id="class-{{ dance_class.id }}">
+                <div>
+                    <strong>{{ dance_class.title }}</strong>
+                    <p>
+                        Хореограф:
+                        <span class="class-teacher">{{ dance_class.teacher }}</span>
+                    </p>
+                    <p>Длительность: {{ dance_class.duration_minutes }} мин.</p>
+                    <p>
+                        Стоимость:
+                        <span class="class-price">{{ dance_class.price }}</span> ₽
+                    </p>
+                    <p>
+                        Направления:
+                        {% for style in dance_class.dance_styles.all %}
+                            {{ style.name }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            Не указаны
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="admin-account-actions">
+                    <span>
+                        {% if dance_class.is_available %}
+                            Доступно
+                        {% else %}
+                            Недоступно
+                        {% endif %}
+                    </span>
+
+                    <button
+                        type="button"
+                        class="edit-class-button"
+                        data-id="{{ dance_class.id }}"
+                        data-price="{{ dance_class.price }}"
+                        data-teacher="{{ dance_class.teacher_id }}"
+                    >
+                        Редактировать
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <p>Занятий пока нет.</p>
+        {% endfor %}
+    </section>
+
+    <!-- РЕДАКТИРОВАНИЕ ЗАНЯТИЯ -->
+    <section
+        class="admin-recent-section"
+        id="edit-class-section"
+        hidden
+    >
+        <h2>Редактировать занятие</h2>
+
+        <form method="post" class="admin-create-form ajax-form">
+            {% csrf_token %}
+            <input type="hidden" name="edit_class" value="1">
+            <input type="hidden" name="class_id" id="edit-class-id">
+
+            <div class="admin-form-field">
+                <label for="edit-class-price">Стоимость, ₽ *</label>
+                <input
+                    type="number"
+                    name="price"
+                    id="edit-class-price"
+                    min="0"
+                    step="0.01"
+
+
+required
+                >
+            </div>
+
+            <div class="admin-form-field">
+                <label for="edit-class-teacher">Хореограф *</label>
+                <select name="teacher" id="edit-class-teacher" required>
+                    {% for teacher in teachers %}
+                        <option value="{{ teacher.id }}">{{ teacher }}</option>
+                    {% empty %}
+                        <option value="">Хореографы не найдены</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit">Сохранить изменения</button>
+            <button type="button" id="cancel-edit-class">Отмена</button>
+        </form>
+    </section>
+
+    <!-- ГРУППЫ -->
+    <section class="admin-recent-section">
+        <h2>Группы и расписание</h2>
+
+        {% for group in groups %}
+            <div class="admin-recent-item" id="group-{{ group.id }}">
+                <div style="width: 100%;">
+                    <strong>{{ group.name }}</strong>
+                    <p>Занятие: {{ group.dance_class.title }}</p>
+
+                    <p>
+                        Учеников:
+                        <span class="student-count">{{ group.students.count }}</span>
+                    </p>
+
+                    <h3>Ученики группы</h3>
+
+                    <div class="student-list">
+                        {% for student in group.students.all %}
+                            <div
+                                class="student-row"
+                                id="student-{{ group.id }}-{{ student.id }}"
+                            >
+                                <span>
+                                    {{ student.user.get_full_name|default:student.user.username }}
+                                </span>
+
+                                <form method="post" class="ajax-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="remove_student" value="1">
+                                    <input type="hidden" name="group_id" value="{{ group.id }}">
+                                    <input type="hidden" name="student_id" value="{{ student.id }}">
+
+                                    <button type="submit">Удалить из группы</button>
+                                </form>
+                            </div>
+                        {% empty %}
+                            <p class="no-students">В группе пока нет учеников.</p>
+                        {% endfor %}
+                    </div>
+
+                    <form method="post" class="admin-create-form ajax-form add-student-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="add_student" value="1">
+                        <input type="hidden" name="group_id" value="{{ group.id }}">
+
+                        <div class="admin-form-field">
+                            <label for="student-select-{{ group.id }}">
+                                Добавить ученика
+                            </label>
+
+                            <select
+                                name="student_id"
+                                id="student-select-{{ group.id }}"
+                                required
+                            >
+                                <option value="">Выбери ученика</option>
+
+                                {% for student in students %}
+                                    {% if student not in group.students.all %}
+                                        <option value="{{ student.id }}">
+                                            {{ student.user.get_full_name|default:student.user.username }}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit">Добавить в группу</button>
+                    </form>
+<!-- РАСПИСАНИЕ -->
+                    <h3>Расписание</h3>
+
+                    <div class="schedule-list">
+                        {% for entry in group.schedule_entries.all %}
+                            <div
+                                class="schedule-row"
+                                id="schedule-{{ entry.id }}"
+                            >
+                                <p>
+                                    <span class="schedule-weekday">
+                                        {{ entry.get_weekday_display }}
+                                    </span>,
+                                    <span class="schedule-start">
+                                        {{ entry.start_time|time:"H:i" }}
+                                    </span>–<span class="schedule-end">{{ entry.end_time|time:"H:i" }}</span>
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="edit-schedule-button"
+                                    data-group="{{ group.id }}"
+                                    data-id="{{ entry.id }}"
+                                    data-weekday="{{ entry.weekday }}"
+                                    data-start="{{ entry.start_time|time:'H:i' }}"
+                                    data-end="{{ entry.end_time|time:'H:i' }}"
+                                >
+                                    Редактировать
+                                </button>
+                            </div>
+                        {% empty %}
+                            <p class="no-schedule">Расписание не задано.</p>
+                        {% endfor %}
+                    </div>
+
+                    <button
+                        type="button"
+                        class="add-schedule-button"
+                        data-group="{{ group.id }}"
+                    >
+                        Добавить расписание
+                    </button>
+
+                    <form
+                        method="post"
+                        class="admin-create-form ajax-form schedule-form"
+                        id="schedule-form-{{ group.id }}"
+                        data-group="{{ group.id }}"
+                        hidden
+                    >
+                        {% csrf_token %}
+                        <input type="hidden" name="save_schedule" value="1">
+                        <input type="hidden" name="group_id" value="{{ group.id }}">
+                        <input type="hidden" name="schedule_id" value="">
+
+                        <div class="admin-form-field">
+                            <label>День недели</label>
+                            <select name="weekday" required>
+                                <option value="0">Понедельник</option>
+                                <option value="1">Вторник</option>
+                                <option value="2">Среда</option>
+                                <option value="3">Четверг</option>
+                                <option value="4">Пятница</option>
+                                <option value="5">Суббота</option>
+                                <option value="6">Воскресенье</option>
+                            </select>
+                        </div>
+
+                        <div class="admin-form-field">
+                            <label>Время начала</label>
+                            <input type="time" name="start_time" required>
+                        </div>
+
+                        <div class="admin-form-field">
+                            <label>Время окончания</label>
+                            <input type="time" name="end_time" required>
+                        </div>
+
+                        <button type="submit">Сохранить расписание</button>
+                        <button type="button" class="cancel-schedule-button">
+                            Отмена
+                        </button>
+                    </form>
+
+                    <p>
+Статус группы:
+                        {% if group.is_active %}Активна{% else %}Неактивна{% endif %}
+                    </p>
+                </div>
+            </div>
+        {% empty %}
+            <p>Групп пока нет.</p>
+        {% endfor %}
+    </section>
+
+    <!-- ВИДЕО -->
+    <section class="admin-recent-section">
+        <h2>Видео занятий</h2>
+
+        <div id="video-list">
+            {% for video in videos %}
+                <div class="admin-recent-item" id="video-{{ video.id }}">
+                    <div>
+                        <strong>{{ video.title }}</strong>
+                        <p>Группа: {{ video.group.name }}</p>
+                        <p>{{ video.description|default:"Описание отсутствует" }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p id="no-videos">Видео пока не добавлены.</p>
+            {% endfor %}
+        </div>
+
+        <h3>Добавить видео</h3>
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+            class="admin-create-form ajax-form"
+            id="add-video-form"
+        >
+            {% csrf_token %}
+            <input type="hidden" name="add_video" value="1">
+
+            <div class="admin-form-field">
+                <label for="video-title">Название *</label>
+                <input type="text" id="video-title" name="title" required>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="video-group">Группа *</label>
+                <select id="video-group" name="group_id" required>
+                    <option value="">Выбери группу</option>
+                    {% for group in groups %}
+                        <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="video-description">Описание</label>
+                <textarea id="video-description" name="description"></textarea>
+            </div>
+
+            <div class="admin-form-field">
+                <label for="video-file">Видеофайл *</label>
+                <input
+                    type="file"
+                    id="video-file"
+                    name="video"
+                    accept="video/*"
+                    required
+                >
+            </div>
+
+            <button type="submit">Добавить видео</button>
+        </form>
+    </section>
+</section>
+
+<script>
+(() => {
+    const root = document.getElementById("classes-admin");
+    const message = document.getElementById("ajax-message");
+
+    const weekdays = [
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница",
+        "Суббота",
+        "Воскресенье"
+    ];
+
+    function showMessage(text, success = true) {
+        message.textContent = text;
+        message.hidden = false;
+        message.className = success ? "admin-form-success" : "admin-form-error";
+    }
+
+    function addOption(select, value, label) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = label;
+        select.appendChild(option);
+    }
+
+    function updateStudentOptions(groupId, studentId, studentName, added) {
+        const select = document.getElementById(`student-select-${groupId}`);
+        if (!select) return;
+
+        if (added) {
+            const option = select.querySelector(`option[value="${studentId}"]`);
+            if (option) option.remove();
+        } else {
+            const exists = select.querySelector(`option[value="${studentId}"]`);
+            if (!exists) addOption(select, studentId, studentName);
+        }
+    }
+
+    function studentNameFromRow(row) {
+        return row.querySelector("span")?.textContent.trim() || "";
+    }
+
+    function updateStudentCount(groupId, count) {
+        const group = document.getElementById(`group-${groupId}`);
+        if (group) {
+            group.querySelector(".student-count").textContent = count;
+        }
+    }
+
+    function makeStudentRow(groupId, studentId, studentName) {
+        const row = document.createElement("div");
+        row.className = "student-row";
+        row.id = `student-${groupId}-${studentId}`;
+
+        const name = document.createElement("span");
+        name.textContent = studentName;
+
+        const form = document.createElement("form");
+        form.method = "post";
+        form.className = "ajax-form";
+
+        const csrf = root.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+        [
+            ["csrfmiddlewaretoken", csrf],
+            ["remove_student", "1"],
+            ["group_id", groupId],
+            ["student_id", studentId]
+        ].forEach(([key, value]) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = value;
+            form.appendChild(input);
+        });
+
+        const button = document.createElement("button");
+        button.type = "submit";
+        button.textContent = "Удалить из группы";
+        form.appendChild(button);
+
+        row.append(name, form);
+        return row;
+    }
+
+    function makeScheduleRow(data) {
+        const row = document.createElement("div");
+        row.className = "schedule-row";
+        row.id = `schedule-${data.schedule_id}`;
+
+        const paragraph = document.createElement("p");
+        const day = document.createElement("span");
+        day.className = "schedule-weekday";
+        day.textContent = data.weekday;
+
+        const start = document.createElement("span");
+        start.className = "schedule-start";
+        start.textContent = data.start_time;
+
+        const end = document.createElement("span");
+        end.className = "schedule-end";
+        end.textContent = data.end_time;
+
+        paragraph.append(
+            day,
+            document.createTextNode(", "),
+            start,
+            document.createTextNode("–"),
+            end
+        );
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "edit-schedule-button";
+        button.textContent = "Редактировать";
+        button.dataset.group = data.group_id;
+        button.dataset.id = data.schedule_id;
+        button.dataset.weekday = weekdays.indexOf(data.weekday);
+        button.dataset.start = data.start_time;
+        button.dataset.end = data.end_time;
+
+        row.append(paragraph, button);
+        return row;
+    }
+
+    root.addEventListener("click", (event) => {
+        const classButton = event.target.closest(".edit-class-button");
+
+        if (classButton) {
+            const section = document.getElementById("edit-class-section");
+            document.getElementById("edit-class-id").value = classButton.dataset.id;
+            document.getElementById("edit-class-price").value = classButton.dataset.price;
+            document.getElementById("edit-class-teacher").value = classButton.dataset.teacher;
+            section.hidden = false;
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+        }
+
+        if (event.target.id === "cancel-edit-class") {
+            document.getElementById("edit-class-section").hidden = true;
+            return;
+        }
+
+        const addSchedule = event.target.closest(".add-schedule-button");
+        const editSchedule = event.target.closest(".edit-schedule-button");
+        const cancelSchedule = event.target.closest(".cancel-schedule-button");
+
+        if (addSchedule) {
+            const form = document.getElementById(`schedule-form-${addSchedule.dataset.group}`);
+            form.reset();
+            form.querySelector('[name="schedule_id"]').value = "";
+            form.hidden = false;
+            form.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        if (editSchedule) {
+            const form = document.getElementById(`schedule-form-${editSchedule.dataset.group}`);
+            form.querySelector('[name="schedule_id"]').value = editSchedule.dataset.id;
+            form.querySelector('[name="weekday"]').value = editSchedule.dataset.weekday;
+            form.querySelector('[name="start_time"]').value = editSchedule.dataset.start;
+            form.querySelector('[name="end_time"]').value = editSchedule.dataset.end;
+            form.hidden = false;
+            form.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        if (cancelSchedule) {
+            cancelSchedule.closest("form").hidden = true;
+        }
+    });
+
+    root.addEventListener("submit", async (event) => {
+        const form = event.target.closest(".ajax-form");
+        if (!form) return;
+
+        event.preventDefault();
+
+        const submitButton = event.submitter;
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+            const response = await fetch(window.location.href, {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Не удалось сохранить изменения.");
+            }
+
+            if (form.querySelector('[name="edit_class"]')) {
+                const id = form.querySelector('[name="class_id"]').value;
+                const card = document.getElementById(`class-${id}`);
+
+                card.querySelector(".class-price").textContent =
+                    Number(form.querySelector('[name="price"]').value).toFixed(2);
+
+                card.querySelector(".class-teacher").textContent =
+                    form.querySelector('[name="teacher"]')
+                        .selectedOptions[0].textContent.trim();
+
+                const editButton = card.querySelector(".edit-class-button");
+                editButton.dataset.price = form.querySelector('[name="price"]').value;
+                editButton.dataset.teacher = form.querySelector('[name="teacher"]').value;
+
+                form.closest("#edit-class-section").hidden = true;
+            }
+
+            if (form.querySelector('[name="add_student"]')) {
+                const groupId = data.group_id;
+                const studentId = data.student_id;
+                const select = form.querySelector('[name="student_id"]');
+                const studentName = select.selectedOptions[0].textContent.trim();
+                const list = document.querySelector(`#group-${groupId} .student-list`);
+                const empty = list.querySelector(".no-students");
+
+                if (empty) empty.remove();
+
+                list.appendChild(makeStudentRow(groupId, studentId, studentName));
+                updateStudentOptions(groupId, studentId, studentName, true);
+                updateStudentCount(groupId, data.student_count);
+                form.reset();
+            }
+
+            if (form.querySelector('[name="remove_student"]')) {
+                const groupId = data.group_id;
+                const studentId = data.student_id;
+                const row = document.getElementById(`student-${groupId}-${studentId}`);
+                const studentName = studentNameFromRow(row);
+
+                row.remove();
+                updateStudentOptions(groupId, studentId, studentName, false);
+                updateStudentCount(groupId, data.student_count);
+
+                const list = document.querySelector(`#group-${groupId} .student-list`);
+                if (!list.querySelector(".student-row")) {
+                    const empty = document.createElement("p");
+                    empty.className = "no-students";
+                    empty.textContent = "В группе пока нет учеников.";
+                    list.appendChild(empty);
+                }
+            }
+
+            if (form.querySelector('[name="save_schedule"]')) {
+                const
+
+
+groupId = data.group_id;
+                const existing = document.getElementById(`schedule-${data.schedule_id}`);
+                const row = makeScheduleRow(data);
+
+                if (existing) {
+                    existing.replaceWith(row);
+                } else {
+                    const list = document.querySelector(`#group-${groupId} .schedule-list`);
+                    const empty = list.querySelector(".no-schedule");
+                    if (empty) empty.remove();
+                    list.appendChild(row);
+                }
+
+                form.hidden = true;
+            }
+
+            if (form.querySelector('[name="add_video"]')) {
+                const list = document.getElementById("video-list");
+                const empty = document.getElementById("no-videos");
+                if (empty) empty.remove();
+
+                const card = document.createElement("div");
+                card.className = "admin-recent-item";
+                card.id = `video-${data.video_id}`;
+
+                const content = document.createElement("div");
+                const title = document.createElement("strong");
+                title.textContent = data.title;
+
+                const group = document.createElement("p");
+                group.textContent = `Группа: ${data.group}`;
+
+                const description = document.createElement("p");
+                description.textContent = data.description || "Описание отсутствует";
+
+                content.append(title, group, description);
+                card.appendChild(content);
+                list.prepend(card);
+                form.reset();
+            }
+
+            showMessage(data.message || "Изменения сохранены.");
+        } catch (error) {
+            showMessage(error.message || "Ошибка при сохранении.", false);
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
+    });
+})();
+</script>
+{% endblock %}

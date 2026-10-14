@@ -42,12 +42,12 @@
 
                     {% if user.is_superuser or user.is_staff or user.profile.role == "admin" %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_dashboard' %}#requests">
+                            <a class="nav-link" href="{% url 'admin_dashboard' %}##trial-requests">
                                 Заявки
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin_dashboard' %}#groups">
+                            <a class="nav-link" href="{% url 'admin_classes' %}">
                                 Группы и расписание
                             </a>
                         </li>
