@@ -110,6 +110,109 @@ class TrialRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.dance_class.title}"
+class DanceGroup(models.Model):
+    name = models.CharField(
+        max_length=150,
+        verbose_name="Название группы",
+    )
+    dance_class = models.ForeignKey(
+        DanceClass,
+        on_delete=models.PROTECT,
+        related_name="groups",
+        verbose_name="Занятие",
+    )
+    students = models.ManyToManyField(
+        "accounts.Profile",
+        blank=True,
+        related_name="dance_groups",
+        verbose_name="Ученики",
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name="Активна",
+    )
 
+    class Meta:
+        verbose_name = "танцевальная группа"
+        verbose_name_plural = "Танцевальные группы"
+        ordering = ("name",)
 
+    def __str__(self):
+        return self.name
+
+class ClassSchedule(models.Model):
+    class Weekday(models.IntegerChoices):
+        MONDAY = 0, "Понедельник"
+        TUESDAY = 1, "Вторник"
+        WEDNESDAY = 2, "Среда"
+        THURSDAY = 3, "Четверг"
+        FRIDAY = 4, "Пятница"
+        SATURDAY = 5, "Суббота"
+        SUNDAY = 6, "Воскресенье"
+
+    group = models.ForeignKey(
+        DanceGroup,
+        on_delete=models.CASCADE,
+        related_name="schedule_entries",
+        verbose_name="Группа",
+    )
+    weekday = models.IntegerField(
+        choices=Weekday.choices,
+        verbose_name="День недели",
+    )
+    start_time = models.TimeField(
+        verbose_name="Время начала",
+    )
+    end_time = models.TimeField(
+        verbose_name="Время окончания",
+    )
+
+    class Meta:
+        verbose_name = "занятие в расписании"
+        verbose_name_plural = "Расписание занятий"
+        ordering = ("weekday", "start_time")
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(end_time__gt=models.F("start_time")),
+                name="schedule_end_after_start",
+            ),
+        ]
+
+    def __str__(self):
+        return (
+            f"{self.group.name} — "
+            f"{self.get_weekday_display()}, "
+            f"{self.start_time:%H:%M}–{self.end_time:%H:%M}"
+        )
+class GroupVideo(models.Model):
+    group = models.ForeignKey(
+        DanceGroup,
+        on_delete=models.CASCADE,
+        related_name="videos",
+        verbose_name="Группа",
+    )
+    title = models.CharField(
+        max_length=200,
+        verbose_name="Название видео",
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name="Описание",
+    )
+    video = models.FileField(
+        upload_to="group_videos/",
+        verbose_name="Файл видео",
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата добавления",
+    )
+
+    class Meta:
+        verbose_name = "видео занятия"
+        verbose_name_plural = "Видео занятий"
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.title} — {self.group.name}"
 # Create your models here.

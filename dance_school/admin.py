@@ -1,9 +1,16 @@
-
 from django.contrib import admin
 from django.db.models import Count
 
 from accounts.models import Profile
-from .models import Teacher, DanceStyle, DanceClass, TrialRequest
+from .models import (
+    Teacher,
+    DanceStyle,
+    DanceClass,
+    TrialRequest,
+    DanceGroup,
+    ClassSchedule,
+    GroupVideo
+)
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
@@ -28,6 +35,7 @@ class TeacherAdmin(admin.ModelAdmin):
             kwargs["queryset"] = Profile.objects.filter(
                 role=Profile.Role.CHOREOGRAPHER
             ).select_related("user")
+
         return super().formfield_for_foreignkey(
             db_field, request, **kwargs
         )
@@ -93,6 +101,19 @@ class DanceClassAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(DanceGroup)
+class DanceGroupAdmin(admin.ModelAdmin):
+    list_display = ("name", "dance_class", "is_active")
+    list_filter = ("is_active", "dance_class")
+    search_fields = ("name", "dance_class__title")
+    filter_horizontal = ("students",)
+
+@admin.register(ClassSchedule)
+class ClassScheduleAdmin(admin.ModelAdmin):
+    list_display = ("group", "weekday", "start_time", "end_time")
+    list_filter = ("weekday", "group")
+    ordering = ("weekday", "start_time")
+
 @admin.register(TrialRequest)
 class TrialRequestAdmin(admin.ModelAdmin):
     list_display = ("name", "phone", "dance_class", "created_at")
@@ -100,5 +121,10 @@ class TrialRequestAdmin(admin.ModelAdmin):
     list_filter = ("dance_class", "created_at")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
-
-    
+@admin.register(GroupVideo)
+class GroupVideoAdmin(admin.ModelAdmin):
+    list_display = ("title", "group", "created_at")
+    list_filter = ("group", "created_at")
+    search_fields = ("title", "description", "group__name")
+    readonly_fields = ("created_at",)
+    ordering = ("-created_at",)

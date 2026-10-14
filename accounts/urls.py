@@ -10,7 +10,11 @@ urlpatterns = [
         views.student_dashboard,
         name="student_dashboard",
     ),
-
+   path(
+    "videos/<int:video_id>/",
+    views.group_video_view,
+    name="group_video",
+),
     path(
         "choreographer/",
         views.choreographer_dashboard,
@@ -22,4 +26,5 @@ urlpatterns = [
         views.admin_dashboard,
         name="admin_dashboard",
     ),
+ 
 ]

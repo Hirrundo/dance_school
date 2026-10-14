@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Кабинет хореографа — TEMPO{% endblock %}
+
+{% block content %}
+<section class="account-dashboard">
+    <header class="account-dashboard-header">
+        <p class="account-eyebrow">TEMPO · ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1>
+            {% if teacher %}
+                {{ teacher.first_name }} {{ teacher.last_name }}
+            {% else %}
+                Кабинет хореографа
+            {% endif %}
+        </h1>
+        <p>Твои занятия, рабочие задачи и информация по студии.</p>
+    </header>
+
+    <section class="account-section" id="schedule">
+        <h2>Мои занятия</h2>
+        <p>Занятия, закреплённые за твоим профилем в студии.</p>
+
+        {% if classes %}
+            <div class="choreographer-classes">
+                {% for dance_class in classes %}
+                    <article class="choreographer-class">
+                        {% if dance_class.image %}
+                            <img
+                                src="{{ dance_class.image.url }}"
+                                alt="{{ dance_class.title }}"
+                                class="choreographer-class-image"
+                            >
+                        {% endif %}
+
+                        <div class="choreographer-class-info">
+                            <h3>{{ dance_class.title }}</h3>
+                            <p>{{ dance_class.description|default:"Описание не добавлено." }}</p>
+
+                            <div class="choreographer-class-meta">
+                                <span>{{ dance_class.duration_minutes }} мин.</span>
+                                <span>Мест: {{ dance_class.capacity }}</span>
+                            </div>
+
+                            {% if dance_class.dance_styles.exists %}
+                                <p class="choreographer-class-styles">
+                                    {% for style in dance_class.dance_styles.all %}
+                                        {{ style.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="account-empty-state">
+                За твоим профилем пока не закреплены занятия.
+                Проверь связь аккаунта с записью хореографа в админке.
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="account-section" id="salary">
+        <h2>Зарплата</h2>
+        <div class="account-empty-state">
+            Расчёт зарплаты подключим после определения ставок и правил начисления.
+        </div>
+    </section>
+
+    <section class="account-section" id="rooms">
+        <h2>Бронирование залов</h2>
+        <div class="account-empty-state">
+            Бронирование подключим после создания модели залов и бронирований.
+        </div>
+    </section>
+</section>
+{% endblock %}
