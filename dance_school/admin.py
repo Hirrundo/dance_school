@@ -9,7 +9,9 @@ from .models import (
     TrialRequest,
     DanceGroup,
     ClassSchedule,
-    GroupVideo
+    GroupVideo,
+    StudioRoom,
+    RoomBooking,
 )
 
 @admin.register(Teacher)
@@ -121,6 +123,7 @@ class TrialRequestAdmin(admin.ModelAdmin):
     list_filter = ("dance_class", "created_at")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
+
 @admin.register(GroupVideo)
 class GroupVideoAdmin(admin.ModelAdmin):
     list_display = ("title", "group", "created_at")
@@ -128,3 +131,33 @@ class GroupVideoAdmin(admin.ModelAdmin):
     search_fields = ("title", "description", "group__name")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
+
+@admin.register(StudioRoom)
+class StudioRoomAdmin(admin.ModelAdmin):
+    list_display = ("name", "capacity", "is_available")
+    list_editable = ("is_available",)
+    search_fields = ("name", "description")
+    list_filter = ("is_available",)
+    ordering = ("name",)
+
+@admin.register(RoomBooking)
+class RoomBookingAdmin(admin.ModelAdmin):
+    list_display = (
+        "room",
+        "teacher",
+        "date",
+        "start_time",
+        "end_time",
+        "status",
+    )
+    list_filter = ("status", "date", "room")
+    search_fields = (
+        "room__name",
+        "teacher__first_name",
+        "teacher__last_name",
+        "purpose",
+    )
+    list_editable = ("status",)
+    readonly_fields = ("created_at",)
+    ordering = ("date", "start_time")
+    date_hierarchy = "date"

@@ -20,7 +20,11 @@ urlpatterns = [
         views.choreographer_dashboard,
         name="choreographer_dashboard",
     ),
-
+    path(
+        "choreographer/rooms/",
+        views.room_booking,
+        name="room_booking",
+    ),
     path(
         "admin/",
         views.admin_dashboard,

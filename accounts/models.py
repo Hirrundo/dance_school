@@ -45,7 +45,12 @@ class Profile(models.Model):
         auto_now_add=True,
         verbose_name="Дата создания профиля",
     )
-
+    hourly_rate = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        verbose_name="Почасовая ставка хореографа",
+    )
     class Meta:
         verbose_name = "профиль"
         verbose_name_plural = "Профили"

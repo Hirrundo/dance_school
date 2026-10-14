@@ -1,8 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'dance_school:home' %}">
-            TEMPO
-        </a>
+        {% if user.is_authenticated %}
+            {% if user.is_superuser or user.is_staff or user.profile.role == "admin" %}
+                <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
+                    TEMPO
+                </a>
+            {% elif user.profile.role == "student" %}
+                <a class="navbar-brand" href="{% url 'student_dashboard' %}">
+                    TEMPO
+                </a>
+            {% elif user.profile.role == "choreographer" %}
+                <a class="navbar-brand" href="{% url 'choreographer_dashboard' %}">
+                    TEMPO
+                </a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'dance_school:home' %}">
+                    TEMPO
+                </a>
+            {% endif %}
+        {% else %}
+            <a class="navbar-brand" href="{% url 'dance_school:home' %}">
+                TEMPO
+            </a>
+        {% endif %}
 
         <button
             class="navbar-toggler"
@@ -43,11 +63,6 @@
                                 Видео
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'student_dashboard' %}#profile">
-                                Профиль
-                            </a>
-                        </li>
 
                     {% elif user.profile.role == "choreographer" %}
                         <li class="nav-item">
@@ -61,7 +76,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'choreographer_dashboard' %}#rooms">
+                            <a class="nav-link" href="{% url 'room_booking' %}">
                                 Бронь залов
                             </a>
                         </li>
@@ -78,7 +93,12 @@
                             Группы
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li cl
+user.is is for sale!
+user.is
+
+
+ass="nav-item">
                         <a class="nav-link" href="{% url 'dance_school:studio' %}">
                             Залы и жизнь студии
                         </a>

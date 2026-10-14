@@ -4618,7 +4618,7 @@ a.admin-dashboard-card:hover {
         padding: 16px;
     }
 }
-* STUDENT DASHBOARD */
+/* STUDENT DASHBOARD */
 
 .account-dashboard {
     max-width: 1100px;
@@ -4902,6 +4902,720 @@ a.admin-dashboard-card:hover {
         padding: 20px;
     }
 }
+/* ===== КАБИНЕТ ХОРЕОГРАФА: МОИ ЗАНЯТИЯ ===== */
 
+#classes .choreographer-classes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+}
+
+#classes .choreographer-class {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #333;
+    border-left: 4px solid #e6293f;
+    border-radius: 8px;
+    background: #191919;
+    color: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#classes .choreographer-class:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+#classes .choreographer-class-image {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#classes .choreographer-class-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px;
+}
+
+#classes .choreographer-class-info h3 {
+    margin: 0 0 14px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+#classes .choreographer-class-info > p {
+    margin: 0 0 16px;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+#classes .choreographer-class-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+#classes .choreographer-class-meta span {
+    padding: 7px 11px;
+    border: 1px solid #484848;
+    border-radius: 5px;
+    background: #292929;
+    color: #ff6575;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#classes .choreographer-class-info .choreographer-class-styles {
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid #383838;
+    color: #ff6575;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ===== РАСПИСАНИЕ ВНУТРИ БЛОКА «МОИ ЗАНЯТИЯ» ===== */
+
+#classes .choreographer-schedule {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid #e5e5e5;
+}
+
+#classes .weekly-schedule-title {
+    margin: 0 0 22px;
+    color: #191919;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+#classes .next-lesson-card {
+    margin-bottom: 28px;
+    padding: 24px;
+    border: 1px solid #333;
+    border-left: 4px solid #e6293f;
+    border-radius: 8px;
+    background: #191919;
+    color: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#classes .next-lesson-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+#classes .next-lesson-card h4 {
+    margin: 0 0 16px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+#classes .next-lesson-card p:not(.account-eyebrow) {
+    margin: 0 0 10px;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+#classes .next-lesson-card strong {
+    color: #ff6575;
+}
+
+#classes .weekly-schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+#classes .weekly-day-card {
+    padding: 20px;
+    border: 1px solid #333;
+    border-left: 3px solid #e6293f;
+    border-radius: 8px;
+    background: #191919;
+    color: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#classes .weekly-day-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+#classes .weekly-day-card h4 {
+    margin: 0 0 14px;
+    color: #ff596b;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+#classes .weekly-lesson {
+    padding: 12px 0;
+    border-top: 1px solid #383838;
+}
+
+#classes .weekly-lesson-time {
+    margin: 0 0 6px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#classes .weekly-lesson-name {
+    margin: 0;
+    color: #c5c5c5;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+
+@media(max-width: 600px) {
+    #classes .choreographer-classes,
+    #classes .weekly-schedule {
+        grid-template-columns: 1fr;
+    }
+
+    #classes .choreographer-class-info {
+        padding: 18px;
+    }
+
+    #classes .next-lesson-card,
+    #classes .weekly-day-card {
+        padding: 18px;
+    }
+}
+
+/* Учитываем настройку уменьшения анимации */
+
+@media (prefers-reduced-motion: reduce) {
+    #classes .choreographer-class,
+    #classes .next-lesson-card,
+    #classes .weekly-day-card {
+        transition: none;
+    }
+
+    #classes .choreographer-class:hover,
+    #classes .next-lesson-card:hover,
+    #classes .weekly-day-card:hover {
+        transform: none;
+    }
+}
+/* ===== КАЛЬКУЛЯТОР ЗАРПЛАТЫ TEMPO ===== */
+
+
+#salary .salary-calculator {
+    width: 100%;
+    max-width: none;
+    margin: 24px 0 0;
+    padding: 32px;
+    border: 1px solid #333;
+    border-left: 4px solid #e6293f;
+    border-radius: 8px;
+    background: #191919;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+#salary .salary-rate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #383838;
+}
+
+#salary .salary-rate span,
+#salary .salary-result span {
+    color: #c5c5c5;
+    font-size: 14px;
+}
+
+#salary .salary-rate strong {
+    color: #ff596b;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+#salary .salary-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#salary .salary-form label {
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#salary .salary-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #484848;
+    border-radius: 5px;
+    outline: none;
+    background: #242424;
+    color: #fff;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#salary .salary-form input:focus {
+    border-color: #e6293f;
+    box-shadow: 0 0 0 3px rgba(230, 41, 63, 0.15);
+}
+
+#salary .salary-form input::placeholder {
+    color: #888;
+}
+
+#salary .salary-form button {
+    min-height: 48px;
+    margin-top: 8px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 5px;
+    background: #e6293f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#salary .salary-form button:hover {
+    transform: translateY(-2px);
+    background: #c91f33;
+}
+
+#salary .salary-result {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 20px;
+    border: 1px solid #484848;
+    border-radius: 6px;
+    background: #242424;
+}
+
+#salary .salary-result strong {
+    color: #ff596b;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+#salary .salary-error {
+    margin: 16px 0 0;
+    padding: 12px 14px;
+    border-left: 3px solid #e6293f;
+    border-radius: 4px;
+    background: #302124;
+    color: #ff9aa5;
+    line-height: 1.5;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+@media (max-width: 600px) {
+    #salary .salary-calculator {
+        padding: 20px;
+    }
+
+    #salary .salary-rate strong {
+        font-size: 18px;
+    }
+}
+
+/* ===== УМЕНЬШЕННАЯ АНИМАЦИЯ ===== */
+
+@media(prefers-reduced-motion: reduce) {
+    #salary .salary-form input,
+    #salary .salary-form button {
+        transition: none;
+    }
+
+    #salary .salary-form button:hover {
+        transform: none;
+    }
+}
+/* =========================================
+   TEMPO — БРОНИРОВАНИЕ ЗАЛОВ
+   ========================================= */
+
+.room-booking-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 22px 44px;
+    color: #f0f0f0;
+}
+
+/* Заголовок страницы */
+
+.room-booking-header {
+    padding: 28px 30px;
+    background: #191919;
+    border: 1px solid #353535;
+    border-radius: 12px;
+}
+
+.room-booking-header h1 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.room-booking-header > p:last-child {
+    margin-bottom: 0;
+    color: #bdbdbd;
+    line-height: 1.6;
+}
+
+/* Общие секции */
+
+.room-booking-section {
+    padding: 28px;
+    background: #191919;
+    color: #f0f0f0;
+    border: 1px solid #353535;
+    border-radius: 12px;
+}
+
+.room-booking-section h2 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 750;
+}
+
+.room-booking-section > p {
+    margin: 0 0 22px;
+    color: #bdbdbd;
+    line-height: 1.6;
+}
+
+/* Форма */
+
+.room-booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 620px;
+}
+
+.room-booking-label {
+    margin-top: 8px;
+    color: #e5e5e5;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.room-booking-control {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 13px;
+    color: #f2f2f2;
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 7px;
+    font: inherit;
+    color-scheme: dark;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.room-booking-control:focus {
+    outline: none;
+    border-color: #d93649;
+    box-shadow: 0 0 0 3px rgb(217 54 73 / 16%);
+}
+
+.room-booking-control option {
+    color: #f2f2f2;
+    background: #252525;
+}
+
+.room-booking-submit {
+    align-self: flex-start;
+    margin-top: 14px;
+    padding: 12px 22px;
+    color: #fff;
+    background: #d93649;
+    border: 1px solid #d93649;
+    border-radius: 7px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.room-booking-submit:hover {
+    background: #b92739;
+    border-color: #b92739;
+    transform: translateY(-1px);
+}
+
+/* Сообщения */
+
+.room-booking-alert {
+    margin: 16px 0;
+    padding: 14px 17px;
+    border: 1px solid;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.room-booking-alert-error {
+    color: #ffc2c8;
+    background: #351d20;
+    border-color: #8b3842;
+}
+
+.room-booking-alert-success {
+    color: #c4edcf;
+    background: #1d3023;
+    border-color: #426d4c;
+}
+
+.room-booking-alert-info {
+    color: #d0d0d0;
+    background: #252525;
+    border-color: #444;
+}
+
+/* =========================================
+   МОИ БРОНИРОВАНИЯ — БЕЛАЯ СЕКЦИЯ
+   ========================================= */
+
+.room-booking-page #my-bookings {
+    padding: 28px;
+    background: #f4f4f4;
+    color: #222;
+    border: 1px solid #dedede;
+    border-radius: 12px;
+}
+
+.room-booking-page #my-bookings h2 {
+    color: #222;
+}
+
+.room-booking-page #my-bookings > p {
+    color: #606060;
+}
+
+/* TEMPO — карточки бронирований */
+
+.room-booking-page #my-bookings .room-booking-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.room-booking-page #my-bookings .room-booking-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0;
+    background: #171717;
+    color: #f5f5f5;
+    border: 1px solid #353535;
+    border-radius: 12px;
+    box-shadow: 0 5px 16px rgb(0 0 0 / 12%);
+    transition: transform 0.2s ease, border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.room-booking-page #my-bookings .room-booking-card::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: #d93649;
+}
+
+.room-booking-page #my-bookings .room-booking-card:hover {
+    transform: translateY(-3px);
+    border-color: #754047;
+    box-shadow: 0 10px 24px rgb(0 0 0 / 20%);
+}
+
+.room-booking-page #my-bookings .room-booking-card-content {
+    padding: 22px 24px 24px;
+}
+
+.room-booking-page #my-bookings .room-booking-card-content h3 {
+    margin: 0 0 20px;
+    padding-bottom: 15px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 750;
+    line-height: 1.35;
+    border-bottom: 1px solid #353535;
+}
+
+.room-booking-page #my-bookings .room-booking-card-content p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px;
+    margin: 0;
+    padding: 11px 0;
+    color: #dedede;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    border-bottom: 1px solid #2d2d2d;
+}
+
+.room-booking-page #my-bookings .room-booking-card-content p:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.room-booking-page #my-bookings .room-booking-card-content strong {
+    flex-shrink: 0;
+    color: #a9a9a9;
+    font-weight: 500;
+}
+
+/* Статус заявки */
+
+.room-booking-page #my-bookings .room-booking-card-content p strong:only-child {
+    color: #fff;
+}
+
+/* Мобильная версия */
+
+@media (max-width: 600px) {
+    .room-booking-page #my-bookings .room-booking-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .room-booking-page #my-bookings .room-booking-card-content {
+        padding: 18px;
+    }
+
+    .room-booking-page #my-bookings .room-booking-card-content h3 {
+        font-size: 19px;
+    }
+}
+/* Забронированные залы */
+#rooms .choreographer-rooms {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+#rooms .choreographer-room {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 24px;
+    overflow: hidden;
+    background: #171717;
+    color: #f5f5f5;
+    border: 1px solid #353535;
+    border-left: 4px solid #c62828;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+}
+
+#rooms .choreographer-room-info {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+    padding: 24px;
+}
+
+#rooms .choreographer-room-image {
+    order: 2;
+    display: block;
+    flex: 0 0 34%;
+    width: 34%;
+    min-height: 240px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#rooms .choreographer-room-info h3 {
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-size: 23px;
+}
+
+#rooms .choreographer-room-capacity {
+    margin-bottom: 20px;
+    color: #c5c5c5;
+}
+
+#rooms .choreographer-room-booking {
+    padding-top: 14px;
+    border-top: 1px solid #393939;
+}
+
+#rooms .choreographer-room-booking p {
+    margin: 9px 0;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+#rooms .choreographer-room-booking strong {
+    color: #ff7777;
+}
+
+#rooms > p a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ff7777;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#rooms > p a:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    #rooms .choreographer-room {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #rooms .choreographer-room-info {
+        order: 2;
+        padding: 18px;
+    }
+
+    #rooms .choreographer-room-image {
+        order: 1;
+        width: 100%;
+        min-height: 0;
+        height: 190px;
+        flex: none;
+    }
+}
 
 

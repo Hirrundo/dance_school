@@ -4,6 +4,7 @@
 
 {% block content %}
 <section class="account-dashboard">
+
     <header class="account-dashboard-header">
         <p class="account-eyebrow">TEMPO · ЛИЧНЫЙ КАБИНЕТ</p>
         <h1>
@@ -16,7 +17,7 @@
         <p>Твои занятия, рабочие задачи и информация по студии.</p>
     </header>
 
-    <section class="account-section" id="schedule">
+    <section class="account-section" id="classes">
         <h2>Мои занятия</h2>
         <p>Занятия, закреплённые за твоим профилем в студии.</p>
 
@@ -58,20 +59,169 @@
                 Проверь связь аккаунта с записью хореографа в админке.
             </div>
         {% endif %}
+
+        <div class="choreographer-schedule">
+            <h3 class="weekly-schedule-title">Расписание по дням недели</h3>
+
+            {% if next_lesson %}
+                <article class="next-lesson-card">
+                    <p class="account-eyebrow">БЛИЖАЙШЕЕ ЗАНЯТИЕ</p>
+                    <h4>{{ next_lesson.group.name }}</h4>
+
+                    <p>
+                        <strong>Дата:</strong>
+                        {{ next_lesson.date|date:"d.m.Y" }}
+                    </p>
+
+                    <p>
+                        <strong>Время:</strong>
+                        {{ next_lesson.entry.start_time|time:"H:i" }}–{{ next_lesson.entry.end_time|time:"H:i" }}
+                    </p>
+
+                    <p>
+                        <strong>Занятие:</strong>
+                        {{ next_lesson.dance_class.title }}
+                    </p>
+                </article>
+            {% endif %}
+
+            {% if schedule_by_day %}
+                <div class="weekly-schedule">
+                    {% for day in schedule_by_day %}
+                        <article class="weekly-day-card">
+                            <h4>{{ day.name }}</h4>
+
+                            {% for lesson in day.lessons %}
+                                <div class="weekly-lesson">
+                                    <p class="weekly-lesson-time">
+                                        {{ lesson.entry.start_time|time:"H:i" }}–{{ lesson.entry.end_time|time:"H:i" }}
+                                    </p>
+
+
+<p class="weekly-lesson-name">
+                                        {{ lesson.group.name }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="account-empty-state">
+                    Расписание пока не добавлено.
+                </div>
+            {% endif %}
+        </div>
     </section>
 
     <section class="account-section" id="salary">
-        <h2>Зарплата</h2>
-        <div class="account-empty-state">
-            Расчёт зарплаты подключим после определения ставок и правил начисления.
+        <h2>Калькулятор зарплаты</h2>
+        <p>Введи количество часов, отработанных за месяц.</p>
+
+        <div class="salary-calculator">
+            <div class="salary-rate">
+                <span>Твоя ставка</span>
+                <strong>{{ hourly_rate|floatformat:2 }} ₽/час</strong>
+            </div>
+
+            <form method="post" action="#salary" class="salary-form">
+                {% csrf_token %}
+
+                <label for="worked_hours">Отработано часов за месяц</label>
+                <input
+                    type="number"
+                    id="worked_hours"
+                    name="worked_hours"
+                    min="0"
+                    max="744"
+                    step="0.5"
+                    value="{{ worked_hours }}"
+                    placeholder="Например, 36"
+                    required
+                >
+
+                <button type="submit">Рассчитать зарплату</button>
+            </form>
+
+            {% if salary_error %}
+                <p class="salary-error">{{ salary_error }}</p>
+            {% endif %}
+
+            {% if salary != None %}
+                <div class="salary-result">
+                    <span>Расчётная зарплата</span>
+                    <strong>{{ salary|floatformat:2 }} ₽</strong>
+                </div>
+            {% endif %}
         </div>
     </section>
 
     <section class="account-section" id="rooms">
-        <h2>Бронирование залов</h2>
-        <div class="account-empty-state">
-            Бронирование подключим после создания модели залов и бронирований.
+    <h2>Забронированные залы</h2>
+    <p>Залы с ожидающими подтверждения и подтверждёнными бронированиями.</p>
+
+    {% if rooms %}
+        <div class="choreographer-rooms">
+            {% for room in rooms %}
+                {% with bookings=room.bookings.all %}
+                    {% if bookings %}
+                        {% for booking in bookings %}
+                           {% if booking.status == "confirmed" %}
+                                <article class="choreographer-room">
+                                    {% if room.image %}
+                                        <img
+                                            src="{{ room.image.url }}"
+                                            alt="{{ room.name }}"
+                                            class="choreographer-room-image"
+                                        >
+                                    {% endif %}
+
+                                    <div class="choreographer-room-info">
+                                        <h3>{{ room.name }}</h3>
+
+                                        <p class="choreographer-room-capacity">
+                                            Вместимость: {{ room.capacity }} чел.
+                                        </p>
+
+                                        <div class="choreographer-room-booking">
+                                            <p>
+                                                <strong>Дата:</strong>
+                                                {{ booking.date|date:"d.m.Y" }}
+                                            </p>
+                                            <p>
+                                                <strong>Время:</strong>
+                                                {{ booking.start_time|time:"H:i" }}–{{ booking.end_time|time:"H:i" }}
+                                            </p>
+                                            <p>
+                                                <strong>Цель:</strong>
+                                                {{ booking.purpose }}
+                                            </p>
+                                            <p>
+                                                <strong>Статус:</strong>
+                                                {{ booking.get_status_display }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
         </div>
-    </section>
+
+        <p>
+            <a href="{% url 'room_booking' %}">Перейти к бронированию залов</a>
+        </p>
+    {% else %}
+        <div class="account-empty-state">
+            Сейчас нет доступных залов с бронированиями.
+        </div>
+    {% endif %}
+</section>
+
+
+
+
 </section>
 {% endblock %}
