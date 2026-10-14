@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Кабинет ученика — TEMPO{% endblock %}
+
+{% block content %}
+<section class="account-dashboard">
+
+    <header class="account-dashboard-header">
+        <p class="account-eyebrow">TEMPO · ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1>Кабинет ученика</h1>
+        <p>Твоё расписание, видео занятий и личные данные.</p>
+    </header>
+
+    <section class="account-section" id="schedule">
+        <h2>Моё расписание</h2>
+
+        {% if next_lesson %}
+            <article class="next-lesson-card">
+                <p class="account-eyebrow">БЛИЖАЙШЕЕ ЗАНЯТИЕ</p>
+                <h3>{{ next_lesson.group.name }}</h3>
+
+                <p>
+                    <strong>Дата:</strong>
+                    {{ next_lesson.date|date:"d.m.Y" }}
+                </p>
+
+                <p>
+                    <strong>День:</strong>
+                    {{ next_lesson.entry.get_weekday_display }}
+                </p>
+
+                <p>
+                    <strong>Время:</strong>
+                    {{ next_lesson.entry.start_time|time:"H:i" }}–{{ next_lesson.entry.end_time|time:"H:i" }}
+                </p>
+
+                <p>
+                    <strong>Хореограф:</strong>
+                    {{ next_lesson.teacher.first_name }}
+                    {{ next_lesson.teacher.last_name }}
+                </p>
+
+                <p>
+                    <strong>Занятие:</strong>
+                    {{ next_lesson.group.dance_class.title }}
+                </p>
+            </article>
+        {% endif %}
+
+        <h3 class="weekly-schedule-title">По дням недели</h3>
+
+        {% if schedule_by_day %}
+            <div class="weekly-schedule">
+                {% for day in schedule_by_day %}
+                    <article class="weekly-day-card">
+                        <h4>{{ day.name }}</h4>
+
+                        {% for lesson in day.lessons %}
+                            <div class="weekly-lesson">
+                                <p class="weekly-lesson-time">
+                                    {{ lesson.entry.start_time|time:"H:i" }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="account-empty-state">
+                Расписание пока не добавлено.
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="account-section" id="videos">
+        <h2>Видео занятий</h2>
+        <p>Материалы с занятий для учеников твоих групп.</p>
+
+        {% for video in videos %}
+            <article class="account-group-card">
+                <h3>{{ video.title }}</h3>
+
+                <p>Группа: {{ video.group.name }}</p>
+
+                {% if video.description %}
+                    <p>{{ video.description }}</p>
+                {% endif %}
+
+                <video
+                    controls
+                    preload="metadata"
+                    style="width: 100%; max-width: 560px; max-height: 315px; border-radius: 10px; background: #000;"
+                >
+                    <source
+                        src="{% url 'group_video' video.id %}"
+                        type="video/mp4"
+                    >
+                    Твой браузер не поддерживает воспроизведение видео.
+                </video>
+            </article>
+        {% empty %}
+            <div class="account-empty-state">
+                Для твоих групп пока нет добавленных видео.
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="account-section" id="profile">
+        <h2>Мой профиль</h2>
+
+        <div class="account-empty-state">
+            <p>Логин: {{ request.user.username }}</p>
+            <p>Email: {{ request.user.email|default:"Не указан" }}</p>
+            <p>Телефон: {{ request.user.profile.phone|default:"Не указан" }}</p>
+            <p>
+                Номер карты ученика:
+                {{ request.user.profile.membership_number|default:"Неуказан" }}
+            </p>
+        </div>
+    </section>
+
+</section>
+{% endblock %}
+
+
+
+
+

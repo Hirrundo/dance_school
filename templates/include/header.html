@@ -1,8 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'dance_school:home' %}">
-            TEMPO
-        </a>
+        {% if user.is_authenticated %}
+            {% if user.is_superuser or user.is_staff or user.profile.role == "admin" %}
+                <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
+                    TEMPO
+                </a>
+            {% elif user.profile.role == "student" %}
+                <a class="navbar-brand" href="{% url 'student_dashboard' %}">
+                    TEMPO
+                </a>
+            {% elif user.profile.role == "choreographer" %}
+                <a class="navbar-brand" href="{% url 'choreographer_dashboard' %}">
+                    TEMPO
+                </a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'dance_school:home' %}">
+                    TEMPO
+                </a>
+            {% endif %}
+        {% else %}
+            <a class="navbar-brand" href="{% url 'dance_school:home' %}">
+                TEMPO
+            </a>
+        {% endif %}
 
         <button
             class="navbar-toggler"
@@ -18,28 +38,85 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'dance_school:teacher_list' %}">
-            Команда
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'dance_school:class_list' %}">
-            Группы
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'dance_school:studio' %}">
-            Залы и жизнь студии
-        </a>
-    </li>
-</ul>
+                {% if user.is_authenticated %}
 
-<div class="d-flex">
-    <a class="btn btn-outline-light" href="/admin/login/">
-        Войти
-    </a>
-</div>
+                    {% if user.is_superuser or user.is_staff or user.profile.role == "admin" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_dashboard' %}##trial-requests">
+                                Заявки
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_classes' %}">
+                                Группы и расписание
+                            </a>
+                        </li>
+
+                    {% elif user.profile.role == "student" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'student_dashboard' %}">
+                                Расписание
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'student_dashboard' %}#videos">
+                                Видео
+                            </a>
+                        </li>
+
+                    {% elif user.profile.role == "choreographer" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'choreographer_dashboard' %}">
+                                Расписание
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'choreographer_dashboard' %}#salary">
+                                Зарплата
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'room_booking' %}">
+                                Бронь залов
+                            </a>
+                        </li>
+                    {% endif %}
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dance_school:teacher_list' %}">
+                            Команда
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dance_school:class_list' %}">
+                            Группы
+                        </a>
+                    </li>
+                    <li cl
+user.is is for sale!
+user.is
+
+
+ass="nav-item">
+                        <a class="nav-link" href="{% url 'dance_school:studio' %}">
+                            Залы и жизнь студии
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <div class="d-flex">
+                {% if user.is_authenticated %}
+                    <a class="btn btn-outline-light" href="{% url 'logout' %}">
+                        Выйти
+                    </a>
+                {% else %}
+                    <a class="btn btn-outline-light" href="{% url 'login' %}">
+                        Войти
+                    </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>

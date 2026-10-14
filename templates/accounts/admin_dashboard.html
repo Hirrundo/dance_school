@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Кабинет администратора — TEMPO{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard">
+    <div class="admin-dashboard-header">
+        <div>
+            <p class="admin-eyebrow">TEMPO · УПРАВЛЕНИЕ СТУДИЕЙ</p>
+            <h1>Кабинет администратора</h1>
+            <p class="admin-description">
+                Управление учениками, занятиями и работой студии.
+            </p>
+        </div>
+    </div>
+
+    <div class="admin-dashboard-stats">
+        <div class="admin-stat-card">
+            <span>Ученики</span>
+            <strong>{{ students_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Хореографы</span>
+            <strong>{{ choreographers_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Занятия</span>
+            <strong>{{ classes_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Танцевальные стили</span>
+            <strong>{{ styles_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Всего групп</span>
+            <strong>{{ groups_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Активные группы</span>
+            <strong>{{ active_groups_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Расписание</span>
+            <strong>{{ schedules_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Видео занятий</span>
+            <strong>{{ videos_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Заявки на пробное занятие</span>
+            <strong>{{ trial_requests_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Залы</span>
+            <strong>{{ rooms_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Ожидают подтверждения</span>
+            <strong>{{ pending_bookings_count }}</strong>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Подтверждённые бронирования</span>
+            <strong>{{ confirmed_bookings_count }}</strong>
+        </div>
+    </div>
+    <div class="admin-dashboard-grid">
+    <a href="{% url 'admin_accounts' %}" class="admin-dashboard-card">
+        <span class="admin-card-number">01</span>
+        <h2>Учётные записи</h2>
+        <p>Создание аккаунтов, выдача доступа и управление пользователями.</p>
+        <span class="admin-card-link">Управлять →</span>
+    </a>
+
+    <a href="{% url 'admin_classes' %}" class="admin-dashboard-card">
+        <span class="admin-card-number">02</span>
+        <h2>Занятия</h2>
+        <p>Управление занятиями, направлениями, стоимостью и хореографами.</p>
+        <span class="admin-card-link">Управлять →</span>
+    </a>
+
+    <a href="#room-bookings" class="admin-dashboard-card">
+        <span class="admin-card-number">03</span>
+        <h2>Бронирование залов</h2>
+        <p>Просмотр и управление бронированиями хореографов.</p>
+        <span class="admin-card-link">Управлять →</span>
+    </a>
+    <a href="#trial-requests" class="admin-dashboard-card">
+        <span class="admin-card-number">04</span>
+        <h2>Заявки</h2>
+        <p>Просмотр заявок на пробные занятия и обработка обращений.</p>
+        <span class="admin-card-link">Просмотреть →</span>
+    </a>
+
+
+    
+    </div>
+
+
+
+<section class="admin-recent-section" id="trial-requests">
+    <h2>Заявки на пробные занятия</h2>
+
+    {% for trial_request in recent_trial_requests %}
+        <div class="admin-recent-item" id="trial-request-{{ trial_request.id }}">
+            <div>
+                <strong>{{ trial_request.name }}</strong>
+                <p>{{ trial_request.dance_class.title }}</p>
+                <p>{{ trial_request.phone }}</p>
+                <p>{{ trial_request.created_at|date:"d.m.Y H:i" }}</p>
+                <span class="request-status">{{ trial_request.get_status_display }}</span>
+
+                {% if trial_request.status == "pending" %}
+                    <div class="request-actions">
+                        <button type="button" class="admin-action-button"
+                            data-action="trial_request"
+                            data-id="{{ trial_request.id }}"
+                            data-status="confirmed">Подтвердить</button>
+                        <button type="button" class="admin-action-button danger"
+                            data-action="trial_request"
+                            data-id="{{ trial_request.id }}"
+                            data-status="rejected">Отклонить</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Заявок пока нет.</p>
+    {% endfor %}
+</section>
+    
+    <section class="admin-recent-section" id="room-bookings">
+    <h2>Бронирования залов</h2>
+
+    {% for booking in recent_bookings %}
+        <div class="admin-recent-item" id="room-booking-{{ booking.id }}">
+            <div>
+                <strong>{{ booking.room.name }}</strong>
+                <p>Хореограф: {{ booking.teacher }}</p>
+                <p>
+                    {{ booking.date|date:"d.m.Y" }},
+                    {{ booking.start_time|time:"H:i" }}–{{ booking.end_time|time:"H:i" }}
+                </p>
+                <p>{{ booking.purpose }}</p>
+                <span class="booking-status">{{ booking.get_status_display }}</span>
+
+                {% if booking.status == "pending" %}
+                    <div class="booking-actions">
+                        <button type="button" class="admin-action-button"
+                            data-action="room_booking"
+                            data-id="{{ booking.id }}"
+                            data-status="confirmed">Подтвердить</button>
+                        <button type="button" class="admin-action-button danger"
+                            data-action="room_booking"
+                            data-id="{{ booking.id }}"
+                            data-status="rejected">Отклонить</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Бронирований пока нет.</p>
+    {% endfor %}
+</section>
+
+<div id="admin-action-message" role="status" aria-live="polite"></div>
+    
+</section>
+<script>
+document.querySelectorAll(".admin-action-button").forEach((button) => {
+    button.addEventListener("click", async () => {
+        const { action, id, status } = button.dataset;
+        const item = button.closest(".admin-recent-item");
+        const message = document.getElementById("admin-action-message");
+
+        if (!item || !message) return;
+
+        const buttons = item.querySelectorAll("button");
+        buttons.forEach((element) => {
+            element.disabled = true;
+        });
+
+        const data = new FormData();
+data.append("action", action);
+data.append("object_id", id);
+data.append("status", status);
+
+const csrfToken = document.querySelector(
+    '[name="csrfmiddlewaretoken"]'
+)?.value || document.cookie
+    .split("; ")
+    .find(row => row.startsWith("csrftoken="))
+    ?.split("=")[1];
+
+if (!csrfToken) {
+    message.textContent = "Не найден CSRF-токен. Обнови страницу.";
+    message.className = "admin-action-error";
+    buttons.forEach(element => {
+        element.disabled = false;
+    });
+    return;
+}
+
+        try {
+            const response = await fetch(window.location.href, {
+                                method: "POST",
+                                body: data,
+                                headers: {
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRFToken": csrfToken,
+                            },
+                        });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || "Не удалось сохранить изменения.");
+            }
+
+            const statusElement = item.querySelector(
+                action === "trial_request" ? ".request-status" : ".booking-status"
+            );
+
+            if (statusElement) {
+                statusElement.textContent = result.status_label;
+            }
+
+            item.querySelector(".request-actions, .booking-actions")?.remove();
+
+            message.textContent = result.message;
+            message.className = "admin-action-success";
+        } catch (error) {
+            message.textContent = error.message;
+            message.className = "admin-action-error";
+
+            buttons.forEach((element) => {
+                element.disabled = false;
+            });
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+
+
+

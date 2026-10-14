@@ -8,10 +8,11 @@ class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
     extra = 0
-    max_num=1
+    max_num = 1
 
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
+
     def get_inlines(self, request, obj=None):
         if obj is None:
             return ()
@@ -24,16 +25,23 @@ admin.site.register(User, CustomUserAdmin)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
         "user",
+        "role",
         "phone",
+        "hourly_rate",
         "birth_date",
         "membership_number",
         "registration_date",
     )
+
+    list_filter = ("role",)
+
     search_fields = (
         "user__username",
         "user__email",
         "phone",
         "membership_number",
     )
+
     readonly_fields = ("registration_date",)
+
 # Register your models here.

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Бронирование залов — TEMPO{% endblock %}
+
+{% block content %}
+<section class="room-booking-page">
+
+    <header class="room-booking-header">
+        <p class="account-eyebrow">TEMPO · ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1>Бронирование залов</h1>
+        <p>Выбери зал и время для своей работы в студии.</p>
+    </header>
+
+    <section class="room-booking-section" id="booking-form">
+        <h2>Забронировать зал</h2>
+        <p>Выбери подходящее время и отправь заявку на бронирование.</p>
+
+        {% if error %}
+            <div class="room-booking-alert room-booking-alert-error" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if success %}
+            <div class="room-booking-alert room-booking-alert-success" role="status">
+                Заявка успешно отправлена! Дождись подтверждения бронирования.
+            </div>
+        {% endif %}
+
+        {% if rooms %}
+            <form method="post" class="room-booking-form">
+                {% csrf_token %}
+
+                <label class="room-booking-label" for="room">Танцевальный зал</label>
+                <select class="room-booking-control" id="room" name="room" required>
+                    <option value="">Выбери зал</option>
+                    {% for room in rooms %}
+                        <option value="{{ room.id }}">
+                            {{ room.name }} — вместимость: {{ room.capacity }} чел.
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label class="room-booking-label" for="date">Дата</label>
+                <input class="room-booking-control"
+                       type="date" id="date" name="date"
+                       min="{{ today|date:'Y-m-d' }}" required>
+
+                <label class="room-booking-label" for="start_time">Время начала</label>
+                <input class="room-booking-control"
+                       type="time" id="start_time" name="start_time" required>
+
+                <label class="room-booking-label" for="end_time">Время окончания</label>
+                <input class="room-booking-control"
+                       type="time" id="end_time" name="end_time" required>
+
+                <label class="room-booking-label" for="purpose">Цель бронирования</label>
+                <input class="room-booking-control"
+                       type="text" id="purpose" name="purpose"
+                       maxlength="255"
+                       placeholder="Например, индивидуальная тренировка"
+                       required>
+
+                <button class="room-booking-submit" type="submit">
+                    Отправить заявку
+                </button>
+            </form>
+        {% else %}
+            <div class="room-booking-alert room-booking-alert-info">
+                Сейчас нет доступных для бронирования залов.
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="room-booking-section" id="my-bookings">
+        <h2>Мои бронирования</h2>
+        <p>История заявок и их текущие статусы.</p>
+
+        {% if bookings %}
+            <div class="room-booking-list">
+                {% for booking in bookings %}
+                    <article class="room-booking-card">
+                        <div class="room-booking-card-content">
+                            <h3>{{ booking.room.name }}</h3>
+
+                            <p>
+                                <strong>Дата:</strong>
+                                {{ booking.date|date:"d.m.Y" }}
+                            </p>
+
+                            <p>
+                                <strong>Время:</strong>
+                                {{ booking.start_time|time:"H:i" }}–{{ booking.end_time|time:"H:i" }}
+                            </p>
+
+                            <p>
+                                <strong>Цель:</strong>
+                                {{ booking.purpose }}
+                            </p>
+
+
+<p>
+                                <strong>Статус:</strong>
+                                {{ booking.get_status_display }}
+                            </p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="room-booking-alert room-booking-alert-info">
+                У тебя пока нет бронирований.
+            </div>
+        {% endif %}
+    </section>
+
+</section>
+{% endblock %}
+
+
+

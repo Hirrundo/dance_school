@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Prefetch
-from .models import DanceClass, DanceStyle, Teacher,Student,TrialRequest
+from .models import DanceClass, DanceStyle, Teacher, TrialRequest
 
 
 def dance_class_list(request):
@@ -312,33 +312,5 @@ def dance_style_detail(request, slug):
         request,
         "dance_school/dance_style_detail.html",
         {"dance_style": dance_style},
-    )
-
-def student_list(request):
-    students = Student.objects.order_by("last_name", "first_name")
-
-    context = {
-        "students": students,
-        "title": "Наши ученики",
-        "total_count": students.count(),
-        "has_students": students.exists(),
-    }
-
-    return render(
-        request,
-        "dance_school/student_list.html",
-        context,
-    )
-
-def student_detail(request, pk):
-    student = get_object_or_404(Student, pk=pk)
-
-    return render(
-        request,
-        "dance_school/student_detail.html",
-        {
-            "student": student,
-            "title": f"{student.first_name} {student.last_name}",
-        },
     )
 # Create your views here.

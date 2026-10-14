@@ -1,56 +1,192 @@
 [
 {
-  "model": "dance_school.dancestyle",
-  "pk": 1,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "Hip-hop",
-    "slug": "hip-hop",
-    "description": "Уличный танцевальный стиль, в котором сочетаются ритм, пластика и индивидуальность. На занятиях изучаем базовые движения, развиваем музыкальность и импровизацию, учимся чувствовать бит и находить собственную манеру танца."
+    "app_label": "admin",
+    "model": "logentry"
   }
 },
 {
-  "model": "dance_school.dancestyle",
-  "pk": 2,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "K-pop",
-    "slug": "k-pop",
-    "description": "Хореография по мотивам корейской поп-сцены — отточенные движения, синхронность и яркая сценическая подача. Разбираем танцы любимых исполнителей, развиваем координацию и учимся передавать характер музыки через движение."
+    "app_label": "auth",
+    "model": "group"
   }
 },
 {
-  "model": "dance_school.dancestyle",
-  "pk": 3,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "Contemporary",
-    "slug": "contemporary",
-    "description": "Современный танец, объединяющий технику, пластику и эмоциональное самовыражение. Исследуем возможности движения, работаем с балансом и пространством, учимся передавать настроение и истории без слов."
+    "app_label": "auth",
+    "model": "permission"
   }
 },
 {
-  "model": "dance_school.dancestyle",
-  "pk": 4,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "Народные танцы",
-    "slug": "folk-dance",
-    "description": "Изучаем танцевальные традиции разных народов, характерные движения, ритмы и национальную пластику. Развиваем координацию, музыкальность и технику, знакомимся с культурой через танец."
+    "app_label": "auth",
+    "model": "user"
   }
 },
 {
-  "model": "dance_school.dancestyle",
-  "pk": 5,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "Vogue",
-    "slug": "vogue",
-    "description": "Танцевальный стиль, вдохновлённый модой и подиумной эстетикой. Изучаем эффектные позы, чёткие линии рук, проходки и выразительную подачу, развиваем координацию, пластичность и уверенность в движении."
+    "app_label": "contenttypes",
+    "model": "contenttype"
   }
 },
 {
-  "model": "dance_school.dancestyle",
-  "pk": 6,
+  "model": "contenttypes.contenttype",
   "fields": {
-    "name": "Jazz-funk",
-    "slug": "jazz-funk",
-    "description": "Сценический стиль, сочетающий джазовую технику, резкие акценты и выразительную хореографию. Работаем над пластикой, координацией и подачей, учимся соединять точность движений с индивидуальным характером исполнения."
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "danceclass"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "dancestyle"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "student"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "teacher"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "accounts",
+    "model": "profile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "trialrequest"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "studiogalleryphoto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "classschedule"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "dancegroup"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "groupvideo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "roombooking"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "dance_school",
+    "model": "studioroom"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8tce4zodadj2dy9vvysm3aac5nwnds8t",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMRe-SuYpCTILp2J0zIDs2hbYKEoGp6t2rSAzt-t97_21GOvZ5PIpu4yLmasBcfjem9NRcgTwo31eb1rxvC9uq2JMWO6yir9vp_h3MVOZahzi1hAoYBHrGqIF8E5Gxk-DAc4qdY6K-EfVJEJRTGxyCTJMSRPP5AuotOGs:1xGnRo:9Kd4BhaK5aX8wmRDLvlfD7a4jAKblbadwzXhPvkakzM",
+    "expire_date": "2026-10-28T01:06:24.656Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fztk7kob2me4kpnrx3qrxzshsw71xqpu",
+  "fields": {
+    "session_data": ".eJxVjEEKgzAQRe8y6xJMYqpx2b1nkJnMTLUtEYyuSu9eAi7a1Yf3Hv8NEx77PB1FtmlhGMDC5ZcRpqfkKviB-b6atOZ9W8jUxJy2mHFled3O9u9gxjLDAB1SUt8E7kkjqtc2XMV6VRe1c22fWFLvqQ6LYCC00jbON4TKIXbw-QIjgTmy:1xGm3X:0X6D22Liv0_RHY50VuFQk-oGgHl_cuPCas5vlCMYc4A",
+    "expire_date": "2026-10-27T23:37:15.423Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hkfo1hlyeoski2373r42b0wuf8augnj6",
+  "fields": {
+    "session_data": ".eJxVjMsOgkAMAP-lZ7OxFffB0TvfQNptcVEDCQsn478bEg56nZnMG3re1tJv1ZZ-VGiB4PTLhPPTpl3og6f77PI8rcsobk_cYavrZrXX7Wj_BoVrgRZQL0xKAUXYs8ZBozTXaBR5IG-Gij4Fw4EbCYmoiR4p-KB4luRzhs8X-UE4BA:1xGqJC:bUmVUpf7-G4EOfyK2rdBllAEZ18IZ0QToic4ooUsRiY",
+    "expire_date": "2026-10-28T04:09:42.373Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ikjj7nk24gpf5m8j2i2v1qhjex3hr94c",
+  "fields": {
+    "session_data": ".eJxVjEEKgzAQRe8y6xJMYqpx2b1nkJnMTLUtEYyuSu9eAi7a1Yf3Hv8NEx77PB1FtmlhGMDC5ZcRpqfkKviB-b6atOZ9W8jUxJy2mHFled3O9u9gxjLDAB1SUt8E7kkjqtc2XMV6VRe1c22fWFLvqQ6LYCC00jbON4TKIXbw-QIjgTmy:1xGnxz:AlfWnvdo7yJKmwED7pDNPZ4oc1xmv0HKxlBy17gXbRE",
+    "expire_date": "2026-10-28T01:39:39.634Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "okr3kjp9dqc1waorydkwqrsipbc70j99",
+  "fields": {
+    "session_data": ".eJxVjEEKgzAQRe8y6xJMYqpx2b1nkJnMTLUtEYyuSu9eAi7a1Yf3Hv8NEx77PB1FtmlhGMDC5ZcRpqfkKviB-b6atOZ9W8jUxJy2mHFled3O9u9gxjLDAB1SUt8E7kkjqtc2XMV6VRe1c22fWFLvqQ6LYCC00jbON4TKIXbw-QIjgTmy:1xGwvo:PlytFtd3i1QlQSRbrOuqrbE4is9so5TOA10mTnLdJWM",
+    "expire_date": "2026-10-28T11:14:00.081Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "q7ripjylvq0u8a6w1qptfyzx36msptec",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMRe-SuYpCTILp2J0zIDs2hbYKEoGp6t2rSAzt-t97_21GOvZ5PIpu4yLmasBcfjem9NRcgTwo31eb1rxvC9uq2JMWO6yir9vp_h3MVOZahzi1hAoYBHrGqIF8E5Gxk-DAc4qdY6K-EfVJEJRTGxyCTJMSRPP5AuotOGs:1xGwW1:ZKqMuVnmqy6wY90xZ4MBF1Wovj9_Aj1WCmqX_FLuD0g",
+    "expire_date": "2026-10-28T10:47:21.918Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sxwvcvv9qreys1wvjss4yw7o0ova4mmo",
+  "fields": {
+    "session_data": ".eJxVjMsOgkAMAP-lZ7OxFffB0TvfQNptcVEDCQsn478bEg56nZnMG3re1tJv1ZZ-VGiB4PTLhPPTpl3og6f77PI8rcsobk_cYavrZrXX7Wj_BoVrgRZQL0xKAUXYs8ZBozTXaBR5IG-Gij4Fw4EbCYmoiR4p-KB4luRzhs8X-UE4BA:1xGqJD:1wPmVvu3tuhlFcsxYqt8hZb8k-JbZZCshsI8TgPczd4",
+    "expire_date": "2026-10-28T04:09:43.170Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "y78bxvzh7vkwmq7f2x2qnkff2apg3u6w",
+  "fields": {
+    "session_data": ".eJxVjEEKgzAQRe8y6xJMYqpx2b1nkJnMTLUtEYyuSu9eAi7a1Yf3Hv8NEx77PB1FtmlhGMDC5ZcRpqfkKviB-b6atOZ9W8jUxJy2mHFled3O9u9gxjLDAB1SUt8E7kkjqtc2XMV6VRe1c22fWFLvqQ6LYCC00jbON4TKIXbw-QIjgTmy:1xGmEr:6xpAJGj3S0UsogJ-Gskud6Rj49grbqxzJCtq-bJRa0Y",
+    "expire_date": "2026-10-27T23:48:57.598Z"
   }
 },
 {
@@ -59,8 +195,10 @@
   "fields": {
     "first_name": "Алан",
     "last_name": "Ли",
+    "profile": 3,
     "birth_date": "2002-03-08",
     "biography": "Преподаёт K-pop-хореографию, специализируется на кавер-танцах, синхронности и сценической подаче. Помогает ученикам разбирать хореографии популярных исполнителей и увереннее чувствовать себя на сцене.",
+    "photo": "teachers/Alan_lee_5AUllz5.jpeg",
     "created_at": "2026-10-12T17:23:14.055Z"
   }
 },
@@ -70,8 +208,10 @@
   "fields": {
     "first_name": "Анна",
     "last_name": "Морозова",
+    "profile": 4,
     "birth_date": "1998-09-19",
     "biography": "Специализируется на современной хореографии, пластике и эмоциональном самовыражении. На занятиях уделяет внимание технике, работе с пространством и выразительности движений.",
+    "photo": "teachers/anna_morozova_R9l4UpC.jpg",
     "created_at": "2026-10-12T17:25:27.511Z"
   }
 },
@@ -81,8 +221,10 @@
   "fields": {
     "first_name": "Марк",
     "last_name": "Соколов",
+    "profile": 5,
     "birth_date": "2000-04-12",
     "biography": "Преподаёт хип-хоп, основы freestyle и музыкальность. Помогает ученикам развивать чувство ритма, координацию и собственный танцевальный стиль.",
+    "photo": "teachers/mark_sokolov_g9K5lFM.jpg",
     "created_at": "2026-10-12T17:27:36.199Z"
   }
 },
@@ -92,8 +234,10 @@
   "fields": {
     "first_name": "Виктория",
     "last_name": "Белова",
+    "profile": null,
     "birth_date": "2002-01-25",
     "biography": "Специализируется на Vogue, подиумной походке, выразительных позах и линиях рук. На занятиях развивает у учеников артистизм, координацию и уверенную подачу.",
+    "photo": "teachers/victoria_belova_7VOFBEX.jpg",
     "created_at": "2026-10-12T17:30:10.549Z"
   }
 },
@@ -103,8 +247,10 @@
   "fields": {
     "first_name": "Алексей",
     "last_name": "Громов",
+    "profile": null,
     "birth_date": "1992-07-17",
     "biography": "Изучает и преподаёт народную хореографию, сочетая традиционные движения с постановочной работой. Уделяет внимание технике, ритму, характеру танца и культурным особенностям разных направлений.",
+    "photo": "teachers/alexey_gromov_Yb8co2t.jpg",
     "created_at": "2026-10-12T17:32:32.070Z"
   }
 },
@@ -114,9 +260,71 @@
   "fields": {
     "first_name": "Диана",
     "last_name": "Волкова",
+    "profile": null,
     "birth_date": "1999-11-06",
     "biography": "Преподаёт Jazz-funk, сочетая джазовую технику с динамичной современной хореографией. Работает над чёткими акцентами, координацией, пластикой и сценической выразительностью.",
+    "photo": "teachers/diana_volkova_W7o7hR2.jpg",
     "created_at": "2026-10-12T17:34:54.175Z"
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 1,
+  "fields": {
+    "name": "Hip-hop",
+    "slug": "hip-hop",
+    "description": "Уличный танцевальный стиль, в котором сочетаются ритм, пластика и индивидуальность. На занятиях изучаем базовые движения, развиваем музыкальность и импровизацию, учимся чувствовать бит и находить собственную манеру танца.",
+    "image": ""
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 2,
+  "fields": {
+    "name": "K-pop",
+    "slug": "k-pop",
+    "description": "Хореография по мотивам корейской поп-сцены — отточенные движения, синхронность и яркая сценическая подача. Разбираем танцы любимых исполнителей, развиваем координацию и учимся передавать характер музыки через движение.",
+    "image": ""
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 3,
+  "fields": {
+    "name": "Contemporary",
+    "slug": "contemporary",
+    "description": "Современный танец, объединяющий технику, пластику и эмоциональное самовыражение. Исследуем возможности движения, работаем с балансом и пространством, учимся передавать настроение и истории без слов.",
+    "image": ""
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 4,
+  "fields": {
+    "name": "Народные танцы",
+    "slug": "folk-dance",
+    "description": "Изучаем танцевальные традиции разных народов, характерные движения, ритмы и национальную пластику. Развиваем координацию, музыкальность и технику, знакомимся с культурой через танец.",
+    "image": ""
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 5,
+  "fields": {
+    "name": "Vogue",
+    "slug": "vogue",
+    "description": "Танцевальный стиль, вдохновлённый модой и подиумной эстетикой. Изучаем эффектные позы, чёткие линии рук, проходки и выразительную подачу, развиваем координацию, пластичность и уверенность в движении.",
+    "image": ""
+  }
+},
+{
+  "model": "dance_school.dancestyle",
+  "pk": 6,
+  "fields": {
+    "name": "Jazz-funk",
+    "slug": "jazz-funk",
+    "description": "Сценический стиль, сочетающий джазовую технику, резкие акценты и выразительную хореографию. Работаем над пластикой, координацией и подачей, учимся соединять точность движений с индивидуальным характером исполнения.",
+    "image": ""
   }
 },
 {
@@ -129,6 +337,7 @@
     "duration_minutes": 60,
     "capacity": 10,
     "description": "Групповые занятия K-pop для участников от 12 лет. Изучаем хореографии популярных исполнителей, развиваем чувство ритма, координацию и сценическую подачу. Разбираем движения постепенно, уделяя внимание синхронности и уверенности в танце.",
+    "image": "",
     "price": "600.00",
     "is_available": true,
     "created_at": "2026-10-12T21:21:33.801Z",
@@ -148,10 +357,11 @@
     "duration_minutes": 120,
     "capacity": 15,
     "description": "Групповые занятия K-pop для участников от 18 лет. Изучаем хореографии популярных исполнителей, работаем над синхронностью, музыкальностью и сценической подачей. Постепенно разбираем танцевальные связки, развиваем координацию и уверенность в движениях.",
+    "image": "",
     "price": "1500.00",
     "is_available": true,
     "created_at": "2026-10-12T21:26:35.837Z",
-    "updated_at": "2026-10-12T21:26:35.837Z",
+    "updated_at": "2026-10-14T09:20:25.906Z",
     "dance_styles": [
       2
     ]
@@ -167,6 +377,7 @@
     "duration_minutes": 90,
     "capacity": 10,
     "description": "Занятия хип-хопом для детей от 8 лет. Изучаем базовые движения и ритмические комбинации, развиваем координацию, музыкальность и чувство ритма. Постепенно знакомимся с основами freestyle и учимся выражать себя через танец.",
+    "image": "",
     "price": "900.00",
     "is_available": true,
     "created_at": "2026-10-12T21:29:01.569Z",
@@ -186,6 +397,7 @@
     "duration_minutes": 150,
     "capacity": 15,
     "description": "Занятия хип-хопом для участников от 16 лет. Осваиваем базовые и более сложные элементы, работаем над музыкальностью, техникой и freestyle. Изучаем танцевальные комбинации, развиваем индивидуальный стиль и уверенность в импровизации.",
+    "image": "",
     "price": "1750.00",
     "is_available": true,
     "created_at": "2026-10-12T21:31:19.466Z",
@@ -205,10 +417,11 @@
     "duration_minutes": 120,
     "capacity": 8,
     "description": "Занятия contemporary для участников от 12 лет. Изучаем основы современной хореографии, развиваем гибкость, координацию и контроль над движениями. Работаем с пластикой, перемещением в пространстве и эмоциональной выразительностью, постепенно осваивая танцевальные связки.",
-    "price": "1200.00",
+    "image": "",
+    "price": "1100.00",
     "is_available": true,
     "created_at": "2026-10-12T21:35:57.981Z",
-    "updated_at": "2026-10-12T21:35:57.981Z",
+    "updated_at": "2026-10-14T09:09:28.763Z",
     "dance_styles": [
       3
     ]
@@ -224,6 +437,7 @@
     "duration_minutes": 120,
     "capacity": 8,
     "description": "Занятия contemporary для взрослых от 18 лет. Исследуем возможности тела через современную хореографию, работаем над пластикой, балансом, координацией и качеством движений. Учимся передавать эмоции через танец и соединять отдельные элементы в выразительные постановки.",
+    "image": "",
     "price": "1200.00",
     "is_available": true,
     "created_at": "2026-10-12T21:37:18.738Z",
@@ -243,6 +457,7 @@
     "duration_minutes": 90,
     "capacity": 12,
     "description": "Занятия Jazz-funk для участников от 16 лет. Сочетаем элементы джазовой техники с динамичной современной хореографией. Работаем над координацией, пластикой, музыкальностью и чёткими акцентами, изучаем танцевальные связки и развиваем сценическую выразительность.",
+    "image": "",
     "price": "1500.00",
     "is_available": true,
     "created_at": "2026-10-12T21:39:07.648Z",
@@ -262,6 +477,7 @@
     "duration_minutes": 120,
     "capacity": 15,
     "description": "Занятия Jazz-funk для взрослых от 21 года. Осваиваем энергичную хореографию, соединяющую джазовую технику и современные танцевальные стили. Уделяем внимание точности движений, музыкальным акцентам, пластике и артистизму, постепенно собирая элементы в полноценные постановки.",
+    "image": "",
     "price": "2200.00",
     "is_available": true,
     "created_at": "2026-10-12T21:41:09.719Z",
@@ -281,6 +497,7 @@
     "duration_minutes": 120,
     "capacity": 10,
     "description": "Занятия Vogue для взрослых от 18 лет. Изучаем основы стиля, включая выразительные позы, движения рук, подиумную походку и работу с линиями тела. Развиваем координацию, артистизм и уверенную подачу, постепенно объединяя элементы в танцевальные комбинации.",
+    "image": "",
     "price": "2500.00",
     "is_available": true,
     "created_at": "2026-10-12T21:43:29.933Z",
@@ -300,6 +517,7 @@
     "duration_minutes": 60,
     "capacity": 15,
     "description": "Занятия народными танцами для детей от 6 лет. В игровой форме знакомимся с танцевальными традициями разных народов, учимся чувствовать ритм и выполнять простые движения. Развиваем координацию, музыкальность и умение двигаться в команде, постепенно разучивая небольшие танцевальные номера.",
+    "image": "",
     "price": "600.00",
     "is_available": true,
     "created_at": "2026-10-12T21:48:37.360Z",
@@ -319,6 +537,7 @@
     "duration_minutes": 90,
     "capacity": 20,
     "description": "Занятия народными танцами для участников от 16 лет. Изучаем танцевальные традиции разных народов, осваиваем характерные движения, ритмические рисунки и работу в ансамбле. Развиваем технику и выразительность, объединяя изученные элементы в полноценные постановки.",
+    "image": "",
     "price": "950.00",
     "is_available": true,
     "created_at": "2026-10-12T21:50:12.623Z",
@@ -338,6 +557,7 @@
     "duration_minutes": 120,
     "capacity": 15,
     "description": "Занятия народными танцами для взрослых от 30 лет. Знакомимся с разнообразием народной хореографии, работаем над координацией, музыкальностью и техникой исполнения. Разучиваем танцевальные комбинации и сценические композиции, уделяя внимание характеру и культурным особенностям каждого направления.",
+    "image": "",
     "price": "1750.00",
     "is_available": true,
     "created_at": "2026-10-12T21:51:30.454Z",
@@ -345,6 +565,2935 @@
     "dance_styles": [
       4
     ]
+  }
+},
+{
+  "model": "dance_school.trialrequest",
+  "pk": 2,
+  "fields": {
+    "dance_class": 2,
+    "name": "liza",
+    "phone": "+7 (777) 777-77-77",
+    "comment": "+",
+    "created_at": "2026-10-14T06:33:01.808Z",
+    "status": "confirmed"
+  }
+},
+{
+  "model": "dance_school.trialrequest",
+  "pk": 3,
+  "fields": {
+    "dance_class": 1,
+    "name": "Екатерина",
+    "phone": "+7 (777) 777-77-77",
+    "comment": "",
+    "created_at": "2026-10-14T11:08:24.038Z",
+    "status": "pending"
+  }
+},
+{
+  "model": "dance_school.trialrequest",
+  "pk": 4,
+  "fields": {
+    "dance_class": 4,
+    "name": "Максим",
+    "phone": "+7(999)999-99-99",
+    "comment": "",
+    "created_at": "2026-10-14T11:09:13.581Z",
+    "status": "pending"
+  }
+},
+{
+  "model": "dance_school.dancegroup",
+  "pk": 1,
+  "fields": {
+    "name": "K-pop 12+",
+    "dance_class": 1,
+    "is_active": true,
+    "students": [
+      2
+    ]
+  }
+},
+{
+  "model": "dance_school.dancegroup",
+  "pk": 2,
+  "fields": {
+    "name": "Hip-hop 16+",
+    "dance_class": 4,
+    "is_active": true,
+    "students": [
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "dance_school.classschedule",
+  "pk": 1,
+  "fields": {
+    "group": 1,
+    "weekday": 1,
+    "start_time": "14:00:00",
+    "end_time": "15:00:00"
+  }
+},
+{
+  "model": "dance_school.classschedule",
+  "pk": 2,
+  "fields": {
+    "group": 2,
+    "weekday": 6,
+    "start_time": "15:00:00",
+    "end_time": "17:30:00"
+  }
+},
+{
+  "model": "dance_school.groupvideo",
+  "pk": 1,
+  "fields": {
+    "group": 1,
+    "title": "ENXYPEN",
+    "description": "",
+    "video": "group_videos/18275673115376.mp4",
+    "created_at": "2026-10-13T23:51:33.232Z"
+  }
+},
+{
+  "model": "dance_school.groupvideo",
+  "pk": 2,
+  "fields": {
+    "group": 2,
+    "title": "Hip-hop 16+",
+    "description": "",
+    "video": "group_videos/18284594465520.mp4",
+    "created_at": "2026-10-14T09:45:00.679Z"
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 1,
+  "fields": {
+    "name": "Зал 1",
+    "description": "",
+    "capacity": 20,
+    "image": "rooms/hall_01_large.jpeg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 2,
+  "fields": {
+    "name": "Зал 2",
+    "description": "",
+    "capacity": 15,
+    "image": "rooms/hall_02_medium.jpg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 3,
+  "fields": {
+    "name": "Зал 3",
+    "description": "",
+    "capacity": 10,
+    "image": "rooms/hall_03_small.jpg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 4,
+  "fields": {
+    "name": "Зал 4",
+    "description": "",
+    "capacity": 15,
+    "image": "rooms/hall_04_kpop.jpg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 5,
+  "fields": {
+    "name": "Зал 5",
+    "description": "",
+    "capacity": 10,
+    "image": "rooms/hall_05_contemporary.jpg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.studioroom",
+  "pk": 6,
+  "fields": {
+    "name": "Зал 6",
+    "description": "",
+    "capacity": 8,
+    "image": "rooms/hall_06_private.jpg",
+    "is_available": true
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 1,
+  "fields": {
+    "room": 4,
+    "teacher": 1,
+    "date": "2026-10-20",
+    "start_time": "14:00:00",
+    "end_time": "15:00:00",
+    "purpose": "Занятие k-pop 12+",
+    "status": "confirmed",
+    "created_at": "2026-10-14T03:00:27.122Z"
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 2,
+  "fields": {
+    "room": 6,
+    "teacher": 1,
+    "date": "2026-10-26",
+    "start_time": "14:00:00",
+    "end_time": "16:00:00",
+    "purpose": "индивидуальная тренировка",
+    "status": "rejected",
+    "created_at": "2026-10-14T03:03:04.351Z"
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 3,
+  "fields": {
+    "room": 1,
+    "teacher": 1,
+    "date": "2026-10-15",
+    "start_time": "14:00:00",
+    "end_time": "15:00:00",
+    "purpose": "Занятие k-pop 12+",
+    "status": "confirmed",
+    "created_at": "2026-10-14T03:26:16.765Z"
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 4,
+  "fields": {
+    "room": 1,
+    "teacher": 1,
+    "date": "2026-10-18",
+    "start_time": "14:00:00",
+    "end_time": "15:00:00",
+    "purpose": "индивидуальная тренировка",
+    "status": "rejected",
+    "created_at": "2026-10-14T03:30:26.729Z"
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 5,
+  "fields": {
+    "room": 1,
+    "teacher": 3,
+    "date": "2026-10-15",
+    "start_time": "14:00:00",
+    "end_time": "15:00:00",
+    "purpose": "индивидуальная тренировка",
+    "status": "cancelled",
+    "created_at": "2026-10-14T10:40:46.221Z"
+  }
+},
+{
+  "model": "dance_school.roombooking",
+  "pk": 6,
+  "fields": {
+    "room": 3,
+    "teacher": 3,
+    "date": "2026-10-18",
+    "start_time": "15:00:00",
+    "end_time": "17:00:00",
+    "purpose": "индивидуальная тренировка",
+    "status": "pending",
+    "created_at": "2026-10-14T11:10:54.730Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add танцевальный стиль",
+    "content_type": [
+      "dance_school",
+      "dancestyle"
+    ],
+    "codename": "add_dancestyle"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change танцевальный стиль",
+    "content_type": [
+      "dance_school",
+      "dancestyle"
+    ],
+    "codename": "change_dancestyle"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete танцевальный стиль",
+    "content_type": [
+      "dance_school",
+      "dancestyle"
+    ],
+    "codename": "delete_dancestyle"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view танцевальный стиль",
+    "content_type": [
+      "dance_school",
+      "dancestyle"
+    ],
+    "codename": "view_dancestyle"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add хореограф",
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "codename": "add_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change хореограф",
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "codename": "change_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete хореограф",
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "codename": "delete_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view хореограф",
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "codename": "view_teacher"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add танцевальное занятие",
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "codename": "add_danceclass"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change танцевальное занятие",
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "codename": "change_danceclass"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete танцевальное занятие",
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "codename": "delete_danceclass"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view танцевальное занятие",
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "codename": "view_danceclass"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add ученик",
+    "content_type": [
+      "dance_school",
+      "student"
+    ],
+    "codename": "add_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change ученик",
+    "content_type": [
+      "dance_school",
+      "student"
+    ],
+    "codename": "change_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete ученик",
+    "content_type": [
+      "dance_school",
+      "student"
+    ],
+    "codename": "delete_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view ученик",
+    "content_type": [
+      "dance_school",
+      "student"
+    ],
+    "codename": "view_student"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add профиль",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change профиль",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete профиль",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view профиль",
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "codename": "view_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add заявка на пробное занятие",
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "codename": "add_trialrequest"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change заявка на пробное занятие",
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "codename": "change_trialrequest"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete заявка на пробное занятие",
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "codename": "delete_trialrequest"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view заявка на пробное занятие",
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "codename": "view_trialrequest"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add фотография галереи",
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "codename": "add_studiogalleryphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change фотография галереи",
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "codename": "change_studiogalleryphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete фотография галереи",
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "codename": "delete_studiogalleryphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view фотография галереи",
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "codename": "view_studiogalleryphoto"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add танцевальная группа",
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "codename": "add_dancegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change танцевальная группа",
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "codename": "change_dancegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete танцевальная группа",
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "codename": "delete_dancegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view танцевальная группа",
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "codename": "view_dancegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add занятие в расписании",
+    "content_type": [
+      "dance_school",
+      "classschedule"
+    ],
+    "codename": "add_classschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change занятие в расписании",
+    "content_type": [
+      "dance_school",
+      "classschedule"
+    ],
+    "codename": "change_classschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete занятие в расписании",
+    "content_type": [
+      "dance_school",
+      "classschedule"
+    ],
+    "codename": "delete_classschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view занятие в расписании",
+    "content_type": [
+      "dance_school",
+      "classschedule"
+    ],
+    "codename": "view_classschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add видео занятия",
+    "content_type": [
+      "dance_school",
+      "groupvideo"
+    ],
+    "codename": "add_groupvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change видео занятия",
+    "content_type": [
+      "dance_school",
+      "groupvideo"
+    ],
+    "codename": "change_groupvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete видео занятия",
+    "content_type": [
+      "dance_school",
+      "groupvideo"
+    ],
+    "codename": "delete_groupvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view видео занятия",
+    "content_type": [
+      "dance_school",
+      "groupvideo"
+    ],
+    "codename": "view_groupvideo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add бронирование зала",
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "codename": "add_roombooking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change бронирование зала",
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "codename": "change_roombooking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete бронирование зала",
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "codename": "delete_roombooking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view бронирование зала",
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "codename": "view_roombooking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add танцевальный зал",
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "codename": "add_studioroom"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change танцевальный зал",
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "codename": "change_studioroom"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete танцевальный зал",
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "codename": "delete_studioroom"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view танцевальный зал",
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "codename": "view_studioroom"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$QfPSD9PvudD91SXdBrEVli$XiS0IRHRYgSpUQlqbdN5EcEfOPpUTRn4hmvWloEwmE8=",
+    "last_login": "2026-10-14T11:14:00.072Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "lizzkalizzka@inbox.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-12T20:24:52.855Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$arVvbodEMxpKjiJLJNgDcI$5YkPRQGAuu7lHQVwH6V8ajjwdeW7+5HuqPYiZuWdd3g=",
+    "last_login": "2026-10-14T11:11:19.541Z",
+    "is_superuser": false,
+    "username": "Alina_min",
+    "first_name": "Алина",
+    "last_name": "Минакова",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-13T22:40:51Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$yeNELuVY5PEQp1ceSMWtyb$3Zk9wkKcZoO+5H6Ykl/BcoQYywHbpCObvcqOsm9Vh+c=",
+    "last_login": "2026-10-14T11:09:47.457Z",
+    "is_superuser": false,
+    "username": "Alan_lee",
+    "first_name": "Алан",
+    "last_name": "Ли",
+    "email": "alan@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-13T22:53:55Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$GJyUCsT8UnsetnoXgNDboN$wPVTx4UvrmxK9QIW8wND2zk2lyVJPUUGt0NpQAQeH3Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Anna_Mor",
+    "first_name": "Анна",
+    "last_name": "Морозова",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-13T22:55:22Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$nrfpAm4QSk5iEyo5kcePUD$qg03HsEWNj7vdgYOin3uupfe9FWUTmvceSY6Pz8ZzF4=",
+    "last_login": "2026-10-14T11:10:03.713Z",
+    "is_superuser": false,
+    "username": "Mark_Sokol",
+    "first_name": "Марк",
+    "last_name": "Соколов",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-13T22:56:54Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$EBdOnkiVNfvJl3DvnWQabu$QSQym+4cbngUE/kswtWEcByKjgPCklBSTylhN52E/0w=",
+    "last_login": "2026-10-14T11:11:51.078Z",
+    "is_superuser": false,
+    "username": "Anton_knyaz",
+    "first_name": "Антон",
+    "last_name": "Князев",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-14T02:48:27Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$6KlTZfFtolNm01VtE2sH1U$X+ogianO9KK7+/JUp9HtQCsNd4Sw6cVopozYqm6ncJA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Diana_Volk",
+    "first_name": "Диана",
+    "last_name": "Волкова",
+    "email": "pupkin@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-14T07:43:57.873Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$6pMLNwIZ06oEm1iEJuBbvq$sTfaumJrq+paVou73A9PGcXwjvVeXbFyGx0CoTi9WLI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Karina_Pet",
+    "first_name": "Карина",
+    "last_name": "Петрова",
+    "email": "karina@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-14T08:11:03.766Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "role": "admin",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-12T20:24:53.376Z",
+    "hourly_rate": "0.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "Alina_min"
+    ],
+    "role": "student",
+    "phone": "+7 (777) 777-77-77",
+    "address": "",
+    "birth_date": null,
+    "membership_number": "200203",
+    "registration_date": "2026-10-13T22:40:52.960Z",
+    "hourly_rate": "0.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "Alan_lee"
+    ],
+    "role": "choreographer",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-13T22:53:57.210Z",
+    "hourly_rate": "1500.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "Anna_Mor"
+    ],
+    "role": "choreographer",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-13T22:55:24.037Z",
+    "hourly_rate": "1100.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "Mark_Sokol"
+    ],
+    "role": "choreographer",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-13T22:56:56.198Z",
+    "hourly_rate": "800.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "Anton_knyaz"
+    ],
+    "role": "student",
+    "phone": "+7 (777) 777-77-77",
+    "address": "",
+    "birth_date": "2005-01-03",
+    "membership_number": "200202",
+    "registration_date": "2026-10-14T02:48:29.371Z",
+    "hourly_rate": "0.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "Diana_Volk"
+    ],
+    "role": "choreographer",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-14T07:44:00.029Z",
+    "hourly_rate": "0.00"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "Karina_Pet"
+    ],
+    "role": "student",
+    "phone": "",
+    "address": "",
+    "birth_date": null,
+    "membership_number": null,
+    "registration_date": "2026-10-14T08:11:07.215Z",
+    "hourly_rate": "0.00"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-10-12T21:21:33.807Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "1",
+    "object_repr": "K-pop 12+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-10-12T21:26:35.841Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "2",
+    "object_repr": "K-pop 18+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-10-12T21:29:01.576Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "3",
+    "object_repr": "Hip-hop 8+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-10-12T21:31:19.472Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "4",
+    "object_repr": "Hip-hop 16+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-10-12T21:35:57.987Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "5",
+    "object_repr": "Contemporary 12+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-10-12T21:37:18.745Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "6",
+    "object_repr": "Contemporary 18+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-10-12T21:39:07.655Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "7",
+    "object_repr": "Jazz-funk 16+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-10-12T21:40:03.352Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "7",
+    "object_repr": "Jazz-funk 16+",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-10-12T21:41:09.729Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "8",
+    "object_repr": "Jazz-funk 21+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-10-12T21:43:29.939Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "9",
+    "object_repr": "Vogue 18+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-10-12T21:48:37.369Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "10",
+    "object_repr": "Народные танцы",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-10-12T21:50:12.631Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "11",
+    "object_repr": "Народные танцы 16+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-10-12T21:51:30.460Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "12",
+    "object_repr": "Народные танцы 30+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-10-12T21:51:52.614Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "danceclass"
+    ],
+    "object_id": "10",
+    "object_repr": "Народные танцы 6+",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-10-13T15:33:48.963Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "1",
+    "object_repr": "Алан Ли",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-10-13T15:37:56.082Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "3",
+    "object_repr": "Марк Соколов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-10-13T15:41:10.575Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "5",
+    "object_repr": "Алексей Громов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-10-13T15:44:10.190Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "2",
+    "object_repr": "Анна Морозова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-10-13T15:47:59.033Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "4",
+    "object_repr": "Виктория Белова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-10-13T15:50:45.889Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "6",
+    "object_repr": "Диана Волкова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-10-13T17:47:51.806Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "4",
+    "object_repr": "Виктория Белова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-10-13T17:47:57.962Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "5",
+    "object_repr": "Алексей Громов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-10-13T17:48:03.649Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "1",
+    "object_repr": "Алан Ли",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-10-13T17:48:31.305Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "1",
+    "object_repr": "Алан Ли",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-10-13T17:48:39.421Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "2",
+    "object_repr": "Анна Морозова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-10-13T17:48:43.276Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "3",
+    "object_repr": "Марк Соколов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-10-13T17:50:00.960Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "3",
+    "object_repr": "Марк Соколов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-10-13T17:50:15.899Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "2",
+    "object_repr": "Анна Морозова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2026-10-13T17:50:27.755Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "5",
+    "object_repr": "Алексей Громов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2026-10-13T17:50:36.615Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "6",
+    "object_repr": "Диана Волкова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2026-10-13T17:50:47.624Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "6",
+    "object_repr": "Диана Волкова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2026-10-13T17:50:57.362Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "4",
+    "object_repr": "Виктория Белова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2026-10-13T19:43:51.861Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "1",
+    "object_repr": "Залл 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2026-10-13T19:43:56.871Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "1",
+    "object_repr": "Зал 1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0444\\u043e\\u0442\\u043e\\u0433\\u0440\\u0430\\u0444\\u0438\\u0438\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2026-10-13T19:44:13.409Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "2",
+    "object_repr": "Зал 2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2026-10-13T19:44:36.219Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "3",
+    "object_repr": "Зал 3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2026-10-13T19:45:06.855Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "4",
+    "object_repr": "Зал 4",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2026-10-13T19:45:48.293Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "5",
+    "object_repr": "Зал 5",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2026-10-13T19:46:03.538Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "6",
+    "object_repr": "Зал 6",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2026-10-13T19:46:59.275Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "7",
+    "object_repr": "Vogue 18+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2026-10-13T19:47:07.632Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "7",
+    "object_repr": "Vogue 18+",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\\u0433\\u0440\\u0430\\u0444\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2026-10-13T19:47:53.337Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "7",
+    "object_repr": "Vogue 18+",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2026-10-13T20:05:48.774Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "7",
+    "object_repr": "Vogue 18+",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\\u0433\\u0440\\u0430\\u0444\\u0438\\u044f\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2026-10-13T20:06:09.222Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studiogalleryphoto"
+    ],
+    "object_id": "7",
+    "object_repr": "Vogue 18+",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2026-10-13T20:46:10.406Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "object_id": "1",
+    "object_repr": "liza — K-pop 12+",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2026-10-13T22:35:06.908Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "1",
+    "object_repr": "Профиль admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0420\\u043e\\u043b\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2026-10-13T22:40:52.961Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Alina_min",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2026-10-13T22:53:57.211Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Alan_lee",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2026-10-13T22:54:13.329Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "1",
+    "object_repr": "Алан Ли",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u043a\\u043a\\u0430\\u0443\\u043d\\u0442 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2026-10-13T22:55:24.038Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "Anna_Mor",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2026-10-13T22:55:33.693Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "2",
+    "object_repr": "Анна Морозова",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u043a\\u043a\\u0430\\u0443\\u043d\\u0442 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2026-10-13T22:56:56.199Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Mark_Sokol",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2026-10-13T22:57:16.644Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "3",
+    "object_repr": "Марк Соколов",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u043a\\u043a\\u0430\\u0443\\u043d\\u0442 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2026-10-13T22:57:28.125Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "3",
+    "object_repr": "Профиль Alan_lee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0420\\u043e\\u043b\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2026-10-13T22:57:35.938Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "4",
+    "object_repr": "Профиль Anna_Mor",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0420\\u043e\\u043b\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2026-10-13T22:57:43.700Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "5",
+    "object_repr": "Профиль Mark_Sokol",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0420\\u043e\\u043b\\u044c\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2026-10-13T23:00:19.189Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Alan_lee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2026-10-13T23:00:29.528Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Alan_lee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2026-10-13T23:00:57.012Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Alina_min",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2026-10-13T23:01:34.807Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "Anna_Mor",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2026-10-13T23:01:40.537Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "Anna_Mor",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2026-10-13T23:01:51.910Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "Anna_Mor",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2026-10-13T23:02:02.805Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Mark_Sokol",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2026-10-13T23:02:28.874Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Mark_Sokol",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2026-10-13T23:08:41.060Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "teacher"
+    ],
+    "object_id": "1",
+    "object_repr": "Алан Ли",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2026-10-13T23:35:53.379Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Alina_min",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2026-10-13T23:38:18.571Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "object_id": "1",
+    "object_repr": "K-pop 12+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2026-10-13T23:51:33.247Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "groupvideo"
+    ],
+    "object_id": "1",
+    "object_repr": "ENXYPEN — K-pop 12+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2026-10-14T00:42:21.189Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "classschedule"
+    ],
+    "object_id": "1",
+    "object_repr": "K-pop 12+ — Вторник, 14:00–15:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2026-10-14T01:40:30.521Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "3",
+    "object_repr": "Профиль Alan_lee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041f\\u043e\\u0447\\u0430\\u0441\\u043e\\u0432\\u0430\\u044f \\u0441\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2026-10-14T01:41:03.676Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "5",
+    "object_repr": "Профиль Mark_Sokol",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041f\\u043e\\u0447\\u0430\\u0441\\u043e\\u0432\\u0430\\u044f \\u0441\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2026-10-14T01:42:46.615Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "4",
+    "object_repr": "Профиль Anna_Mor",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041f\\u043e\\u0447\\u0430\\u0441\\u043e\\u0432\\u0430\\u044f \\u0441\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2026-10-14T01:47:47.038Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "3",
+    "object_repr": "Профиль Alan_lee",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041f\\u043e\\u0447\\u0430\\u0441\\u043e\\u0432\\u0430\\u044f \\u0441\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0445\\u043e\\u0440\\u0435\\u043e\\u0433\\u0440\\u0430\\u0444\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2026-10-14T02:48:29.375Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "6",
+    "object_repr": "Anton_knyaz",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2026-10-14T02:49:41.180Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "6",
+    "object_repr": "Профиль Anton_knyaz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0422\\u0435\\u043b\\u0435\\u0444\\u043e\\u043d\", \"\\u0414\\u0430\\u0442\\u0430 \\u0440\\u043e\\u0436\\u0434\\u0435\\u043d\\u0438\\u044f\", \"\\u041d\\u043e\\u043c\\u0435\\u0440 \\u043a\\u0430\\u0440\\u0442\\u044b \\u0443\\u0447\\u0435\\u043d\\u0438\\u043a\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2026-10-14T02:49:50.504Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
+    "object_id": "2",
+    "object_repr": "Профиль Alina_min",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0422\\u0435\\u043b\\u0435\\u0444\\u043e\\u043d\", \"\\u041d\\u043e\\u043c\\u0435\\u0440 \\u043a\\u0430\\u0440\\u0442\\u044b \\u0443\\u0447\\u0435\\u043d\\u0438\\u043a\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2026-10-14T02:50:43.215Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "dancegroup"
+    ],
+    "object_id": "2",
+    "object_repr": "Hip-hop 16+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2026-10-14T02:51:18.295Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "6",
+    "object_repr": "Anton_knyaz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2026-10-14T02:56:29.992Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "1",
+    "object_repr": "Зал 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2026-10-14T02:57:05.351Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "2",
+    "object_repr": "Зал",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2026-10-14T02:57:11.487Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "2",
+    "object_repr": "Зал 2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0437\\u0430\\u043b\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2026-10-14T02:57:35.813Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "3",
+    "object_repr": "Зал 3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2026-10-14T02:58:13.847Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "4",
+    "object_repr": "Зал 4",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2026-10-14T02:58:42.600Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "5",
+    "object_repr": "Зал 5",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2026-10-14T02:59:07.016Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "studioroom"
+    ],
+    "object_id": "6",
+    "object_repr": "Зал 6",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2026-10-14T03:00:27.125Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "object_id": "1",
+    "object_repr": "Зал 4 — 20.10.2026, 14:00–15:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2026-10-14T06:33:01.814Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "trialrequest"
+    ],
+    "object_id": "2",
+    "object_repr": "liza — K-pop 18+",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2026-10-14T10:40:46.243Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "object_id": "5",
+    "object_repr": "Зал 1 — 15.10.2026, 14:00–15:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2026-10-14T10:47:00.958Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "dance_school",
+      "roombooking"
+    ],
+    "object_id": "5",
+    "object_repr": "Зал 1 — 15.10.2026, 14:00–15:00",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2026-10-14T10:49:31.899Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "5",
+    "object_repr": "Mark_Sokol",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
   }
 }
 ]
